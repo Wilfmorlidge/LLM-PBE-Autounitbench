@@ -1,0 +1,2414 @@
+@prefix : <https://w3id.org/DOLCE/OWL/DOLCEbasic#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix terms: <http://purl.org/dc/terms/> .
+@prefix ace_lexicon: <http://attempto.ifi.uzh.ch/ace_lexicon#> .
+@base <https://w3id.org/DOLCE/OWL/DOLCEbasic#> .
+
+<https://w3id.org/DOLCE/OWL/DOLCEbasic> rdf:type owl:Ontology ;
+                                         owl:versionIRI <https://w3id.org/DOLCE/OWL/DOLCEbasic/3.5> ;
+                                         terms:contributor "Stefano Borgo, Francesco Compagno, Claudio Masolo, Emilio M. Sanfilippo, Walter Terkaj" ;
+                                         terms:creator "Laure Vieu and Daniele Porello" ;
+                                         terms:license <http://creativecommons.org/licenses/by/4.0/> ;
+                                         vann:preferredNamespacePrefix "db" ;
+                                        .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://attempto.ifi.uzh.ch/ace_lexicon#CN_pl
+ace_lexicon:CN_pl rdf:type owl:AnnotationProperty .
+
+
+###  http://attempto.ifi.uzh.ch/ace_lexicon#CN_sg
+ace_lexicon:CN_sg rdf:type owl:AnnotationProperty .
+
+
+###  http://attempto.ifi.uzh.ch/ace_lexicon#TV_pl
+ace_lexicon:TV_pl rdf:type owl:AnnotationProperty .
+
+
+###  http://attempto.ifi.uzh.ch/ace_lexicon#TV_sg
+ace_lexicon:TV_sg rdf:type owl:AnnotationProperty .
+
+
+###  http://attempto.ifi.uzh.ch/ace_lexicon#TV_vbg
+ace_lexicon:TV_vbg rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/contributor
+terms:contributor rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/creator
+terms:creator rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/license
+terms:license rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/preferredNamespacePrefix
+vann:preferredNamespacePrefix rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  https://w3id.org/DOLCE/OWL/DOLCEbasic#atomicPartOf
+:atomicPartOf rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf :partOf ;
+              rdfs:domain :Atom ;
+              rdfs:range [ rdf:type owl:Class ;
+                           owl:unionOf ( :Abstract
+                                         :Perdurant
+                                       )
+                         ] ;
+              ace_lexicon:TV_pl "atomic parts of" ;
+              ace_lexicon:TV_sg "atomic part of" ;
+              rdfs:comment "atomicPartOf is the specialization of the PartOf relation to the case that the part argument is a mereological atom" ;
+              rdfs:label "atomic part of" .
+
+
+###  https://w3id.org/DOLCE/OWL/DOLCEbasic#constantAtomicPartOf
+:constantAtomicPartOf rdf:type owl:ObjectProperty ;
+                      rdfs:subPropertyOf :constantPartOf ;
+                      rdfs:domain :ConstantAtom ;
+                      rdfs:range :Endurant ;
+                      ace_lexicon:TV_pl "constant atomic parts of" ;
+                      ace_lexicon:TV_sg "constant atomic part of" ;
+                      rdfs:comment "constantAtomicPartOf is the specialization of the ConstantPartOf relation to the case that the part argument is a mereological atom" ;
+                      rdfs:label "constant atomic part of" .
+
+
+###  https://w3id.org/DOLCE/OWL/DOLCEbasic#constantConstituentOf
+:constantConstituentOf rdf:type owl:ObjectProperty ;
+                       rdfs:subPropertyOf _:genid4 ;
+                       rdf:type owl:TransitiveProperty ;
+                       rdfs:domain _:genid7 ;
+                       rdfs:range _:genid12 ;
+                       ace_lexicon:TV_pl "are constant constituent of" ;
+                       ace_lexicon:TV_sg "is constant constituent of" ;
+                       ace_lexicon:TV_vbg "constantly constituted" ;
+                       rdfs:label "constant constituent of" .
+
+_:genid4 owl:inverseOf :specificallyDependsOn .
+
+_:genid7 rdf:type owl:Class ;
+          owl:unionOf ( :NonPhysicalEndurant
+                        :Perdurant
+                        :PhysicalEndurant
+                      ) .
+
+_:genid12 rdf:type owl:Class ;
+           owl:unionOf ( :NonPhysicalEndurant
+                         :Perdurant
+                         :PhysicalEndurant
+                       ) .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :constantConstituentOf ;
+   owl:annotatedProperty rdfs:domain ;
+   owl:annotatedTarget _:genid7 ;
+   rdfs:comment "Everything that is constant constituent of something is something that is a non physical endurant or that is a perdurant or that is a physical endurant."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :constantConstituentOf ;
+   owl:annotatedProperty rdfs:range ;
+   owl:annotatedTarget _:genid12 ;
+   rdfs:comment "Everything that is constantly constituted by something is something that is a non physical endurant or that is a perdurant or that is a physical endurant."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :constantConstituentOf ;
+   owl:annotatedProperty rdfs:subPropertyOf ;
+   owl:annotatedTarget _:genid4 ;
+   rdfs:comment "If X is constant constituent of Y then Y specifically depends on X."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :constantConstituentOf ;
+   owl:annotatedProperty rdf:type ;
+   owl:annotatedTarget owl:TransitiveProperty ;
+   rdfs:comment "If X is constant constituent of something that is constant constituent of Y then X is constant constituent of Y."
+ ] .
+
+
+###  https://w3id.org/DOLCE/OWL/DOLCEbasic#constantPartOf
+:constantPartOf rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf :constantlyOverlaps ;
+                rdf:type owl:TransitiveProperty ;
+                rdfs:domain :Endurant ;
+                rdfs:range :Endurant ;
+                ace_lexicon:TV_pl "are constant part of" ;
+                ace_lexicon:TV_sg "is constant part of" ;
+                ace_lexicon:TV_vbg "constantly divided into parts" ;
+                rdfs:label "constant part of" .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :constantPartOf ;
+   owl:annotatedProperty rdfs:subPropertyOf ;
+   owl:annotatedTarget :constantlyOverlaps ;
+   rdfs:comment "If X is constant part of Y then X constantly overlaps Y."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :constantPartOf ;
+   owl:annotatedProperty rdf:type ;
+   owl:annotatedTarget owl:TransitiveProperty ;
+   rdfs:comment "If X is constant part of something that is constant part of Y then X is constant part of Y."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :constantPartOf ;
+   owl:annotatedProperty rdfs:domain ;
+   owl:annotatedTarget :Endurant ;
+   rdfs:comment "Everything that is constant part of something is an endurant." ,
+                "From Dd25, Ad10"
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :constantPartOf ;
+   owl:annotatedProperty rdfs:range ;
+   owl:annotatedTarget :Endurant ;
+   rdfs:comment "Everything that has something as constant part is an endurant." ,
+                "From Dd25, Ad10"
+ ] .
+
+
+###  https://w3id.org/DOLCE/OWL/DOLCEbasic#constantParticipantOf
+:constantParticipantOf rdf:type owl:ObjectProperty ;
+                       rdfs:subPropertyOf _:genid21 ;
+                       rdfs:domain :Endurant ;
+                       rdfs:range :Perdurant ;
+                       ace_lexicon:TV_pl "are constant participants of" ;
+                       ace_lexicon:TV_sg "is constant participant of" ;
+                       ace_lexicon:TV_vbg "constantly participated" ;
+                       rdfs:label "constant participation of" .
+
+_:genid21 owl:inverseOf :specificallyDependsOn .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :constantParticipantOf ;
+   owl:annotatedProperty rdfs:subPropertyOf ;
+   owl:annotatedTarget _:genid21 ;
+   rdfs:comment "If X is constant participant of Y then Y specifically depends on X."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :constantParticipantOf ;
+   owl:annotatedProperty rdfs:domain ;
+   owl:annotatedTarget :Endurant ;
+   rdfs:comment "Everything that is constant participant of something is an endurant."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :constantParticipantOf ;
+   owl:annotatedProperty rdfs:range ;
+   owl:annotatedTarget :Perdurant ;
+   rdfs:comment "Everything that is constantly participated by something is a perdurant."
+ ] .
+
+
+###  https://w3id.org/DOLCE/OWL/DOLCEbasic#constantProperPartOf
+:constantProperPartOf rdf:type owl:ObjectProperty ;
+                      rdfs:subPropertyOf :constantPartOf ;
+                      rdf:type owl:TransitiveProperty ;
+                      rdfs:domain :Endurant ;
+                      rdfs:range :Endurant ;
+                      ace_lexicon:TV_pl "are constant proper part of" ;
+                      ace_lexicon:TV_sg "is constant proper part of" ;
+                      ace_lexicon:TV_vbg "constantly divided into proper parts" ;
+                      rdfs:comment "constantProperPartOf is the irreflexive specialization of the constantPartOf relation." ;
+                      rdfs:label "constant proper part of" .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :constantProperPartOf ;
+   owl:annotatedProperty rdfs:subPropertyOf ;
+   owl:annotatedTarget :constantPartOf ;
+   rdfs:comment "If X is constant proper part of Y then X is constant part of Y."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :constantProperPartOf ;
+   owl:annotatedProperty rdf:type ;
+   owl:annotatedTarget owl:TransitiveProperty ;
+   rdfs:comment "If X is constant proper part of something that is constant proper part of Y then X is constant proper part of Y."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :constantProperPartOf ;
+   owl:annotatedProperty rdfs:domain ;
+   owl:annotatedTarget :Endurant ;
+   rdfs:comment "Everything that is constant proper part of something is an endurant."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :constantProperPartOf ;
+   owl:annotatedProperty rdfs:range ;
+   owl:annotatedTarget :Endurant ;
+   rdfs:comment "Everything that has something as a constant proper part is an endurant."
+ ] .
+
+
+###  https://w3id.org/DOLCE/OWL/DOLCEbasic#constantQualeOf
+:constantQualeOf rdf:type owl:ObjectProperty ;
+                 rdfs:domain _:genid29 ;
+                 rdfs:range _:genid33 ;
+                 ace_lexicon:TV_pl "are constant quale of" ;
+                 ace_lexicon:TV_sg "is constant quale of" ;
+                 ace_lexicon:TV_vbg "the value of the constant quale relation taken" ;
+                 rdfs:label "constant quale of" .
+
+_:genid29 rdf:type owl:Class ;
+           owl:unionOf ( :AbstractRegion
+                         :PhysicalRegion
+                       ) .
+
+_:genid33 rdf:type owl:Class ;
+           owl:unionOf ( :AbstractQuality
+                         :PhysicalQuality
+                       ) .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :constantQualeOf ;
+   owl:annotatedProperty rdfs:domain ;
+   owl:annotatedTarget _:genid29 ;
+   rdfs:comment "Everything that is constant quale of something is something that is an abstract region or that is a physical region."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :constantQualeOf ;
+   owl:annotatedProperty rdfs:range ;
+   owl:annotatedTarget _:genid33 ;
+   rdfs:comment "Everything that has something as constant quale is something that is an abstract quality or that is a physical quality."
+ ] .
+
+
+###  https://w3id.org/DOLCE/OWL/DOLCEbasic#constantlyOverlaps
+:constantlyOverlaps rdf:type owl:ObjectProperty ,
+                             owl:SymmetricProperty ;
+                    rdfs:domain :Endurant ;
+                    rdfs:range :Endurant ;
+                    owl:propertyChainAxiom _:genid41 ;
+                    ace_lexicon:TV_pl "constantly overlaps" ;
+                    ace_lexicon:TV_sg "constantly overlaps" ;
+                    ace_lexicon:TV_vbg "constantly overlapped" ;
+                    rdfs:comment "constantlyOverlaps holds between two endurants that share a constant part, and are such that the time intervals at which they are temporally located overlap." ;
+                    rdfs:label "constantly overlaps" .
+
+_:genid41 rdf:type rdf:List ;
+           rdf:first [ owl:inverseOf :constantPartOf
+                     ] ;
+           rdf:rest ( :constantPartOf
+                    ) .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :constantlyOverlaps ;
+   owl:annotatedProperty rdf:type ;
+   owl:annotatedTarget owl:SymmetricProperty ;
+   rdfs:comment "If X constantly overlaps Y then Y constantly overlaps X."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :constantlyOverlaps ;
+   owl:annotatedProperty rdfs:domain ;
+   owl:annotatedTarget :Endurant ;
+   rdfs:comment "Everything that constantly overlaps something is an endurant."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :constantlyOverlaps ;
+   owl:annotatedProperty rdfs:range ;
+   owl:annotatedTarget :Endurant ;
+   rdfs:comment "Everything that is constantly overlapped by something is an endurant."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :constantlyOverlaps ;
+   owl:annotatedProperty owl:propertyChainAxiom ;
+   owl:annotatedTarget _:genid41 ;
+   rdfs:comment "If X has something that is a constant part of Y as constant part then X constantly overlaps Y."
+ ] .
+
+
+###  https://w3id.org/DOLCE/OWL/DOLCEbasic#directQualityOf
+:directQualityOf rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf :specificallyDependsOn ;
+                 rdf:type owl:FunctionalProperty ;
+                 rdfs:domain :Quality ;
+                 rdfs:range _:genid47 ;
+                 ace_lexicon:TV_pl "are direct quality of" ;
+                 ace_lexicon:TV_sg "is direct quality of" ;
+                 ace_lexicon:TV_vbg "qualified" ;
+                 rdfs:comment "directQualityOf is a binary relation between a quality and the unique entity it inheres in, which is an endurant or a perdurant. It implies specific constant dependence." ;
+                 rdfs:label "direct quality of" .
+
+_:genid47 rdf:type owl:Class ;
+           owl:unionOf ( :Endurant
+                         :Perdurant
+                       ) .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :directQualityOf ;
+   owl:annotatedProperty rdfs:subPropertyOf ;
+   owl:annotatedTarget :specificallyDependsOn ;
+   rdfs:comment "If X is direct quality of Y then X specifically depends on Y."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :directQualityOf ;
+   owl:annotatedProperty rdf:type ;
+   owl:annotatedTarget owl:FunctionalProperty ;
+   rdfs:comment "Everything is direct quality of at most 1 thing."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :directQualityOf ;
+   owl:annotatedProperty rdfs:domain ;
+   owl:annotatedTarget :Quality ;
+   rdfs:comment "Dd28, Ad38" ,
+                "Everything that is direct quality of something is a quality."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :directQualityOf ;
+   owl:annotatedProperty rdfs:range ;
+   owl:annotatedTarget _:genid47 ;
+   rdfs:comment "Everything that has something as direct quality is something that is an endurant or that is a perdurant." ,
+                "From Dd28, Ad38, Ad43, Ad46, Ad47, Ad48"
+ ] .
+
+
+###  https://w3id.org/DOLCE/OWL/DOLCEbasic#overlaps
+:overlaps rdf:type owl:ObjectProperty ,
+                   owl:SymmetricProperty ;
+          rdfs:domain _:genid52 ;
+          rdfs:range _:genid56 ;
+          owl:propertyChainAxiom _:genid61 ,
+                                 _:genid65 ;
+          ace_lexicon:TV_pl "overlap" ;
+          ace_lexicon:TV_sg "overlaps" ;
+          ace_lexicon:TV_vbg "overlapped" ;
+          rdfs:comment "overlaps holds between two abstracts or two perdurants when they both share a part." ;
+          rdfs:label "overlaps" .
+
+_:genid52 rdf:type owl:Class ;
+           owl:unionOf ( :Abstract
+                         :Perdurant
+                       ) .
+
+_:genid56 rdf:type owl:Class ;
+           owl:unionOf ( :Abstract
+                         :Perdurant
+                       ) .
+
+_:genid61 rdf:type rdf:List ;
+           rdf:first [ owl:inverseOf :partOf
+                     ] ;
+           rdf:rest ( :partOf
+                    ) .
+
+_:genid65 rdf:type rdf:List ;
+           rdf:first [ owl:inverseOf :presentAt
+                     ] ;
+           rdf:rest ( :temporallyLocatedAt
+                    ) .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :overlaps ;
+   owl:annotatedProperty rdf:type ;
+   owl:annotatedTarget owl:SymmetricProperty ;
+   rdfs:comment "If X overlaps Y then Y overlaps X."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :overlaps ;
+   owl:annotatedProperty rdfs:domain ;
+   owl:annotatedTarget _:genid52 ;
+   rdfs:comment "Everything that overlaps something is something that is an abstract or that is a perdurant." ,
+                "From Ad1 and Dd15"
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :overlaps ;
+   owl:annotatedProperty rdfs:range ;
+   owl:annotatedTarget _:genid56 ;
+   rdfs:comment "Everything that is overlapped by something is something that is an abstract or that is a perdurant." ,
+                "From Ad1 and Dd15"
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :overlaps ;
+   owl:annotatedProperty owl:propertyChainAxiom ;
+   owl:annotatedTarget _:genid61 ;
+   rdfs:comment "D15 (half)" ,
+                "If X has something that is part of Y as part then X overlaps Y."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :overlaps ;
+   owl:annotatedProperty owl:propertyChainAxiom ;
+   owl:annotatedTarget _:genid65 ;
+   rdfs:comment "Approximation of half of Dd40" ,
+                "If X is a time of presence of something which is temporally located at Y then X overlaps Y."
+ ] .
+
+
+###  https://w3id.org/DOLCE/OWL/DOLCEbasic#partOf
+:partOf rdf:type owl:ObjectProperty ;
+        rdfs:subPropertyOf :overlaps ;
+        rdf:type owl:TransitiveProperty ;
+        rdfs:domain _:genid70 ;
+        rdfs:range _:genid74 ;
+        ace_lexicon:TV_pl "are part of" ;
+        ace_lexicon:TV_sg "is part of" ;
+        ace_lexicon:TV_vbg "divided into parts" ;
+        rdfs:comment "PartOf is a binary relation that is a partial ordering between abstract entities or between perdurants. It founds an extensional mereology on each of these two categories." ;
+        rdfs:label "part of" .
+
+_:genid70 rdf:type owl:Class ;
+           owl:unionOf ( :Abstract
+                         :Perdurant
+                       ) .
+
+_:genid74 rdf:type owl:Class ;
+           owl:unionOf ( :Abstract
+                         :Perdurant
+                       ) .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :partOf ;
+   owl:annotatedProperty rdfs:subPropertyOf ;
+   owl:annotatedTarget :overlaps ;
+   rdfs:comment "From Ad5 and Dd15" ,
+                "If X is part of Y then X overlaps Y."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :partOf ;
+   owl:annotatedProperty rdf:type ;
+   owl:annotatedTarget owl:TransitiveProperty ;
+   rdfs:comment "If X is part of something that is part of Y then X is part of Y."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :partOf ;
+   owl:annotatedProperty rdfs:domain ;
+   owl:annotatedTarget _:genid70 ;
+   rdfs:comment "Ad1 (half)" ,
+                "Everything that is part of something is something that is an abstract or that is a perdurant."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :partOf ;
+   owl:annotatedProperty rdfs:range ;
+   owl:annotatedTarget _:genid74 ;
+   rdfs:comment "Ad1 (half)" ,
+                "Everything that is has something as part is something that is an abstract or that is a perdurant."
+ ] .
+
+
+###  https://w3id.org/DOLCE/OWL/DOLCEbasic#presentAt
+:presentAt rdf:type owl:ObjectProperty ;
+           rdfs:domain _:genid78 ;
+           rdfs:range :TimeInterval ;
+           owl:propertyChainAxiom _:genid85 ,
+                                  _:genid88 ,
+                                  _:genid91 ,
+                                  _:genid94 ,
+                                  _:genid97 ,
+                                  _:genid100 ,
+                                  _:genid104 ,
+                                  _:genid107 ,
+                                  _:genid111 ,
+                                  _:genid115 ;
+           ace_lexicon:TV_pl "are present at" ;
+           ace_lexicon:TV_sg "is present at" ;
+           ace_lexicon:TV_vbg "the value of the present at relation taken" ;
+           rdfs:comment "presentAt is a binary relation between an endurant or a perdurant or a quality x and a time interval t which is part of x's temporal location." ;
+           rdfs:label "present at" .
+
+_:genid78 rdf:type owl:Class ;
+           owl:unionOf ( :Endurant
+                         :Perdurant
+                         :Quality
+                       ) .
+
+_:genid85 rdf:type rdf:List ;
+           rdf:first :constantAtomicPartOf ;
+           rdf:rest ( :presentAt
+                    ) .
+
+_:genid88 rdf:type rdf:List ;
+           rdf:first :constantConstituentOf ;
+           rdf:rest ( :presentAt
+                    ) .
+
+_:genid91 rdf:type rdf:List ;
+           rdf:first :constantPartOf ;
+           rdf:rest ( :presentAt
+                    ) .
+
+_:genid94 rdf:type rdf:List ;
+           rdf:first :constantParticipantOf ;
+           rdf:rest ( :presentAt
+                    ) .
+
+_:genid97 rdf:type rdf:List ;
+           rdf:first :constantProperPartOf ;
+           rdf:rest ( :presentAt
+                    ) .
+
+_:genid100 rdf:type rdf:List ;
+            rdf:first :directQualityOf ;
+            rdf:rest ( :presentAt
+                     ) .
+
+_:genid104 rdf:type rdf:List ;
+            rdf:first :presentAt ;
+            rdf:rest ( [ owl:inverseOf :partOf
+                       ]
+                     ) .
+
+_:genid107 rdf:type rdf:List ;
+            rdf:first [ owl:inverseOf :directQualityOf
+                      ] ;
+            rdf:rest ( :presentAt
+                     ) .
+
+_:genid111 rdf:type rdf:List ;
+            rdf:first [ owl:inverseOf :partOf
+                      ] ;
+            rdf:rest ( :presentAt
+                     ) .
+
+_:genid115 rdf:type rdf:List ;
+            rdf:first [ owl:inverseOf :specificallyDependsOn
+                      ] ;
+            rdf:rest ( :presentAt
+                     ) .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :presentAt ;
+   owl:annotatedProperty owl:propertyChainAxiom ;
+   owl:annotatedTarget _:genid100 ;
+   rdfs:comment "Dd28, Dd32, Dd33, Dd34, Dd40" ,
+                "If X is a direct quality of something that is present at Y then X is present at Y."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :presentAt ;
+   owl:annotatedProperty owl:propertyChainAxiom ;
+   owl:annotatedTarget _:genid104 ;
+   rdfs:comment "If X is present at something that has Y as part then X is present at Y." ,
+                "Td17"
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :presentAt ;
+   owl:annotatedProperty owl:propertyChainAxiom ;
+   owl:annotatedTarget _:genid107 ;
+   rdfs:comment "Dd28, Dd32, Dd33, Dd34, Dd40" ,
+                "If X has something that is present at Y as direct quality then X is present at Y."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :presentAt ;
+   owl:annotatedProperty owl:propertyChainAxiom ;
+   owl:annotatedTarget _:genid111 ;
+   rdfs:comment "If X has something that is present at Y as part then X is present at Y."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :presentAt ;
+   owl:annotatedProperty owl:propertyChainAxiom ;
+   owl:annotatedTarget _:genid115 ;
+   rdfs:comment "Approximation of Dd69" ,
+                "If X is specifically depended on by something that is present at Y then X is present at Y."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :presentAt ;
+   owl:annotatedProperty rdfs:domain ;
+   owl:annotatedTarget _:genid78 ;
+   rdfs:comment "Everything that is present at something is something that is an endurant or that is a perdurant or that is a quality." ,
+                "From Dd40, Dd30, Dd31, Dd32, Dd33"
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :presentAt ;
+   owl:annotatedProperty rdfs:range ;
+   owl:annotatedTarget :TimeInterval ;
+   rdfs:comment "Everything that is the value of the present at relation is a time interval." ,
+                "From Dd40, Dd30, Dd31, Dd32, Dd33"
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :presentAt ;
+   owl:annotatedProperty owl:propertyChainAxiom ;
+   owl:annotatedTarget _:genid85 ;
+   rdfs:comment "If X is constant atomic part of something that is present at Y then X is present at Y."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :presentAt ;
+   owl:annotatedProperty owl:propertyChainAxiom ;
+   owl:annotatedTarget _:genid88 ;
+   rdfs:comment "If X is constant constituent of something that is present at Y then X is present at Y."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :presentAt ;
+   owl:annotatedProperty owl:propertyChainAxiom ;
+   owl:annotatedTarget _:genid91 ;
+   rdfs:comment "If X is constant part of something that is present at Y then X is present at Y."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :presentAt ;
+   owl:annotatedProperty owl:propertyChainAxiom ;
+   owl:annotatedTarget _:genid94 ;
+   rdfs:comment "If X is constant participant of something that is present at Y then X is present at Y."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :presentAt ;
+   owl:annotatedProperty owl:propertyChainAxiom ;
+   owl:annotatedTarget _:genid97 ;
+   rdfs:comment "If X is constant proper part of something that is present at Y then X is present at Y."
+ ] .
+
+
+###  https://w3id.org/DOLCE/OWL/DOLCEbasic#properPartOf
+:properPartOf rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf :partOf ;
+              rdf:type owl:TransitiveProperty ;
+              rdfs:domain _:genid120 ;
+              rdfs:range _:genid124 ;
+              ace_lexicon:TV_pl "are proper part of" ;
+              ace_lexicon:TV_sg "is proper part of" ;
+              ace_lexicon:TV_vbg "divided into proper parts" ;
+              rdfs:comment "properPartOf is the irreflexive specialization of the partOf relation. (Irreflexivity not captured here, as transitivity is favored)" ;
+              rdfs:label "proper part of" .
+
+_:genid120 rdf:type owl:Class ;
+            owl:unionOf ( :Abstract
+                          :Perdurant
+                        ) .
+
+_:genid124 rdf:type owl:Class ;
+            owl:unionOf ( :Abstract
+                          :Perdurant
+                        ) .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :properPartOf ;
+   owl:annotatedProperty rdfs:subPropertyOf ;
+   owl:annotatedTarget :partOf ;
+   rdfs:comment "placeholder"
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :properPartOf ;
+   owl:annotatedProperty rdf:type ;
+   owl:annotatedTarget owl:TransitiveProperty ;
+   rdfs:comment "If X is proper part of something that is proper part of Y then X is proper part of Y."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :properPartOf ;
+   owl:annotatedProperty rdfs:domain ;
+   owl:annotatedTarget _:genid120 ;
+   rdfs:comment "Everything that is proper part of something is something that is an abstract or that is a perdurant."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :properPartOf ;
+   owl:annotatedProperty rdfs:range ;
+   owl:annotatedTarget _:genid124 ;
+   rdfs:comment "Everything that has something as proper part is something that is an abstract or that is a perdurant."
+ ] .
+
+
+###  https://w3id.org/DOLCE/OWL/DOLCEbasic#qualeOf
+:qualeOf rdf:type owl:ObjectProperty ,
+                  owl:InverseFunctionalProperty ;
+         rdfs:domain :TemporalRegion ;
+         rdfs:range :TemporalQuality ;
+         ace_lexicon:TV_pl "are quale of" ;
+         ace_lexicon:TV_sg "is quale of" ;
+         ace_lexicon:TV_vbg "valorized through the is quale of relation" ;
+         rdfs:comment "aka immediate quale" ,
+                      "qualeOf is a binary relation between a temporal region and a temporal quality, relating the quality to its quale (position in the quality space)." ;
+         rdfs:label "quale of" .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :qualeOf ;
+   owl:annotatedProperty rdfs:domain ;
+   owl:annotatedTarget :TemporalRegion ;
+   rdfs:comment "Ad52" ,
+                "Everything that is quale of something is a temporal region."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :qualeOf ;
+   owl:annotatedProperty rdfs:range ;
+   owl:annotatedTarget :TemporalQuality ;
+   rdfs:comment "Ad52" ,
+                "Everything has something as a quale is a temporal quality."
+ ] .
+
+
+###  https://w3id.org/DOLCE/OWL/DOLCEbasic#specificallyDependsOn
+:specificallyDependsOn rdf:type owl:ObjectProperty ,
+                                owl:TransitiveProperty ;
+                       rdfs:domain _:genid131 ;
+                       rdfs:range _:genid136 ;
+                       ace_lexicon:TV_pl "specifically depends on" ;
+                       ace_lexicon:TV_sg "specifically depends on" ;
+                       ace_lexicon:TV_vbg "specifically depended on" ;
+                       rdfs:comment "Specific Constant Dependence" ,
+                                    "specificallyDependsOn is a binary relation between two entities x, y present in time, i.e., endurants, perdurants or qualities, with the intended interpretation that the existence of x specifically and constantly depends on the existence of y." ;
+                       rdfs:label "specifically depends on" .
+
+_:genid131 rdf:type owl:Class ;
+            owl:unionOf ( :Endurant
+                          :Perdurant
+                          :Quality
+                        ) .
+
+_:genid136 rdf:type owl:Class ;
+            owl:unionOf ( :Endurant
+                          :Perdurant
+                          :Quality
+                        ) .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :specificallyDependsOn ;
+   owl:annotatedProperty rdf:type ;
+   owl:annotatedTarget owl:TransitiveProperty ;
+   rdfs:comment "If X specifically depends on something that specifically depends on Y then X specifically depends on Y."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :specificallyDependsOn ;
+   owl:annotatedProperty rdfs:domain ;
+   owl:annotatedTarget _:genid131 ;
+   rdfs:comment "Everything that specifically depends on something is something that is an endurant or that is a perdurant or that is a quality." ,
+                "From Dd69"
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :specificallyDependsOn ;
+   owl:annotatedProperty rdfs:range ;
+   owl:annotatedTarget _:genid136 ;
+   rdfs:comment "Everything that is specifically depended on by something is something that is an endurant or that is a perdurant or that is a quality." ,
+                "From Dd69"
+ ] .
+
+
+###  https://w3id.org/DOLCE/OWL/DOLCEbasic#temporalPartOf
+:temporalPartOf rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf :partOf ;
+                rdf:type owl:TransitiveProperty ;
+                rdfs:domain :Perdurant ;
+                rdfs:range :Perdurant ;
+                ace_lexicon:TV_pl "are temporal parts of" ;
+                ace_lexicon:TV_sg "is temporal part of" ;
+                ace_lexicon:TV_vbg "divided into temporal parts" ;
+                rdfs:comment "temporalPartOf is the specialisation of the partOf relation between two perdurants x and y, x being a temporal slice of y, that is, a maximal part of y during some time interval." ;
+                rdfs:label "temporal part of" .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :temporalPartOf ;
+   owl:annotatedProperty rdfs:subPropertyOf ;
+   owl:annotatedTarget :partOf ;
+   rdfs:comment "Dd54 (third)" ,
+                "If X is temporal part of Y then X is part of Y."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :temporalPartOf ;
+   owl:annotatedProperty rdf:type ;
+   owl:annotatedTarget owl:TransitiveProperty ;
+   rdfs:comment "If X is temporal part of something that is temporal part of Y then X is temporal part of Y."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :temporalPartOf ;
+   owl:annotatedProperty rdfs:domain ;
+   owl:annotatedTarget :Perdurant ;
+   rdfs:comment "Dd54 (third)" ,
+                "Everything that is temporal part of something is a perdurant."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :temporalPartOf ;
+   owl:annotatedProperty rdfs:range ;
+   owl:annotatedTarget :Perdurant ;
+   rdfs:comment "Everything that has something as temporal part is a perdurant." ,
+                "From Dd54 and Ad2"
+ ] .
+
+
+###  https://w3id.org/DOLCE/OWL/DOLCEbasic#temporallyLocatedAt
+:temporallyLocatedAt rdf:type owl:ObjectProperty ;
+                     rdfs:subPropertyOf :presentAt ;
+                     rdf:type owl:FunctionalProperty ;
+                     rdfs:domain _:genid147 ;
+                     rdfs:range :TimeInterval ;
+                     ace_lexicon:TV_pl "are temporally located at" ;
+                     ace_lexicon:TV_sg "is temporally located at" ;
+                     ace_lexicon:TV_vbg "the value of the temporal location relation taken" ;
+                     rdfs:comment "temporallyLocatedAt is a binary relation between an endurant or a perdurant or a quality and the unique time interval it is exactly located in." ;
+                     rdfs:label "temporally located at" .
+
+_:genid147 rdf:type owl:Class ;
+            owl:unionOf ( :Endurant
+                          :Perdurant
+                          :Quality
+                        ) .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :temporallyLocatedAt ;
+   owl:annotatedProperty rdfs:subPropertyOf ;
+   owl:annotatedTarget :presentAt ;
+   rdfs:comment "Dd40 + Ad5" ,
+                "If X is temporally located at Y then X is present at Y."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :temporallyLocatedAt ;
+   owl:annotatedProperty rdf:type ;
+   owl:annotatedTarget owl:FunctionalProperty ;
+   rdfs:comment "Everything is temporally located at at most 1 thing."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :temporallyLocatedAt ;
+   owl:annotatedProperty rdfs:domain ;
+   owl:annotatedTarget _:genid147 ;
+   rdfs:comment "Everything that is temporally located at something is something that is an endurant or that is a perdurant or that is a quality."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :temporallyLocatedAt ;
+   owl:annotatedProperty rdfs:range ;
+   owl:annotatedTarget :TimeInterval ;
+   rdfs:comment "Everything that is the value of the temporal location relation is a time interval."
+ ] .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  https://w3id.org/DOLCE/OWL/DOLCEbasic#Abstract
+:Abstract rdf:type owl:Class ;
+          rdfs:subClassOf :Particular ,
+                          _:genid154 ,
+                          _:genid156 ,
+                          _:genid158 ,
+                          _:genid161 ;
+          owl:disjointWith :Endurant ,
+                           :Perdurant ,
+                           :Quality ;
+          ace_lexicon:CN_pl "abstracts" ;
+          ace_lexicon:CN_sg "abstract" ;
+          rdfs:comment "An Abstract entity is an entity that has neither spatial nor temporal qualities and is not a quality itself (examples: a number, a set, a quality space)." ;
+          rdfs:label "Abstract" .
+
+_:genid154 rdf:type owl:Restriction ;
+            owl:onProperty :overlaps ;
+            owl:allValuesFrom :Abstract .
+
+_:genid156 rdf:type owl:Restriction ;
+            owl:onProperty :partOf ;
+            owl:allValuesFrom :Abstract .
+
+_:genid158 rdf:type owl:Restriction ;
+            owl:onProperty [ owl:inverseOf :overlaps
+                           ] ;
+            owl:allValuesFrom :Abstract .
+
+_:genid161 rdf:type owl:Restriction ;
+            owl:onProperty [ owl:inverseOf :partOf
+                           ] ;
+            owl:allValuesFrom :Abstract .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :Abstract ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget :Particular ;
+   rdfs:comment "Every abstract is a particular."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :Abstract ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget _:genid154 ;
+   rdfs:comment "Everything that is overlapped by an abstract is an abstract." ,
+                "from Dd15, Ad3"
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :Abstract ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget _:genid156 ;
+   rdfs:comment "Ad3 (half)" ,
+                "Everything that has an abstract as part is an abstract."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :Abstract ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget _:genid158 ;
+   rdfs:comment "Everything that overlaps an abstract is an abstract." ,
+                "from Dd15, Ad3"
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :Abstract ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget _:genid161 ;
+   rdfs:comment "Ad3 (half)" ,
+                "Everything that is part of an abstract is an abstract."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :Abstract ;
+   owl:annotatedProperty owl:disjointWith ;
+   owl:annotatedTarget :Endurant ;
+   rdfs:comment "No abstract is an endurant."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :Abstract ;
+   owl:annotatedProperty owl:disjointWith ;
+   owl:annotatedTarget :Perdurant ;
+   rdfs:comment "No abstract is a perdurant."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :Abstract ;
+   owl:annotatedProperty owl:disjointWith ;
+   owl:annotatedTarget :Quality ;
+   rdfs:comment "No abstract is a quality."
+ ] .
+
+
+###  https://w3id.org/DOLCE/OWL/DOLCEbasic#AbstractQuality
+:AbstractQuality rdf:type owl:Class ;
+                 rdfs:subClassOf :Quality ,
+                                 _:genid168 ,
+                                 _:genid170 ;
+                 owl:disjointWith :PhysicalQuality ,
+                                  :TemporalQuality ;
+                 ace_lexicon:CN_pl "abstract qualities" ;
+                 ace_lexicon:CN_sg "abstract quality" ;
+                 rdfs:comment "An Abstract Quality is a quality that directly inheres to a non-physical endurant (examples: the value of an asset, the rights of the UN general secretary)." ,
+                              "Warning: Abstract qualities are not qualities of abstract entities, but of non-physical endurants" ;
+                 rdfs:label "Abstract Quality" .
+
+_:genid168 rdf:type owl:Restriction ;
+            owl:onProperty :directQualityOf ;
+            owl:allValuesFrom :NonPhysicalEndurant .
+
+_:genid170 rdf:type owl:Restriction ;
+            owl:onProperty [ owl:inverseOf :constantQualeOf
+                           ] ;
+            owl:allValuesFrom :AbstractRegion .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :AbstractQuality ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget :Quality ;
+   rdfs:comment "Every abstract quality is a quality."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :AbstractQuality ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget _:genid168 ;
+   rdfs:comment "Ad48 for dQt" ,
+                "Everything that has an abstract quality as direct quality is a non physical endurant."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :AbstractQuality ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget _:genid170 ;
+   rdfs:comment "Everything that is constant quale of an abstract quality is an abstract region."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :AbstractQuality ;
+   owl:annotatedProperty owl:disjointWith ;
+   owl:annotatedTarget :PhysicalQuality ;
+   rdfs:comment "No abstract quality is a physical quality."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :AbstractQuality ;
+   owl:annotatedProperty owl:disjointWith ;
+   owl:annotatedTarget :TemporalQuality ;
+   rdfs:comment "No abstract quality is a temporal quality."
+ ] .
+
+
+###  https://w3id.org/DOLCE/OWL/DOLCEbasic#AbstractRegion
+:AbstractRegion rdf:type owl:Class ;
+                rdfs:subClassOf :Region ,
+                                _:genid176 ,
+                                _:genid178 ,
+                                _:genid180 ;
+                owl:disjointWith :PhysicalRegion ,
+                                 :TemporalRegion ;
+                ace_lexicon:CN_pl "abstract regions" ;
+                ace_lexicon:CN_sg "abstract region" ;
+                rdfs:comment "An Abstract Region is a region in the abstract quality space for abstract qualities (example: the conventional value of 1 Euro)." ;
+                rdfs:label "Abstract Region" .
+
+_:genid176 rdf:type owl:Restriction ;
+            owl:onProperty :constantQualeOf ;
+            owl:allValuesFrom :AbstractQuality .
+
+_:genid178 rdf:type owl:Restriction ;
+            owl:onProperty :partOf ;
+            owl:allValuesFrom :AbstractRegion .
+
+_:genid180 rdf:type owl:Restriction ;
+            owl:onProperty [ owl:inverseOf :partOf
+                           ] ;
+            owl:allValuesFrom :AbstractRegion .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :AbstractRegion ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget :Region ;
+   rdfs:comment "Every abstract region is a region."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :AbstractRegion ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget _:genid176 ;
+   rdfs:comment "Everything that has an abstract region as a constant quale is an abstract quality."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :AbstractRegion ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget _:genid178 ;
+   rdfs:comment "Everything that has an abstract region as part is an abstract region."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :AbstractRegion ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget _:genid180 ;
+   rdfs:comment "Everything that is part of an abstract region is an abstract region."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :AbstractRegion ;
+   owl:annotatedProperty owl:disjointWith ;
+   owl:annotatedTarget :PhysicalRegion ;
+   rdfs:comment "No abstract region is a physical region."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :AbstractRegion ;
+   owl:annotatedProperty owl:disjointWith ;
+   owl:annotatedTarget :TemporalRegion ;
+   rdfs:comment "No abstract region is a temporal region."
+ ] .
+
+
+###  https://w3id.org/DOLCE/OWL/DOLCEbasic#Accomplishment
+:Accomplishment rdf:type owl:Class ;
+                rdfs:subClassOf :Event ,
+                                _:genid186 ;
+                owl:disjointWith :Achievement ;
+                ace_lexicon:CN_pl "accomplishments" ;
+                ace_lexicon:CN_sg "accomplishment" ;
+                rdfs:comment "An Accomplishment is an event which is mereologically non-atomic (examples: a conference, an ascent, a performance)." ;
+                rdfs:label "Accomplishment" .
+
+_:genid186 rdf:type owl:Class ;
+            owl:complementOf [ rdf:type owl:Restriction ;
+                               owl:onProperty :temporallyLocatedAt ;
+                               owl:someValuesFrom :Atom
+                             ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :Accomplishment ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget :Event ;
+   rdfs:comment "Every accomplishment is an event."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :Accomplishment ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget _:genid186 ;
+   rdfs:comment "Every accomplishment is temporally located at a non-atomic temporal interval." ,
+                "From Ad76"
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :Accomplishment ;
+   owl:annotatedProperty owl:disjointWith ;
+   owl:annotatedTarget :Achievement ;
+   rdfs:comment "No accomplishment is an achievement."
+ ] .
+
+
+###  https://w3id.org/DOLCE/OWL/DOLCEbasic#Achievement
+:Achievement rdf:type owl:Class ;
+             rdfs:subClassOf :Event ,
+                             _:genid191 ;
+             ace_lexicon:CN_pl "achievements" ;
+             ace_lexicon:CN_sg "achievement" ;
+             rdfs:comment "An Achievement is an event which is mereologically atomic (examples: reaching the summit of K2, a departure, a death)." ;
+             rdfs:label "Achievement" .
+
+_:genid191 rdf:type owl:Restriction ;
+            owl:onProperty :temporallyLocatedAt ;
+            owl:someValuesFrom :Atom .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :Achievement ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget :Event ;
+   rdfs:comment "Every achievement is an event."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :Achievement ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget _:genid191 ;
+   rdfs:comment "Every achievement is temporally located at some atomic time interval (atom)" ,
+                "From Ad75"
+ ] .
+
+
+###  https://w3id.org/DOLCE/OWL/DOLCEbasic#AgentivePhysicalObject
+:AgentivePhysicalObject rdf:type owl:Class ;
+                        rdfs:subClassOf :PhysicalObject ;
+                        ace_lexicon:CN_pl "agentive physical objects" ;
+                        ace_lexicon:CN_sg "agentive physical object" ;
+                        rdfs:comment "An Agentive Physical Object is a physical object to which intentions, believes and desires are ascribed (examples: a human person as opposed to a legal person)." ;
+                        rdfs:label "Agentive Physical Object" .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :AgentivePhysicalObject ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget :PhysicalObject ;
+   rdfs:comment "Every agentive physical object is a physical object."
+ ] .
+
+
+###  https://w3id.org/DOLCE/OWL/DOLCEbasic#AgentiveSocialObject
+:AgentiveSocialObject rdf:type owl:Class ;
+                      rdfs:subClassOf :SocialObject ;
+                      owl:disjointWith :NonAgentiveSocialObject ;
+                      ace_lexicon:CN_pl "agentive social objects" ;
+                      ace_lexicon:CN_sg "agentive social object" ;
+                      rdfs:comment "An Agentive Social Object is a social object to which intentions, believes and desires are ascribed (examples: a teacher, a president, a software agent, a nation)." ;
+                      rdfs:label "Agentive Social Object" .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :AgentiveSocialObject ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget :SocialObject ;
+   rdfs:comment "Every agentive social object is a social object."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :AgentiveSocialObject ;
+   owl:annotatedProperty owl:disjointWith ;
+   owl:annotatedTarget :NonAgentiveSocialObject ;
+   rdfs:comment "No agentive social object is a non agentive social object."
+ ] .
+
+
+###  https://w3id.org/DOLCE/OWL/DOLCEbasic#AmountOfMatter
+:AmountOfMatter rdf:type owl:Class ;
+                rdfs:subClassOf :PhysicalEndurant ;
+                owl:disjointWith :Feature ,
+                                 :PhysicalObject ;
+                ace_lexicon:CN_pl "amounts of matter" ;
+                ace_lexicon:CN_sg "amount of matter" ;
+                rdfs:comment "An Amount Of Matter is a physical endurant which has no unity criterion and is mereologically invariant, that is, all its part are essential parts (examples: the gold of my wedding ring, the sand used to make this glass)." ;
+                rdfs:label "Amount of Matter" .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :AmountOfMatter ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget :PhysicalEndurant ;
+   rdfs:comment "Every amount of matter is a physical endurant."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :AmountOfMatter ;
+   owl:annotatedProperty owl:disjointWith ;
+   owl:annotatedTarget :Feature ;
+   rdfs:comment "No amount of matter is a feature."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :AmountOfMatter ;
+   owl:annotatedProperty owl:disjointWith ;
+   owl:annotatedTarget :PhysicalObject ;
+   rdfs:comment "No amount of matter is a physical object."
+ ] .
+
+
+###  https://w3id.org/DOLCE/OWL/DOLCEbasic#ArbitrarySum
+:ArbitrarySum rdf:type owl:Class ;
+              rdfs:subClassOf :Endurant ;
+              owl:disjointWith :NonPhysicalEndurant ,
+                               :PhysicalEndurant ;
+              ace_lexicon:CN_pl "arbitrary sums" ;
+              ace_lexicon:CN_sg "arbitrary sum" ;
+              rdfs:comment "An Arbitrary Sum is an endurant which is the mereological sum of at least a physical and a non-physical endurant." ;
+              rdfs:label "Arbitrary Sum" .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :ArbitrarySum ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget :Endurant ;
+   rdfs:comment "Every arbitrary sum is an endurant."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :ArbitrarySum ;
+   owl:annotatedProperty owl:disjointWith ;
+   owl:annotatedTarget :NonPhysicalEndurant ;
+   rdfs:comment "No arbitrary sum is a non physical endurant."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :ArbitrarySum ;
+   owl:annotatedProperty owl:disjointWith ;
+   owl:annotatedTarget :PhysicalEndurant ;
+   rdfs:comment "No arbitrary sum is a physical endurant."
+ ] .
+
+
+###  https://w3id.org/DOLCE/OWL/DOLCEbasic#Atom
+:Atom rdf:type owl:Class ;
+      rdfs:subClassOf :Particular ,
+                      _:genid203 ,
+                      _:genid207 ;
+      ace_lexicon:CN_pl "atoms" ;
+      ace_lexicon:CN_sg "atom" ;
+      rdfs:comment "Atom (atomic Abstract or Perdurant)" ;
+      rdfs:label "Atom" .
+
+_:genid203 rdf:type owl:Class ;
+            owl:unionOf ( :Abstract
+                          :Perdurant
+                        ) .
+
+_:genid207 rdf:type owl:Class ;
+            owl:complementOf [ rdf:type owl:Restriction ;
+                               owl:onProperty [ owl:inverseOf :properPartOf
+                                              ] ;
+                               owl:someValuesFrom :Particular
+                             ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :Atom ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget :Particular ;
+   rdfs:comment "Every atom is a particular."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :Atom ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget _:genid203 ;
+   rdfs:comment "Every atom is something that is an abstract or that is a perdurant."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :Atom ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget _:genid207 ;
+   rdfs:comment "Dd16" ,
+                "No atom has a particular as proper part."
+ ] .
+
+
+###  https://w3id.org/DOLCE/OWL/DOLCEbasic#ConstantAtom
+:ConstantAtom rdf:type owl:Class ;
+              rdfs:subClassOf :Endurant ,
+                              [ rdf:type owl:Class ;
+                                owl:complementOf [ rdf:type owl:Restriction ;
+                                                   owl:onProperty [ owl:inverseOf :constantProperPartOf
+                                                                  ] ;
+                                                   owl:someValuesFrom :Particular
+                                                 ]
+                              ] ;
+              ace_lexicon:CN_pl "constant atoms" ;
+              ace_lexicon:CN_sg "constant atom" ;
+              rdfs:comment "A constant atom is an endurant that has no constant proper parts" ;
+              rdfs:label "Constant Atom" .
+
+
+###  https://w3id.org/DOLCE/OWL/DOLCEbasic#Endurant
+:Endurant rdf:type owl:Class ;
+          rdfs:subClassOf :Particular ,
+                          _:genid215 ;
+          owl:disjointWith :Perdurant ,
+                           :Quality ;
+          owl:disjointUnionOf _:genid221 ;
+          ace_lexicon:CN_pl "endurants" ;
+          ace_lexicon:CN_sg "endurant" ;
+          rdfs:comment "An Endurant is an entity wholly present, i.e., all its proper parts are present, at any time that it is present (examples: a person, a tree, an atom, an idea)." ;
+          rdfs:label "Endurant" .
+
+_:genid215 rdf:type owl:Restriction ;
+            owl:onProperty :temporallyLocatedAt ;
+            owl:someValuesFrom :TimeInterval .
+
+_:genid221 rdf:type rdf:List ;
+            rdf:first :ArbitrarySum ;
+            rdf:rest ( :NonPhysicalEndurant
+                       :PhysicalEndurant
+                     ) .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :Endurant ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget :Particular ;
+   rdfs:comment "Every endurant is a particular."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :Endurant ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget _:genid215 ;
+   rdfs:comment "Every endurant is temporally located at a time interval."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :Endurant ;
+   owl:annotatedProperty owl:disjointWith ;
+   owl:annotatedTarget :Perdurant ;
+   rdfs:comment "No endurant is a perdurant."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :Endurant ;
+   owl:annotatedProperty owl:disjointWith ;
+   owl:annotatedTarget :Quality ;
+   rdfs:comment "No endurant is a quality."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :Endurant ;
+   owl:annotatedProperty owl:disjointUnionOf ;
+   owl:annotatedTarget _:genid221 ;
+   rdfs:comment "An endurant is either an arbitrary sum, a physical endurant or a non-physical endurant, and the classes ArbitrarySum, PhysicalEndurant and NonPhysicalEndurant are all disjoint."
+ ] .
+
+
+###  https://w3id.org/DOLCE/OWL/DOLCEbasic#Event
+:Event rdf:type owl:Class ;
+       rdfs:subClassOf :Perdurant ;
+       owl:disjointWith :Stative ;
+       ace_lexicon:CN_pl "events" ;
+       ace_lexicon:CN_sg "event" ;
+       rdfs:comment "An Event is an anti-cumulative perdurant, i.e., a perdurant that when summed to another perdurant of the same type, gives a perdurant of a different type (examples: closing a door, reaching the top of a mountain, breaking a seal)." ;
+       rdfs:label "Event" .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :Event ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget :Perdurant ;
+   rdfs:comment "Every event is a perdurant."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :Event ;
+   owl:annotatedProperty owl:disjointWith ;
+   owl:annotatedTarget :Stative ;
+   rdfs:comment "No event is a stative."
+ ] .
+
+
+###  https://w3id.org/DOLCE/OWL/DOLCEbasic#Feature
+:Feature rdf:type owl:Class ;
+         rdfs:subClassOf :PhysicalEndurant ;
+         owl:disjointWith :PhysicalObject ;
+         ace_lexicon:CN_pl "features" ;
+         ace_lexicon:CN_sg "feature" ;
+         rdfs:comment "A Feature is a physical endurant which has a unity criterion and is existentially dependent on another physical endurant, its host (examples: a hole, a bump, an object’s boundary, a stain on a t-shirt)." ;
+         rdfs:label "Feature" .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :Feature ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget :PhysicalEndurant ;
+   rdfs:comment "Every feature is a physical endurant."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :Feature ;
+   owl:annotatedProperty owl:disjointWith ;
+   owl:annotatedTarget :PhysicalObject ;
+   rdfs:comment "No feature is a physical object."
+ ] .
+
+
+###  https://w3id.org/DOLCE/OWL/DOLCEbasic#MentalObject
+:MentalObject rdf:type owl:Class ;
+              rdfs:subClassOf :NonPhysicalObject ,
+                              _:genid228 ;
+              owl:disjointWith :SocialObject ;
+              ace_lexicon:CN_pl "mental objects" ;
+              ace_lexicon:CN_sg "mental object" ;
+              rdfs:comment "A Mental Object is a non-physical object which existentially depends on an agentive physical object (examples: a percept, a sense datum)." ;
+              rdfs:label "Mental Object" .
+
+_:genid228 rdf:type owl:Restriction ;
+            owl:onProperty :specificallyDependsOn ;
+            owl:someValuesFrom :AgentivePhysicalObject .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :MentalObject ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget :NonPhysicalObject ;
+   rdfs:comment "Every mental object is a non physical object."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :MentalObject ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget _:genid228 ;
+   rdfs:comment "Every mental object specifically depends on an agentive physical object."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :MentalObject ;
+   owl:annotatedProperty owl:disjointWith ;
+   owl:annotatedTarget :SocialObject ;
+   rdfs:comment "No mental object is a social object."
+ ] .
+
+
+###  https://w3id.org/DOLCE/OWL/DOLCEbasic#NonAgentivePhysicalObject
+:NonAgentivePhysicalObject rdf:type owl:Class ;
+                           rdfs:subClassOf :PhysicalObject ;
+                           ace_lexicon:CN_pl "non agentive physical objects" ;
+                           ace_lexicon:CN_sg "non agentive physical object" ;
+                           rdfs:comment "A Non-Agentive Physical Object is a physical object to which intentions, believes and desires are not ascribed (examples: a pebble, a house, a computer, a human body)." ;
+                           rdfs:label "Non-Agentive Physical Object" .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :NonAgentivePhysicalObject ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget :PhysicalObject ;
+   rdfs:comment "Every non agentive physical object is a physical object."
+ ] .
+
+
+###  https://w3id.org/DOLCE/OWL/DOLCEbasic#NonAgentiveSocialObject
+:NonAgentiveSocialObject rdf:type owl:Class ;
+                         rdfs:subClassOf :SocialObject ;
+                         ace_lexicon:CN_pl "non agentive social objects" ;
+                         ace_lexicon:CN_sg "non agentive social object" ;
+                         rdfs:comment "A Non-Agentive Social Object is a social object to which intentions, believes and desires are not ascribed (examples: a law, an economic system, a currency, an asset)." ;
+                         rdfs:label "Non-Agentive Social Object" .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :NonAgentiveSocialObject ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget :SocialObject ;
+   rdfs:comment "Every non agentive social object is a social object."
+ ] .
+
+
+###  https://w3id.org/DOLCE/OWL/DOLCEbasic#NonPhysicalEndurant
+:NonPhysicalEndurant rdf:type owl:Class ;
+                     rdfs:subClassOf :Endurant ,
+                                     [ rdf:type owl:Class ;
+                                       owl:complementOf [ rdf:type owl:Restriction ;
+                                                          owl:onProperty :constantlyOverlaps ;
+                                                          owl:someValuesFrom :PhysicalEndurant
+                                                        ]
+                                     ] ,
+                                     _:genid236 ,
+                                     _:genid238 ,
+                                     _:genid241 ,
+                                     _:genid244 ;
+                     owl:disjointWith :PhysicalEndurant ;
+                     ace_lexicon:CN_pl "non physical endurants" ;
+                     ace_lexicon:CN_sg "non physical endurant" ;
+                     rdfs:comment "A Non-Physical Endurant is an endurant with no direct spatial quality (examples: democracy, the United Nations, the general secretary of Amnesty International)." ;
+                     rdfs:label "Non-Physical Endurant" .
+
+_:genid236 rdf:type owl:Restriction ;
+            owl:onProperty :constantConstituentOf ;
+            owl:allValuesFrom :NonPhysicalEndurant .
+
+_:genid238 rdf:type owl:Restriction ;
+            owl:onProperty [ owl:inverseOf :constantConstituentOf
+                           ] ;
+            owl:allValuesFrom :NonPhysicalEndurant .
+
+_:genid241 rdf:type owl:Restriction ;
+            owl:onProperty [ owl:inverseOf :constantPartOf
+                           ] ;
+            owl:allValuesFrom :NonPhysicalEndurant .
+
+_:genid244 rdf:type owl:Restriction ;
+            owl:onProperty [ owl:inverseOf :directQualityOf
+                           ] ;
+            owl:allValuesFrom :AbstractQuality .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :NonPhysicalEndurant ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget :Endurant ;
+   rdfs:comment "Every non physical endurant is an endurant."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :NonPhysicalEndurant ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget _:genid236 ;
+   rdfs:comment "Everything that is constantly constituted by a non physical endurant is a non physical endurant."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :NonPhysicalEndurant ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget _:genid238 ;
+   rdfs:comment "Everything that is constant constituent of a non physical endurant is a non physical endurant."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :NonPhysicalEndurant ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget _:genid241 ;
+   rdfs:comment "Everything that is constant part of a non physical endurant is a non physical endurant."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :NonPhysicalEndurant ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget _:genid244 ;
+   rdfs:comment "Approximation of Ad51" ,
+                "Everything that is direct quality of a non physical endurant is an abstract quality."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :NonPhysicalEndurant ;
+   owl:annotatedProperty owl:disjointWith ;
+   owl:annotatedTarget :PhysicalEndurant ;
+   rdfs:comment "No non physical endurant is a physical endurant."
+ ] .
+
+
+###  https://w3id.org/DOLCE/OWL/DOLCEbasic#NonPhysicalObject
+:NonPhysicalObject rdf:type owl:Class ;
+                   rdfs:subClassOf :NonPhysicalEndurant ;
+                   ace_lexicon:CN_pl "non physical objects" ;
+                   ace_lexicon:CN_sg "non physical object" ;
+                   rdfs:comment "A Non-Physical Object is a non-physical endurant with unity criterion (examples: a theory, a topic, a concept)." ;
+                   rdfs:label "Non-Physical Object" .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :NonPhysicalObject ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget :NonPhysicalEndurant ;
+   rdfs:comment "Every non physical object is a non physical endurant."
+ ] .
+
+
+###  https://w3id.org/DOLCE/OWL/DOLCEbasic#Particular
+:Particular rdf:type owl:Class ;
+            owl:disjointUnionOf _:genid252 ;
+            ace_lexicon:CN_pl "particulars" ;
+            ace_lexicon:CN_sg "particular" ;
+            rdfs:comment "A Particular is an entity that cannot have instances, in this sense it is opposed to universals (examples: a person, a soccer game, a plan, the color red, a feeling, a fact, a theory, number forty-two)." ;
+            rdfs:label "Particular" .
+
+_:genid252 rdf:type rdf:List ;
+            rdf:first :Abstract ;
+            rdf:rest ( :Endurant
+                       :Perdurant
+                       :Quality
+                     ) .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :Particular ;
+   owl:annotatedProperty owl:disjointUnionOf ;
+   owl:annotatedTarget _:genid252 ;
+   rdfs:comment "A particular is either an abstract, an endurant, a perdurant, or a quality, and the classes Abstract, Endurant, Perdurant and Quality are all disjoint."
+ ] .
+
+
+###  https://w3id.org/DOLCE/OWL/DOLCEbasic#Perdurant
+:Perdurant rdf:type owl:Class ;
+           rdfs:subClassOf :Particular ,
+                           _:genid255 ,
+                           _:genid257 ,
+                           _:genid260 ,
+                           _:genid262 ,
+                           _:genid264 ,
+                           _:genid266 ,
+                           _:genid269 ,
+                           _:genid272 ,
+                           _:genid275 ;
+           owl:disjointWith :Quality ;
+           ace_lexicon:CN_pl "perdurants" ;
+           ace_lexicon:CN_sg "perdurant" ;
+           rdfs:comment "A Perdurant is an entity that happens in time (examples: a person’s life, a soccer game, the reading of a book, the state of feeling happy). Some perdurants are temporally atomic (example: the change of a letter’s state due to the breaking of the seal)." ;
+           rdfs:label "Perdurant" .
+
+_:genid255 rdf:type owl:Restriction ;
+            owl:onProperty :temporallyLocatedAt ;
+            owl:someValuesFrom :TimeInterval .
+
+_:genid257 rdf:type owl:Restriction ;
+            owl:onProperty [ owl:inverseOf :directQualityOf
+                           ] ;
+            owl:someValuesFrom :TemporalLocation .
+
+_:genid260 rdf:type owl:Restriction ;
+            owl:onProperty :constantConstituentOf ;
+            owl:allValuesFrom :Perdurant .
+
+_:genid262 rdf:type owl:Restriction ;
+            owl:onProperty :overlaps ;
+            owl:allValuesFrom :Perdurant .
+
+_:genid264 rdf:type owl:Restriction ;
+            owl:onProperty :partOf ;
+            owl:allValuesFrom :Perdurant .
+
+_:genid266 rdf:type owl:Restriction ;
+            owl:onProperty [ owl:inverseOf :constantConstituentOf
+                           ] ;
+            owl:allValuesFrom :Perdurant .
+
+_:genid269 rdf:type owl:Restriction ;
+            owl:onProperty [ owl:inverseOf :directQualityOf
+                           ] ;
+            owl:allValuesFrom :TemporalQuality .
+
+_:genid272 rdf:type owl:Restriction ;
+            owl:onProperty [ owl:inverseOf :overlaps
+                           ] ;
+            owl:allValuesFrom :Perdurant .
+
+_:genid275 rdf:type owl:Restriction ;
+            owl:onProperty [ owl:inverseOf :partOf
+                           ] ;
+            owl:allValuesFrom :Perdurant .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :Perdurant ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget :Particular ;
+   rdfs:comment "Every perdurant is a particular."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :Perdurant ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget _:genid255 ;
+   rdfs:comment "Every perdurant is temporally located at a time interval."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :Perdurant ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget _:genid257 ;
+   rdfs:comment "Ad49 for dQt" ,
+                "Every perdurant has a temporal location as direct quality."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :Perdurant ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget _:genid260 ;
+   rdfs:comment "Everything that is constantly constituted by a perdurant is a perdurant."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :Perdurant ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget _:genid262 ;
+   rdfs:comment "Everything that is overlapped by a perdurant is a perdurant." ,
+                "from Dd15, Ad2"
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :Perdurant ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget _:genid264 ;
+   rdfs:comment "Ad2  (half)" ,
+                "Everything that has a perdurant as part is a perdurant."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :Perdurant ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget _:genid266 ;
+   rdfs:comment "Everything that is constant constituent of a perdurant is a perdurant."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :Perdurant ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget _:genid269 ;
+   rdfs:comment "Ad49 for dQt" ,
+                "Everything that is direct quality of a perdurant is a temporal quality."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :Perdurant ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget _:genid272 ;
+   rdfs:comment "Everything that overlaps a perdurant is a perdurant." ,
+                "from Dd15, Ad2"
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :Perdurant ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget _:genid275 ;
+   rdfs:comment "Ad2 (half)" ,
+                "Everything that is part of a perdurant is a perdurant."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :Perdurant ;
+   owl:annotatedProperty owl:disjointWith ;
+   owl:annotatedTarget :Quality ;
+   rdfs:comment "No perdurant is a quality."
+ ] .
+
+
+###  https://w3id.org/DOLCE/OWL/DOLCEbasic#PhysicalEndurant
+:PhysicalEndurant rdf:type owl:Class ;
+                  rdfs:subClassOf :Endurant ,
+                                  _:genid280 ,
+                                  _:genid283 ,
+                                  _:genid285 ,
+                                  _:genid288 ,
+                                  _:genid291 ;
+                  ace_lexicon:CN_pl "physical endurants" ;
+                  ace_lexicon:CN_sg "physical endurant" ;
+                  rdfs:comment "A Physical Endurant is an endurant with direct spatial quality (examples: a person, a tree, an atom, the water in a glass, a hole in a wall, the center of the Earth)." ;
+                  rdfs:label "Physical Endurant" .
+
+_:genid280 rdf:type owl:Restriction ;
+            owl:onProperty [ owl:inverseOf :directQualityOf
+                           ] ;
+            owl:someValuesFrom :SpatialLocation .
+
+_:genid283 rdf:type owl:Restriction ;
+            owl:onProperty :constantConstituentOf ;
+            owl:allValuesFrom :PhysicalEndurant .
+
+_:genid285 rdf:type owl:Restriction ;
+            owl:onProperty [ owl:inverseOf :constantConstituentOf
+                           ] ;
+            owl:allValuesFrom :PhysicalEndurant .
+
+_:genid288 rdf:type owl:Restriction ;
+            owl:onProperty [ owl:inverseOf :constantPartOf
+                           ] ;
+            owl:allValuesFrom :PhysicalEndurant .
+
+_:genid291 rdf:type owl:Restriction ;
+            owl:onProperty [ owl:inverseOf :directQualityOf
+                           ] ;
+            owl:allValuesFrom :PhysicalQuality .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :PhysicalEndurant ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget :Endurant ;
+   rdfs:comment "Every physical endurant is an endurant."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :PhysicalEndurant ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget _:genid280 ;
+   rdfs:comment "Approximation of Ad50" ,
+                "Every physical endurant has a spatial location as direct quality."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :PhysicalEndurant ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget _:genid283 ;
+   rdfs:comment "Everything that is constantly constituted by a physical endurant is a physical endurant."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :PhysicalEndurant ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget _:genid285 ;
+   rdfs:comment "Everything that is constant constituent of a physical endurant is a physical endurant."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :PhysicalEndurant ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget _:genid288 ;
+   rdfs:comment "Everything that is constant part of a physical endurant is a physical endurant."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :PhysicalEndurant ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget _:genid291 ;
+   rdfs:comment "Approximation of Ad50" ,
+                "Everything that is direct quality of a physical endurant is a physical quality."
+ ] .
+
+
+###  https://w3id.org/DOLCE/OWL/DOLCEbasic#PhysicalObject
+:PhysicalObject rdf:type owl:Class ;
+                rdfs:subClassOf :PhysicalEndurant ;
+                owl:disjointUnionOf _:genid296 ;
+                ace_lexicon:CN_pl "physical objects" ;
+                ace_lexicon:CN_sg "physical object" ;
+                rdfs:comment "A Physical Object is a physical endurant with unity criterion (examples: a person, a human body, a house, a computer)." ;
+                rdfs:label "Physical Object" .
+
+_:genid296 rdf:type rdf:List ;
+            rdf:first :AgentivePhysicalObject ;
+            rdf:rest ( :NonAgentivePhysicalObject
+                     ) .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :PhysicalObject ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget :PhysicalEndurant ;
+   rdfs:comment "Every physical object is a physical endurant."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :PhysicalObject ;
+   owl:annotatedProperty owl:disjointUnionOf ;
+   owl:annotatedTarget _:genid296 ;
+   rdfs:comment "The classes PhysicalObject, NonAgentivePhysicalObjectare all disjoint."
+ ] .
+
+
+###  https://w3id.org/DOLCE/OWL/DOLCEbasic#PhysicalQuality
+:PhysicalQuality rdf:type owl:Class ;
+                 rdfs:subClassOf :Quality ,
+                                 _:genid299 ,
+                                 _:genid301 ;
+                 owl:disjointWith :TemporalQuality ;
+                 ace_lexicon:CN_pl "physical qualities" ;
+                 ace_lexicon:CN_sg "physical quality" ;
+                 rdfs:comment "A Physical Quality is a quality that directly inheres to a physical endurant (examples: the weight of a pen, the color of an apple)." ;
+                 rdfs:label "Physical Quality" .
+
+_:genid299 rdf:type owl:Restriction ;
+            owl:onProperty :directQualityOf ;
+            owl:allValuesFrom :PhysicalEndurant .
+
+_:genid301 rdf:type owl:Restriction ;
+            owl:onProperty [ owl:inverseOf :constantQualeOf
+                           ] ;
+            owl:allValuesFrom :PhysicalRegion .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :PhysicalQuality ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget :Quality ;
+   rdfs:comment "Every physical quality is a quality."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :PhysicalQuality ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget _:genid299 ;
+   rdfs:comment "Ad47 for dQt (together with the axiom \"Every quality is direct quality of a particular\")" ,
+                "Every physical quality is a direct quality of a physical endurant."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :PhysicalQuality ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget _:genid301 ;
+   rdfs:comment "Everything that is constant quale of a physical quality is a physical region."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :PhysicalQuality ;
+   owl:annotatedProperty owl:disjointWith ;
+   owl:annotatedTarget :TemporalQuality ;
+   rdfs:comment "No physical quality is a temporal quality."
+ ] .
+
+
+###  https://w3id.org/DOLCE/OWL/DOLCEbasic#PhysicalRegion
+:PhysicalRegion rdf:type owl:Class ;
+                rdfs:subClassOf :Region ,
+                                _:genid306 ;
+                owl:disjointWith :TemporalRegion ;
+                ace_lexicon:CN_pl "physical regions" ;
+                ace_lexicon:CN_sg "physical region" ;
+                rdfs:comment "A Physical Region is a region in a quality space for physical qualities (examples: the physical space, an area in the color quality space, 80Kg)." ;
+                rdfs:label "Physical Region" .
+
+_:genid306 rdf:type owl:Restriction ;
+            owl:onProperty :constantQualeOf ;
+            owl:allValuesFrom :PhysicalQuality .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :PhysicalRegion ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget :Region ;
+   rdfs:comment "Every physical region is a region."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :PhysicalRegion ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget _:genid306 ;
+   rdfs:comment "Everything that has a physical region as constant quale is a physical quality."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :PhysicalRegion ;
+   owl:annotatedProperty owl:disjointWith ;
+   owl:annotatedTarget :TemporalRegion ;
+   rdfs:comment "No physical region is a temporal region."
+ ] .
+
+
+###  https://w3id.org/DOLCE/OWL/DOLCEbasic#Process
+:Process rdf:type owl:Class ;
+         rdfs:subClassOf :Stative ;
+         owl:disjointWith :State ;
+         ace_lexicon:CN_pl "processes" ;
+         ace_lexicon:CN_sg "process" ;
+         rdfs:comment "A Process is a stative perdurant such that at some temporal scale some parts are of a different type  (examples: running, writing)." ;
+         rdfs:label "Process" .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :Process ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget :Stative ;
+   rdfs:comment "Every process is a stative."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :Process ;
+   owl:annotatedProperty owl:disjointWith ;
+   owl:annotatedTarget :State ;
+   rdfs:comment "No process is a state."
+ ] .
+
+
+###  https://w3id.org/DOLCE/OWL/DOLCEbasic#Quality
+:Quality rdf:type owl:Class ;
+         rdfs:subClassOf :Particular ,
+                         _:genid312 ,
+                         _:genid314 ;
+         owl:disjointUnionOf _:genid318 ;
+         ace_lexicon:CN_pl "qualities" ;
+         ace_lexicon:CN_sg "quality" ;
+         rdfs:comment "A Quality is an entity that inheres in an endurant or a perdurant, and that can be perceived or measured (examples: the shape of a book, the color of a car, the size of a t-shirt, the electrical charge of a battery)." ;
+         rdfs:label "Quality" .
+
+_:genid312 rdf:type owl:Restriction ;
+            owl:onProperty :directQualityOf ;
+            owl:someValuesFrom :Particular .
+
+_:genid314 rdf:type owl:Restriction ;
+            owl:onProperty :temporallyLocatedAt ;
+            owl:someValuesFrom :TimeInterval .
+
+_:genid318 rdf:type rdf:List ;
+            rdf:first :AbstractQuality ;
+            rdf:rest ( :PhysicalQuality
+                       :TemporalQuality
+                     ) .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :Quality ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget :Particular ;
+   rdfs:comment "Every quality is a particular."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :Quality ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget _:genid312 ;
+   rdfs:comment "Every quality is direct quality of a particular." ,
+                "Q(x)→ ∃y DQT(x,y)"
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :Quality ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget _:genid314 ;
+   rdfs:comment "Every quality is temporally located at a timeinterval."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :Quality ;
+   owl:annotatedProperty owl:disjointUnionOf ;
+   owl:annotatedTarget _:genid318 ;
+   rdfs:comment "A quality is either an abstract quality, a physical quality, or a temporal quality, and the classes AbstractQuality, PhysicalQuality, and TemporalQuality are all disjoint."
+ ] .
+
+
+###  https://w3id.org/DOLCE/OWL/DOLCEbasic#Region
+:Region rdf:type owl:Class ;
+        rdfs:subClassOf :Abstract ;
+        owl:disjointUnionOf _:genid323 ;
+        ace_lexicon:CN_pl "regions" ;
+        ace_lexicon:CN_sg "region" ;
+        rdfs:comment "A Region is an abstract entity classified by a quality type and with mereological structure, the sum of all the regions of a quality type is called a quality space (examples: the color red is a region in the quality space of color, the red of a rose is a (sub)region of the red region in the quality space of color, the commercial value of 1 Euro is a region in the quality space of commercial values)." ;
+        rdfs:label "Region" .
+
+_:genid323 rdf:type rdf:List ;
+            rdf:first :AbstractRegion ;
+            rdf:rest ( :PhysicalRegion
+                       :TemporalRegion
+                     ) .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :Region ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget :Abstract ;
+   rdfs:comment "Every region is an abstract."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :Region ;
+   owl:annotatedProperty owl:disjointUnionOf ;
+   owl:annotatedTarget _:genid323 ;
+   rdfs:comment "The classes Region, AbstractRegion, TemporalRegionare all disjoint."
+ ] .
+
+
+###  https://w3id.org/DOLCE/OWL/DOLCEbasic#SocialAgent
+:SocialAgent rdf:type owl:Class ;
+             rdfs:subClassOf :AgentiveSocialObject ;
+             owl:disjointWith :Society ;
+             ace_lexicon:CN_pl "social agents" ;
+             ace_lexicon:CN_sg "social agent" ;
+             rdfs:comment "A Social Agent is an individual agentive social object (examples: a teacher, a president, a software agent)." ;
+             rdfs:label "Social Agent" .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :SocialAgent ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget :AgentiveSocialObject ;
+   rdfs:comment "Every social agent is an agentive social object."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :SocialAgent ;
+   owl:annotatedProperty owl:disjointWith ;
+   owl:annotatedTarget :Society ;
+   rdfs:comment "No social agent is a society."
+ ] .
+
+
+###  https://w3id.org/DOLCE/OWL/DOLCEbasic#SocialObject
+:SocialObject rdf:type owl:Class ;
+              rdfs:subClassOf :NonPhysicalObject ;
+              owl:disjointUnionOf _:genid329 ;
+              ace_lexicon:CN_pl "social objects" ;
+              ace_lexicon:CN_sg "social object" ;
+              rdfs:comment "A Social Object is a non-physical object which is generically dependent on a community of agents (examples: a person in the legal sense, a client, a law, an economic system)." ;
+              rdfs:label "Social Object" .
+
+_:genid329 rdf:type rdf:List ;
+            rdf:first :AgentiveSocialObject ;
+            rdf:rest ( :NonAgentiveSocialObject
+                     ) .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :SocialObject ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget :NonPhysicalObject ;
+   rdfs:comment "Every social object is a non physical object."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :SocialObject ;
+   owl:annotatedProperty owl:disjointUnionOf ;
+   owl:annotatedTarget _:genid329 ;
+   rdfs:comment "The classes SocialObject, NonAgentiveSocialObjectare all disjoint."
+ ] .
+
+
+###  https://w3id.org/DOLCE/OWL/DOLCEbasic#Society
+:Society rdf:type owl:Class ;
+         rdfs:subClassOf :AgentiveSocialObject ;
+         ace_lexicon:CN_pl "societies" ;
+         ace_lexicon:CN_sg "society" ;
+         rdfs:comment "A Society is a collective agentive social object (examples: a nation, the FCA Group, Apple, the European Central Bank)." ;
+         rdfs:label "Society" .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :Society ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget :AgentiveSocialObject ;
+   rdfs:comment "Every society is an agentive social object."
+ ] .
+
+
+###  https://w3id.org/DOLCE/OWL/DOLCEbasic#SpaceRegion
+:SpaceRegion rdf:type owl:Class ;
+             rdfs:subClassOf :PhysicalRegion ,
+                             _:genid333 ,
+                             _:genid335 ,
+                             _:genid337 ;
+             ace_lexicon:CN_pl "space regions" ;
+             ace_lexicon:CN_sg "space region" ;
+             rdfs:comment "A Space Region is a physical region, possibly disconnected, for spatial locations (examples: the region occupied by Earth in this moment, the region where it snowed in the year 1900)." ;
+             rdfs:label "Space Region" .
+
+_:genid333 rdf:type owl:Restriction ;
+            owl:onProperty :constantQualeOf ;
+            owl:allValuesFrom :SpatialLocation .
+
+_:genid335 rdf:type owl:Restriction ;
+            owl:onProperty :partOf ;
+            owl:allValuesFrom :SpaceRegion .
+
+_:genid337 rdf:type owl:Restriction ;
+            owl:onProperty [ owl:inverseOf :partOf
+                           ] ;
+            owl:allValuesFrom :SpaceRegion .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :SpaceRegion ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget :PhysicalRegion ;
+   rdfs:comment "Every space region is a physical region."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :SpaceRegion ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget _:genid333 ;
+   rdfs:comment "Everything that has a space region as constant quale is a spatial location."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :SpaceRegion ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget _:genid335 ;
+   rdfs:comment "Everything that has a space region as part is a space region."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :SpaceRegion ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget _:genid337 ;
+   rdfs:comment "Everything that is part of a space region is a space region."
+ ] .
+
+
+###  https://w3id.org/DOLCE/OWL/DOLCEbasic#SpatialLocation
+:SpatialLocation rdf:type owl:Class ;
+                 rdfs:subClassOf :PhysicalQuality ;
+                 ace_lexicon:CN_pl "spatial locations" ;
+                 ace_lexicon:CN_sg "spatial location" ;
+                 rdfs:comment "A Spatial Location is the individual spatial quality of a physical endurant (examples: the spatial quality of the Earth, the spatial quality of a hole, the spatial quality of Adolf Anderssen)." ;
+                 rdfs:label "Spatial Location" .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :SpatialLocation ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget :PhysicalQuality ;
+   rdfs:comment "Every spatial location is a physical quality."
+ ] .
+
+
+###  https://w3id.org/DOLCE/OWL/DOLCEbasic#State
+:State rdf:type owl:Class ;
+       rdfs:subClassOf :Stative ,
+                       _:genid342 ;
+       ace_lexicon:CN_pl "states" ;
+       ace_lexicon:CN_sg "state" ;
+       rdfs:comment "A State is a stative perdurant such that all its parts are of the same type (examples: being sitting, being open, being happy, being red)." ;
+       rdfs:label "State" .
+
+_:genid342 rdf:type owl:Restriction ;
+            owl:onProperty [ owl:inverseOf :partOf
+                           ] ;
+            owl:allValuesFrom :State .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :State ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget :Stative ;
+   rdfs:comment "Every state is a stative."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :State ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget _:genid342 ;
+   rdfs:comment "Everything that is part of a state is a state."
+ ] .
+
+
+###  https://w3id.org/DOLCE/OWL/DOLCEbasic#Stative
+:Stative rdf:type owl:Class ;
+         rdfs:subClassOf :Perdurant ;
+         ace_lexicon:CN_pl "statives" ;
+         ace_lexicon:CN_sg "stative" ;
+         rdfs:comment "A Stative is a cumulative perdurant, i.e., a perdurant that when summed to another perdurant of the same type, gives a perdurant of the same type (examples: sitting, walking, waiting)." ;
+         rdfs:label "Stative" .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :Stative ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget :Perdurant ;
+   rdfs:comment "Every stative is a perdurant."
+ ] .
+
+
+###  https://w3id.org/DOLCE/OWL/DOLCEbasic#TemporalLocation
+:TemporalLocation rdf:type owl:Class ;
+                  rdfs:subClassOf :TemporalQuality ,
+                                  _:genid347 ;
+                  ace_lexicon:CN_pl "temporal locations" ;
+                  ace_lexicon:CN_sg "temporal location" ;
+                  rdfs:comment "A Temporal Location is a temporal quality of a perdurant and is specific to that perdurant, that is, two concurrent perdurants have distinct temporal locations. The temporal location is the temporal quality which has as quale the unique time interval at which the perdurant is exactly located (examples: the temporal location of World War I, the temporal location of the Anderssen-Kieseritzky chess play in 1851, the temporal location of the summers of the 20th century)." ;
+                  rdfs:label "Temporal Location" .
+
+_:genid347 rdf:type owl:Restriction ;
+            owl:onProperty [ owl:inverseOf :qualeOf
+                           ] ;
+            owl:someValuesFrom :TimeInterval .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :TemporalLocation ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget :TemporalQuality ;
+   rdfs:comment "Every temporal location is a temporal quality."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :TemporalLocation ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget _:genid347 ;
+   rdfs:comment "Ad53" ,
+                "Every temporal location has some time interval as quale."
+ ] .
+
+
+###  https://w3id.org/DOLCE/OWL/DOLCEbasic#TemporalQuality
+:TemporalQuality rdf:type owl:Class ;
+                 rdfs:subClassOf :Quality ,
+                                 _:genid351 ,
+                                 _:genid354 ;
+                 ace_lexicon:CN_pl "temporal qualities" ;
+                 ace_lexicon:CN_sg "temporal quality" ;
+                 rdfs:comment "A Temporal Quality is a quality that directly inheres to a perdurant (example: the duration of World War I, the starting time of the 2000 Olympics)." ;
+                 rdfs:label "Temporal Quality" .
+
+_:genid351 rdf:type owl:Restriction ;
+            owl:onProperty [ owl:inverseOf :qualeOf
+                           ] ;
+            owl:someValuesFrom :Particular .
+
+_:genid354 rdf:type owl:Restriction ;
+            owl:onProperty :directQualityOf ;
+            owl:allValuesFrom :Perdurant .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :TemporalQuality ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget :Quality ;
+   rdfs:comment "Every temporal quality is a quality."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :TemporalQuality ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget _:genid351 ;
+   rdfs:comment "Ad55" ,
+                "Every temporal quality has some particular as quale."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :TemporalQuality ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget _:genid354 ;
+   rdfs:comment "Ad46 for dQt (together with the axiom \"Every quality is direct quality of a particular\")" ,
+                "Every temporal quality is a direct quality of a perdurant."
+ ] .
+
+
+###  https://w3id.org/DOLCE/OWL/DOLCEbasic#TemporalRegion
+:TemporalRegion rdf:type owl:Class ;
+                rdfs:subClassOf :Region ;
+                ace_lexicon:CN_pl "temporal regions" ;
+                ace_lexicon:CN_sg "temporal region" ;
+                rdfs:comment "A Temporal Region is a region in a quality space for temporal qualities (examples: a time interval, a historical period, a velocity)." ;
+                rdfs:label "Temporal Region" .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :TemporalRegion ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget :Region ;
+   rdfs:comment "Every temporal region is a region."
+ ] .
+
+
+###  https://w3id.org/DOLCE/OWL/DOLCEbasic#TimeInterval
+:TimeInterval rdf:type owl:Class ;
+              rdfs:subClassOf :TemporalRegion ,
+                              _:genid358 ;
+              ace_lexicon:CN_pl "time intervals" ;
+              ace_lexicon:CN_sg "time interval" ;
+              rdfs:comment "A Time Interval is a temporal region which is an interval or a sum of intervals. A Time Interval can be atomic, i.e., instantaneous. (examples: the first second of your life,  the Cretaceous time period, the time interval of all winters of the third millennium)." ;
+              rdfs:label "Time Interval" .
+
+_:genid358 rdf:type owl:Restriction ;
+            owl:onProperty [ owl:inverseOf :partOf
+                           ] ;
+            owl:allValuesFrom :TimeInterval .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :TimeInterval ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget :TemporalRegion ;
+   rdfs:comment "Every time interval is a temporal region."
+ ] .
+
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource :TimeInterval ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget _:genid358 ;
+   rdfs:comment "Everything that is part of a time interval is a time interval."
+ ] .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi

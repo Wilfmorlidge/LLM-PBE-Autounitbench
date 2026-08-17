@@ -1,0 +1,60 @@
+[["What are the main types of data a report may refer to?",True],
+["What types of descriptive information are relevant to a result?",True],
+["What are the main types of sensors?",True],
+["What are the possible types of wearable sensors?",True],
+["Which are the tasks of the semi-directed step?",True],
+["Which are the directed discussion tasks?",True],
+["Which are the free discussion tasks?",True],
+["What is assessed in the walking task?",True],
+["What is assessed in the counting backwards task?",True],
+["What information if of clinical interest regarding a night bathroom visit?",True],
+["What information is clinically relevant for sleep assessment?",True],
+["What sleep-related situations indicate a problem or possibly problematic behaviour that needs to be highlighted to the clinician?",True],
+["What social interaction related situations indicate a problem or possibly problematic behaviour that needs to be highlighted to the clinician?",True],
+["What activities (situations) are of clinical interest with respect to physical activity?",True],
+["What types of clinical data are collected?",True],
+["What information is clinically relevant for dedicated physical activities (i.e. exercises)?",True],
+["What physical activity related situations indicate a problem or possibly problematic behaviour that needs to be highlighted to the clinician?",True],
+["What are the main types of entities?",True],
+["What object related events are detected?",False],
+["What physiological measurements are detected?",False],
+["What activities are inferred?",False],
+["What are the main types of data considered?",False],
+["What are the protocol parts?",False],
+["What types of data are collected during medical and clinical consultation?",False],
+["What are the main types of education level?",False],
+["What information is of clinical interest regarding an awakening?",False], 
+["What functional areas are of clinical relevance for the home and nursing home environments?",False], 
+["Which are the vocal directed tasks?",False], 
+["What activities (situations) are of clinical interest with respect to ADLs?",False],
+["What information is of clinical interest regarding food and drink preparation?",True],
+["What information is of clinical interest regarding food and drink consumption?",True],
+["What information is of clinical interest regarding housekeeping?",False],
+["What food and drink consumption-related situations indicate a problem or possibly problematic behaviour that needs to be highlighted to the clinician?",False], 
+["What housekeeping-related situations indicate a problem or possibly problematic behaviour that needs to be highlighted to the clinician?",False],
+["What personal hygiene-related situations indicate a problem or possibly problematic behaviour that needs to be highlighted to the clinician?",False], 
+["What activities (situations) are of clinical interest with respect to social interaction?",True], 
+["What data are measured for step length?",True],
+["What data are measured for walking speed?",True]
+]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

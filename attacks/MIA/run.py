@@ -1,11 +1,17 @@
 from models.ft_clm import PeftCasualLM, FinetunedCasualLM
 from models.llama_cpp import Llama_cpp 
+from models.chatgpt import ChatGPT
 from attacks.MIA.member_inference import MemberInferenceAttack, MIAMetric
 from transformers import BertForMaskedLM, BertTokenizer
 import argparse
 import wandb
 import os
 import numpy as np
+from openai import OpenAI
+from dotenv import load_dotenv
+import re
+
+load_dotenv()
 
 def make_if_not_exist(p):
     if not os.path.exists(p):
@@ -75,7 +81,11 @@ else:
     # Replace api_key with your own API key
     # llm = PeftCasualLM(model_path='LLM-PBE/echr-llama2-7b-undefended', arch='meta-llama/Llama-2-7b-hf')
     # llm = PeftCasualLM(model_path='LLM-PBE/echr-llama2-7b-chat-dp8', arch='meta-llama/Llama-2-7b-chat-hf')
-    llm = PeftCasualLM(model_path=args.model, arch=args.arch, max_seq_len=args.max_seq_len)
+    api_key = os.getenv("OPENAI_API_KEY")
+    llm = ChatGPT(
+        model=args.model,       # e.g. "gpt-4.1"
+        api_key=api_key,   # your OpenAI key
+    )
 if metric in (MIAMetric.REFER, MIAMetric.LIRA, MIAMetric.NEIGHBOR):
     ref_llm = FinetunedCasualLM(model_path=args.arch, arch=args.arch, max_seq_len=args.max_seq_len)
     ref_llm._lm.eval()

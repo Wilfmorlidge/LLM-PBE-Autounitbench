@@ -1,0 +1,3186 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix ns0: <http://www.demcare.eu/ontologies/combined.owl#> .
+
+<http://www.demcare.eu/ontologies/combined.owl> a owl:Ontology .
+<http://www.demcare.eu/ontologies/combined.owl#highlight>
+  a owl:AnnotationProperty, owl:DatatypeProperty ;
+  rdfs:range xsd:boolean ;
+  rdfs:domain <http://www.demcare.eu/ontologies/combined.owl#Event> .
+
+xsd:gDay a rdfs:Datatype .
+xsd:gMonth a rdfs:Datatype .
+xsd:gYear a rdfs:Datatype .
+<http://www.demcare.eu/ontologies/combined.owl#duration> a owl:ObjectProperty .
+<http://www.demcare.eu/ontologies/combined.owl#hasAgent>
+  a owl:ObjectProperty ;
+  rdfs:subPropertyOf owl:topObjectProperty ;
+  owl:inverseOf <http://www.demcare.eu/ontologies/combined.owl#isAgentIn> .
+
+<http://www.demcare.eu/ontologies/combined.owl#hasQuality> a owl:ObjectProperty .
+<http://www.demcare.eu/ontologies/combined.owl#isAgentIn>
+  a owl:ObjectProperty ;
+  rdfs:subPropertyOf owl:topObjectProperty .
+
+<http://www.demcare.eu/ontologies/combined.owl#objectLocalisation> a owl:ObjectProperty .
+<http://www.demcare.eu/ontologies/combined.owl#refersTo> a owl:ObjectProperty .
+<http://www.demcare.eu/ontologies/combined.owl#roomLocalisation> a owl:ObjectProperty .
+<http://www.demcare.eu/ontologies/combined.owl#startTime> a owl:ObjectProperty .
+<http://www.demcare.eu/ontologies/combined.owl#attachedTo> a owl:ObjectProperty .
+<http://www.demcare.eu/ontologies/combined.owl#describes> a owl:ObjectProperty .
+<http://www.demcare.eu/ontologies/combined.owl#duration> a owl:ObjectProperty .
+<http://www.demcare.eu/ontologies/combined.owl#hasAgent> a owl:ObjectProperty .
+<http://www.demcare.eu/ontologies/combined.owl#hasParticipant> a owl:ObjectProperty .
+<http://www.demcare.eu/ontologies/combined.owl#hasQuality> a owl:ObjectProperty .
+<http://www.demcare.eu/ontologies/combined.owl#hasReportingTime> a owl:ObjectProperty .
+<http://www.demcare.eu/ontologies/combined.owl#providedBy> a owl:ObjectProperty .
+<http://www.demcare.eu/ontologies/combined.owl#refersTo> a owl:ObjectProperty .
+<http://www.demcare.eu/ontologies/combined.owl#roomLocalisation> a owl:ObjectProperty .
+<http://www.demcare.eu/ontologies/combined.owl#startTime> a owl:ObjectProperty .
+<http://www.demcare.eu/ontologies/combined.owl#eatingDuration>
+  a owl:ObjectProperty ;
+  rdfs:subPropertyOf time:hasDurationDescription ;
+  rdfs:domain <http://www.demcare.eu/ontologies/combined.owl#EatingSummary> .
+
+<http://www.demcare.eu/ontologies/combined.owl#eatingLocation>
+  a owl:ObjectProperty ;
+  rdfs:domain <http://www.demcare.eu/ontologies/combined.owl#EatingSummary> .
+
+<http://www.demcare.eu/ontologies/combined.owl#exerciseDuration>
+  a owl:ObjectProperty ;
+  rdfs:subPropertyOf time:hasBeginning .
+
+<http://www.demcare.eu/ontologies/combined.owl#exerciseStartTime>
+  a owl:ObjectProperty ;
+  rdfs:subPropertyOf time:hasBeginning .
+
+<http://www.demcare.eu/ontologies/combined.owl#forPatient> a owl:ObjectProperty .
+<http://www.demcare.eu/ontologies/combined.owl#involvementInDiscussion> a owl:ObjectProperty .
+<http://www.demcare.eu/ontologies/combined.owl#physicalHygiene> a owl:ObjectProperty .
+<http://www.demcare.eu/ontologies/combined.owl#possibleContributingFactor> a owl:ObjectProperty .
+<http://www.demcare.eu/ontologies/combined.owl#before> a owl:ObjectProperty .
+<http://www.demcare.eu/ontologies/combined.owl#containedInContext> a owl:ObjectProperty .
+<http://www.demcare.eu/ontologies/combined.owl#containsAssessment> a owl:ObjectProperty .
+<http://www.demcare.eu/ontologies/combined.owl#countingType> a owl:ObjectProperty .
+<http://www.demcare.eu/ontologies/combined.owl#endTime> a owl:ObjectProperty .
+<http://www.demcare.eu/ontologies/combined.owl#gender> a owl:ObjectProperty .
+<http://www.demcare.eu/ontologies/combined.owl#handTrajectory> a owl:ObjectProperty .
+<http://www.demcare.eu/ontologies/combined.owl#hasClinicalDiagnosis>
+  a owl:ObjectProperty ;
+  rdfs:subPropertyOf <http://www.demcare.eu/ontologies/combined.owl#hasDiagnosis> .
+
+<http://www.demcare.eu/ontologies/combined.owl#hasDiagnosis> a owl:ObjectProperty .
+<http://www.demcare.eu/ontologies/combined.owl#hasExperimentalDiagnosis>
+  a owl:ObjectProperty ;
+  rdfs:subPropertyOf <http://www.demcare.eu/ontologies/combined.owl#hasDiagnosis> .
+
+<http://www.demcare.eu/ontologies/combined.owl#hasParticipant>
+  a owl:ObjectProperty ;
+  owl:inverseOf <http://www.demcare.eu/ontologies/combined.owl#participates> .
+
+<http://www.demcare.eu/ontologies/combined.owl#hasRecord> a owl:ObjectProperty .
+<http://www.demcare.eu/ontologies/combined.owl#involvesTask> a owl:ObjectProperty .
+<http://www.demcare.eu/ontologies/combined.owl#laterality> a owl:ObjectProperty .
+<http://www.demcare.eu/ontologies/combined.owl#measuredData> a owl:ObjectProperty .
+<http://www.demcare.eu/ontologies/combined.owl#participates>
+  a owl:ObjectProperty ;
+  rdfs:subPropertyOf owl:topObjectProperty .
+
+<http://www.demcare.eu/ontologies/combined.owl#protocolStep> a owl:ObjectProperty .
+<http://www.demcare.eu/ontologies/combined.owl#startTime> a owl:ObjectProperty .
+<http://www.demcare.eu/ontologies/combined.owl#status> a owl:ObjectProperty .
+<http://www.demcare.eu/ontologies/combined.owl#taskDuration> a owl:ObjectProperty .
+time:after
+  a owl:ObjectProperty ;
+  owl:inverseOf time:before .
+
+time:before
+  a owl:ObjectProperty, owl:TransitiveProperty ;
+  rdfs:domain time:TemporalEntity ;
+  rdfs:range time:TemporalEntity .
+
+time:dayOfWeek
+  a owl:ObjectProperty ;
+  rdfs:domain time:DateTimeDescription ;
+  rdfs:range time:DayOfWeek .
+
+time:hasBeginning
+  a owl:ObjectProperty ;
+  rdfs:domain time:TemporalEntity ;
+  rdfs:range time:Instant .
+
+time:hasDateTimeDescription
+  a owl:ObjectProperty ;
+  rdfs:domain time:DateTimeInterval ;
+  rdfs:range time:DateTimeDescription .
+
+time:hasDurationDescription
+  a owl:ObjectProperty ;
+  rdfs:domain time:TemporalEntity ;
+  rdfs:range time:DurationDescription .
+
+time:hasEnd
+  a owl:ObjectProperty ;
+  rdfs:domain time:TemporalEntity ;
+  rdfs:range time:Instant .
+
+time:inDateTime
+  a owl:ObjectProperty ;
+  rdfs:domain time:Instant ;
+  rdfs:range time:DateTimeDescription .
+
+time:inside
+  a owl:ObjectProperty ;
+  rdfs:domain time:Interval ;
+  rdfs:range time:Instant .
+
+time:intervalAfter
+  a owl:ObjectProperty ;
+  owl:inverseOf time:intervalBefore .
+
+time:intervalBefore
+  a owl:ObjectProperty ;
+  rdfs:subPropertyOf time:before ;
+  rdfs:domain time:ProperInterval ;
+  rdfs:range time:ProperInterval .
+
+time:intervalContains
+  a owl:ObjectProperty ;
+  owl:inverseOf time:intervalDuring .
+
+time:intervalDuring
+  a owl:ObjectProperty ;
+  rdfs:domain time:ProperInterval ;
+  rdfs:range time:ProperInterval .
+
+time:intervalEquals
+  a owl:ObjectProperty ;
+  rdfs:domain time:ProperInterval ;
+  rdfs:range time:ProperInterval .
+
+time:intervalFinishedBy
+  a owl:ObjectProperty ;
+  owl:inverseOf time:intervalFinishes .
+
+time:intervalFinishes
+  a owl:ObjectProperty ;
+  rdfs:domain time:ProperInterval ;
+  rdfs:range time:ProperInterval .
+
+time:intervalMeets
+  a owl:ObjectProperty ;
+  owl:inverseOf time:intervalMetBy ;
+  rdfs:domain time:ProperInterval ;
+  rdfs:range time:ProperInterval .
+
+time:intervalMetBy a owl:ObjectProperty .
+time:intervalOverlappedBy
+  a owl:ObjectProperty ;
+  owl:inverseOf time:intervalOverlaps .
+
+time:intervalOverlaps
+  a owl:ObjectProperty ;
+  rdfs:domain time:ProperInterval ;
+  rdfs:range time:ProperInterval .
+
+time:intervalStartedBy
+  a owl:ObjectProperty ;
+  owl:inverseOf time:intervalStarts .
+
+time:intervalStarts
+  a owl:ObjectProperty ;
+  rdfs:domain time:ProperInterval ;
+  rdfs:range time:ProperInterval .
+
+time:timeZone
+  a owl:ObjectProperty ;
+  rdfs:domain time:DateTimeDescription ;
+  rdfs:range <http://www.w3.org/2006/timezone#TimeZone> .
+
+time:unitType
+  a owl:ObjectProperty ;
+  rdfs:domain time:DateTimeDescription ;
+  rdfs:range time:TemporalUnit .
+
+<http://www.demcare.eu/ontologies/combined.owl#hasConductivity>
+  a owl:DatatypeProperty ;
+  rdfs:subPropertyOf <http://www.demcare.eu/ontologies/combined.owl#hasValue> .
+
+<http://www.demcare.eu/ontologies/combined.owl#hasLightLevel>
+  a owl:DatatypeProperty ;
+  rdfs:subPropertyOf <http://www.demcare.eu/ontologies/combined.owl#hasValue> .
+
+<http://www.demcare.eu/ontologies/combined.owl#hasNoiseLevel>
+  a owl:DatatypeProperty ;
+  rdfs:subPropertyOf <http://www.demcare.eu/ontologies/combined.owl#hasValue> .
+
+<http://www.demcare.eu/ontologies/combined.owl#hasRate>
+  a owl:DatatypeProperty ;
+  rdfs:subPropertyOf <http://www.demcare.eu/ontologies/combined.owl#hasValue> .
+
+<http://www.demcare.eu/ontologies/combined.owl#hasTemperature>
+  a owl:DatatypeProperty ;
+  rdfs:subPropertyOf <http://www.demcare.eu/ontologies/combined.owl#hasValue> .
+
+<http://www.demcare.eu/ontologies/combined.owl#hasValue> a owl:DatatypeProperty .
+<http://www.demcare.eu/ontologies/combined.owl#hasPlausibilityMetric> a owl:DatatypeProperty .
+<http://www.demcare.eu/ontologies/combined.owl#accelerometerCountsPerMinute> a owl:DatatypeProperty .
+<http://www.demcare.eu/ontologies/combined.owl#date> a owl:DatatypeProperty .
+<http://www.demcare.eu/ontologies/combined.owl#distanceTravelled> a owl:DatatypeProperty .
+<http://www.demcare.eu/ontologies/combined.owl#duration> a owl:DatatypeProperty .
+<http://www.demcare.eu/ontologies/combined.owl#endTime> a owl:DatatypeProperty .
+<http://www.demcare.eu/ontologies/combined.owl#exerciseIntensity> a owl:DatatypeProperty .
+<http://www.demcare.eu/ontologies/combined.owl#hasValue> a owl:DatatypeProperty .
+<http://www.demcare.eu/ontologies/combined.owl#heartRate> a owl:DatatypeProperty .
+<http://www.demcare.eu/ontologies/combined.owl#lightLevel> a owl:DatatypeProperty .
+<http://www.demcare.eu/ontologies/combined.owl#numberOfArousals> a owl:DatatypeProperty .
+<http://www.demcare.eu/ontologies/combined.owl#numberOfAwakenings> a owl:DatatypeProperty .
+<http://www.demcare.eu/ontologies/combined.owl#numberOfBedExits> a owl:DatatypeProperty .
+<http://www.demcare.eu/ontologies/combined.owl#numberOfCommunicativeAttempts> a owl:DatatypeProperty .
+<http://www.demcare.eu/ontologies/combined.owl#numberOfFaceToFaceConversations> a owl:DatatypeProperty .
+<http://www.demcare.eu/ontologies/combined.owl#numberOfNaps> a owl:DatatypeProperty .
+<http://www.demcare.eu/ontologies/combined.owl#numberOfPhoneConversations> a owl:DatatypeProperty .
+<http://www.demcare.eu/ontologies/combined.owl#numberOfSocialInteractions> a owl:DatatypeProperty .
+<http://www.demcare.eu/ontologies/combined.owl#sleepBedTime> a owl:DatatypeProperty .
+<http://www.demcare.eu/ontologies/combined.owl#sleepEfficiency> a owl:DatatypeProperty .
+<http://www.demcare.eu/ontologies/combined.owl#sleepLatency> a owl:DatatypeProperty .
+<http://www.demcare.eu/ontologies/combined.owl#sleepMovementIndex> a owl:DatatypeProperty .
+<http://www.demcare.eu/ontologies/combined.owl#sleepTime> a owl:DatatypeProperty .
+<http://www.demcare.eu/ontologies/combined.owl#startTime> a owl:DatatypeProperty .
+<http://www.demcare.eu/ontologies/combined.owl#stressLevel> a owl:DatatypeProperty .
+<http://www.demcare.eu/ontologies/combined.owl#strideLength> a owl:DatatypeProperty .
+<http://www.demcare.eu/ontologies/combined.owl#totalDurationOfNaps> a owl:DatatypeProperty .
+<http://www.demcare.eu/ontologies/combined.owl#wakeUpTime> a owl:DatatypeProperty .
+<http://www.demcare.eu/ontologies/combined.owl#walkSpeed> a owl:DatatypeProperty .
+<http://www.demcare.eu/ontologies/combined.owl#apathyInventory>
+  a owl:DatatypeProperty ;
+  rdfs:subPropertyOf owl:topDataProperty .
+
+<http://www.demcare.eu/ontologies/combined.owl#areasOfInterestExplored>
+  a owl:DatatypeProperty ;
+  rdfs:range rdfs:Literal .
+
+<http://www.demcare.eu/ontologies/combined.owl#areasOfNoInterestExplored>
+  a owl:DatatypeProperty ;
+  rdfs:range rdfs:Literal .
+
+<http://www.demcare.eu/ontologies/combined.owl#compliantInstructionsOrder>
+  a owl:DatatypeProperty ;
+  rdfs:range xsd:boolean .
+
+<http://www.demcare.eu/ontologies/combined.owl#date> a owl:DatatypeProperty .
+<http://www.demcare.eu/ontologies/combined.owl#dateOfBirth> a owl:DatatypeProperty .
+<http://www.demcare.eu/ontologies/combined.owl#distanceWalked> a owl:DatatypeProperty .
+<http://www.demcare.eu/ontologies/combined.owl#dsm_ivDepressionCriteria> a owl:DatatypeProperty .
+<http://www.demcare.eu/ontologies/combined.owl#dynamicBalance> a owl:DatatypeProperty .
+<http://www.demcare.eu/ontologies/combined.owl#educationLevel> a owl:DatatypeProperty .
+<http://www.demcare.eu/ontologies/combined.owl#fabScore> a owl:DatatypeProperty .
+<http://www.demcare.eu/ontologies/combined.owl#freeAndCuedRemindingAssessment> a owl:DatatypeProperty .
+<http://www.demcare.eu/ontologies/combined.owl#hasDualTaskScore>
+  a owl:DatatypeProperty ;
+  rdfs:subPropertyOf <http://www.demcare.eu/ontologies/combined.owl#hasScore> .
+
+<http://www.demcare.eu/ontologies/combined.owl#hasMMSEScore> a owl:DatatypeProperty .
+<http://www.demcare.eu/ontologies/combined.owl#hasMonoTaskScore>
+  a owl:DatatypeProperty ;
+  rdfs:subPropertyOf <http://www.demcare.eu/ontologies/combined.owl#hasScore> .
+
+<http://www.demcare.eu/ontologies/combined.owl#hasScore> a owl:DatatypeProperty .
+<http://www.demcare.eu/ontologies/combined.owl#hasUPDRSScore> a owl:DatatypeProperty .
+<http://www.demcare.eu/ontologies/combined.owl#iadl_e> a owl:DatatypeProperty .
+<http://www.demcare.eu/ontologies/combined.owl#latency> a owl:DatatypeProperty .
+<http://www.demcare.eu/ontologies/combined.owl#npi> a owl:DatatypeProperty .
+<http://www.demcare.eu/ontologies/combined.owl#repetitions> a owl:DatatypeProperty .
+<http://www.demcare.eu/ontologies/combined.owl#shortCognitiveBatteryAssessment> a owl:DatatypeProperty .
+<http://www.demcare.eu/ontologies/combined.owl#size> a owl:DatatypeProperty .
+<http://www.demcare.eu/ontologies/combined.owl#stepLength>
+  a owl:DatatypeProperty ;
+  rdfs:subPropertyOf owl:topDataProperty .
+
+<http://www.demcare.eu/ontologies/combined.owl#stoppingDisplacement> a owl:DatatypeProperty .
+<http://www.demcare.eu/ontologies/combined.owl#stressLevel> a owl:DatatypeProperty .
+<http://www.demcare.eu/ontologies/combined.owl#trailMakingTest> a owl:DatatypeProperty .
+<http://www.demcare.eu/ontologies/combined.owl#verbalReactionSpontaneity> a owl:DatatypeProperty .
+<http://www.demcare.eu/ontologies/combined.owl#walkingSpeed> a owl:DatatypeProperty .
+<http://www.demcare.eu/ontologies/combined.owl#walkingSpeedInstantaneous> a owl:DatatypeProperty .
+time:day
+  a owl:DatatypeProperty ;
+  rdfs:domain time:DateTimeDescription ;
+  rdfs:range xsd:gDay .
+
+time:dayOfYear
+  a owl:DatatypeProperty ;
+  rdfs:domain time:DateTimeDescription ;
+  rdfs:range xsd:nonNegativeInteger .
+
+time:days
+  a owl:DatatypeProperty ;
+  rdfs:domain time:DurationDescription ;
+  rdfs:range xsd:decimal .
+
+time:hour
+  a owl:DatatypeProperty ;
+  rdfs:domain time:DateTimeDescription ;
+  rdfs:range xsd:nonNegativeInteger .
+
+time:hours
+  a owl:DatatypeProperty ;
+  rdfs:domain time:DurationDescription ;
+  rdfs:range xsd:decimal .
+
+time:inXSDDateTime
+  a owl:DatatypeProperty ;
+  rdfs:domain time:Instant ;
+  rdfs:range xsd:dateTime .
+
+time:minute
+  a owl:DatatypeProperty ;
+  rdfs:domain time:DateTimeDescription ;
+  rdfs:range xsd:nonNegativeInteger .
+
+time:minutes
+  a owl:DatatypeProperty ;
+  rdfs:domain time:DurationDescription ;
+  rdfs:range xsd:decimal .
+
+time:month
+  a owl:DatatypeProperty ;
+  rdfs:domain time:DateTimeDescription ;
+  rdfs:range xsd:nonNegativeInteger .
+
+time:months
+  a owl:DatatypeProperty ;
+  rdfs:domain time:DurationDescription ;
+  rdfs:range xsd:decimal .
+
+time:second
+  a owl:DatatypeProperty ;
+  rdfs:domain time:DateTimeDescription ;
+  rdfs:range xsd:decimal .
+
+time:seconds
+  a owl:DatatypeProperty ;
+  rdfs:domain time:DurationDescription ;
+  rdfs:range xsd:decimal .
+
+time:week
+  a owl:DatatypeProperty ;
+  rdfs:domain time:DateTimeDescription ;
+  rdfs:range xsd:nonNegativeInteger .
+
+time:weeks
+  a owl:DatatypeProperty ;
+  rdfs:domain time:DurationDescription ;
+  rdfs:range xsd:decimal .
+
+time:xsdDateTime
+  a owl:DatatypeProperty ;
+  rdfs:domain time:DateTimeInterval ;
+  rdfs:range xsd:dateTime .
+
+time:year
+  a owl:DatatypeProperty ;
+  rdfs:domain time:DateTimeDescription ;
+  rdfs:range xsd:gYear .
+
+time:years
+  a owl:DatatypeProperty ;
+  rdfs:domain time:DurationDescription ;
+  rdfs:range xsd:decimal .
+
+<http://www.demcare.eu/ontologies/combined.owl#Active>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#State> .
+
+<http://www.demcare.eu/ontologies/combined.owl#Activity>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Event>, [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#hasAgent> ;
+    owl:someValuesFrom <http://www.demcare.eu/ontologies/combined.owl#Person>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#hasAgent> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onClass <http://www.demcare.eu/ontologies/combined.owl#Person>
+  ] .
+
+<http://www.demcare.eu/ontologies/combined.owl#AlarmClock>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Object> .
+
+<http://www.demcare.eu/ontologies/combined.owl#AlarmClockRinging>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Ringing>, [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#hasAgent> ;
+    owl:someValuesFrom <http://www.demcare.eu/ontologies/combined.owl#AlarmClock>
+  ] .
+
+<http://www.demcare.eu/ontologies/combined.owl#AmbientMeasurement>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Measurement>, [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#refersTo> ;
+    owl:allValuesFrom <http://www.demcare.eu/ontologies/combined.owl#Room>
+  ] .
+
+<http://www.demcare.eu/ontologies/combined.owl#AnswerPhoneCall>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#TelephoneInteraction> .
+
+<http://www.demcare.eu/ontologies/combined.owl#Apnea>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#State> .
+
+<http://www.demcare.eu/ontologies/combined.owl#Appliance>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Object> .
+
+<http://www.demcare.eu/ontologies/combined.owl#Arousal>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#State> .
+
+<http://www.demcare.eu/ontologies/combined.owl#AtomicActivity>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Activity> .
+
+<http://www.demcare.eu/ontologies/combined.owl#Bathroom>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Room> .
+
+<http://www.demcare.eu/ontologies/combined.owl#Bed>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Furniture> .
+
+<http://www.demcare.eu/ontologies/combined.owl#BedExit>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#ComplexActivity> .
+
+<http://www.demcare.eu/ontologies/combined.owl#Bedroom>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Room> .
+
+<http://www.demcare.eu/ontologies/combined.owl#Book>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Object> .
+
+<http://www.demcare.eu/ontologies/combined.owl#Bucket>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Object> .
+
+<http://www.demcare.eu/ontologies/combined.owl#Carer>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Person> .
+
+<http://www.demcare.eu/ontologies/combined.owl#Chair>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Furniture> .
+
+<http://www.demcare.eu/ontologies/combined.owl#ChangeOrientation>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#AtomicActivity> ;
+  rdfs:comment "WIMU" .
+
+<http://www.demcare.eu/ontologies/combined.owl#ChangePosture>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#AtomicActivity> ;
+  rdfs:comment "WIMU" .
+
+<http://www.demcare.eu/ontologies/combined.owl#Clinician>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Person> .
+
+<http://www.demcare.eu/ontologies/combined.owl#Closed>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#ObjectEvent> .
+
+<http://www.demcare.eu/ontologies/combined.owl#ComplexActivity>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Activity> .
+
+<http://www.demcare.eu/ontologies/combined.owl#Cooker>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Appliance> .
+
+<http://www.demcare.eu/ontologies/combined.owl#Couch>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Furniture> .
+
+<http://www.demcare.eu/ontologies/combined.owl#Cup>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Object> .
+
+<http://www.demcare.eu/ontologies/combined.owl#Cuttlery>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Object> .
+
+<http://www.demcare.eu/ontologies/combined.owl#Cycling>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#OutdoorPhysicalActivity> .
+
+<http://www.demcare.eu/ontologies/combined.owl#DangerousBedExit>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#BedExit> .
+
+<http://www.demcare.eu/ontologies/combined.owl#DialNumber>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#AtomicActivity> .
+
+<http://www.demcare.eu/ontologies/combined.owl#Door>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Object> .
+
+<http://www.demcare.eu/ontologies/combined.owl#DoorBell>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Object> .
+
+<http://www.demcare.eu/ontologies/combined.owl#DoorClosed>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Closed>, [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#hasAgent> ;
+    owl:someValuesFrom <http://www.demcare.eu/ontologies/combined.owl#Door>
+  ] .
+
+<http://www.demcare.eu/ontologies/combined.owl#DoorOpen>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Open>, [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#hasAgent> ;
+    owl:someValuesFrom <http://www.demcare.eu/ontologies/combined.owl#Door>
+  ] .
+
+<http://www.demcare.eu/ontologies/combined.owl#Drink>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#AtomicActivity> .
+
+<http://www.demcare.eu/ontologies/combined.owl#Eat>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#AtomicActivity> .
+
+<http://www.demcare.eu/ontologies/combined.owl#Entity> a owl:Class .
+<http://www.demcare.eu/ontologies/combined.owl#Event>
+  a owl:Class ;
+  rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#duration> ;
+    owl:allValuesFrom time:DurationDescription
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#startTime> ;
+    owl:allValuesFrom time:Instant
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#duration> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onClass time:DurationDescription
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#startTime> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onClass time:Instant
+  ] .
+
+<http://www.demcare.eu/ontologies/combined.owl#FaceToFaceInteraction>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#SocialInteraction> .
+
+<http://www.demcare.eu/ontologies/combined.owl#Fall>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#ComplexActivity> ;
+  rdfs:comment "if not supported by LCS" .
+
+<http://www.demcare.eu/ontologies/combined.owl#FoodAndDrinkConsumption>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#ComplexActivity> .
+
+<http://www.demcare.eu/ontologies/combined.owl#Fridge>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Appliance> .
+
+<http://www.demcare.eu/ontologies/combined.owl#Furniture>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Object> .
+
+<http://www.demcare.eu/ontologies/combined.owl#Glass>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Object> .
+
+<http://www.demcare.eu/ontologies/combined.owl#HaveBreakfast>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#HaveMeal> .
+
+<http://www.demcare.eu/ontologies/combined.owl#HaveDinner>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#HaveMeal> .
+
+<http://www.demcare.eu/ontologies/combined.owl#HaveDrink>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#FoodAndDrinkConsumption> .
+
+<http://www.demcare.eu/ontologies/combined.owl#HaveLunch>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#HaveMeal> .
+
+<http://www.demcare.eu/ontologies/combined.owl#HaveMeal>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#FoodAndDrinkConsumption> .
+
+<http://www.demcare.eu/ontologies/combined.owl#HaveSnack>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#FoodAndDrinkConsumption> .
+
+<http://www.demcare.eu/ontologies/combined.owl#HeartRate>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#PhysiologicalMeasurement>, [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#hasRate> ;
+    owl:someValuesFrom rdfs:Literal
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#hasRate> ;
+    owl:cardinality "1"^^xsd:nonNegativeInteger
+  ] ;
+  rdfs:comment "DTI-2" .
+
+<http://www.demcare.eu/ontologies/combined.owl#InLocation>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#AtomicActivity>, [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#roomLocalisation> ;
+    owl:someValuesFrom <http://www.demcare.eu/ontologies/combined.owl#Room>
+  ] .
+
+<http://www.demcare.eu/ontologies/combined.owl#InRoom>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#InLocation>, [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#roomLocalisation> ;
+    owl:someValuesFrom <http://www.demcare.eu/ontologies/combined.owl#Place>
+  ] .
+
+<http://www.demcare.eu/ontologies/combined.owl#IndoorPhysicalActivity>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#PhysicalActivity> .
+
+<http://www.demcare.eu/ontologies/combined.owl#Kettle>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Appliance> .
+
+<http://www.demcare.eu/ontologies/combined.owl#KettleOff>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Off>, [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#hasAgent> ;
+    owl:someValuesFrom <http://www.demcare.eu/ontologies/combined.owl#Kettle>
+  ] .
+
+<http://www.demcare.eu/ontologies/combined.owl#KettleOn>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#On>, [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#hasAgent> ;
+    owl:someValuesFrom <http://www.demcare.eu/ontologies/combined.owl#Kettle>
+  ] .
+
+<http://www.demcare.eu/ontologies/combined.owl#Kitchen>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Room> .
+
+<http://www.demcare.eu/ontologies/combined.owl#KitchenPress>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Object> .
+
+<http://www.demcare.eu/ontologies/combined.owl#LightLevel>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#AmbientMeasurement>, [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#hasLightLevel> ;
+    owl:someValuesFrom rdfs:Literal
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#hasLightLevel> ;
+    owl:cardinality "1"^^xsd:nonNegativeInteger
+  ] .
+
+<http://www.demcare.eu/ontologies/combined.owl#LivingRoom>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Room> .
+
+<http://www.demcare.eu/ontologies/combined.owl#LongBedExit>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#BedExit> .
+
+<http://www.demcare.eu/ontologies/combined.owl#LongNap>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Nap>, [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#highlight> ;
+    owl:hasValue true
+  ] ;
+  rdfs:comment "duration of longer than 30 minutes" .
+
+<http://www.demcare.eu/ontologies/combined.owl#LongTableExit>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#TableExit> .
+
+<http://www.demcare.eu/ontologies/combined.owl#Lying>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Posture>, [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#objectLocalisation> ;
+    owl:someValuesFrom <http://www.demcare.eu/ontologies/combined.owl#Furniture>
+  ] .
+
+<http://www.demcare.eu/ontologies/combined.owl#MakePhoneCall>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#TelephoneInteraction> .
+
+<http://www.demcare.eu/ontologies/combined.owl#Measurement>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Event>, [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#hasQuality> ;
+    owl:allValuesFrom <http://www.demcare.eu/ontologies/combined.owl#PhysicalQuality>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#refersTo> ;
+    owl:allValuesFrom <http://www.demcare.eu/ontologies/combined.owl#Entity>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#hasQuality> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onClass <http://www.demcare.eu/ontologies/combined.owl#PhysicalQuality>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#refersTo> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onClass <http://www.demcare.eu/ontologies/combined.owl#Entity>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#hasValue> ;
+    owl:someValuesFrom rdfs:Literal
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#hasValue> ;
+    owl:cardinality "1"^^xsd:nonNegativeInteger
+  ] .
+
+<http://www.demcare.eu/ontologies/combined.owl#Mop>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Object> .
+
+<http://www.demcare.eu/ontologies/combined.owl#MoveLimb>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#State> .
+
+<http://www.demcare.eu/ontologies/combined.owl#Moving>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Active> .
+
+<http://www.demcare.eu/ontologies/combined.owl#Nap>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#ComplexActivity> .
+
+<http://www.demcare.eu/ontologies/combined.owl#NapAfterLunch>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Nap>, [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#highlight> ;
+    owl:hasValue true
+  ] .
+
+<http://www.demcare.eu/ontologies/combined.owl#NearObject>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#InLocation>, [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#objectLocalisation> ;
+    owl:someValuesFrom <http://www.demcare.eu/ontologies/combined.owl#Object>
+  ] .
+
+<http://www.demcare.eu/ontologies/combined.owl#NightBathroomVisit>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#NightRoomVisit> .
+
+<http://www.demcare.eu/ontologies/combined.owl#NightKitchenVisit>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#NightRoomVisit>, [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#highlight> ;
+    owl:hasValue true
+  ] .
+
+<http://www.demcare.eu/ontologies/combined.owl#NightLivingRoomVisit>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#NightRoomVisit>, [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#highlight> ;
+    owl:hasValue true
+  ] .
+
+<http://www.demcare.eu/ontologies/combined.owl#NightRoomVisit>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#BedExit> .
+
+<http://www.demcare.eu/ontologies/combined.owl#NightSleep>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#ComplexActivity> ;
+  rdfs:comment "The entire sleep (including relevant inferences during the sleep)" .
+
+<http://www.demcare.eu/ontologies/combined.owl#NoiseLevel>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#AmbientMeasurement>, [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#hasNoiseLevel> ;
+    owl:someValuesFrom rdfs:Literal
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#hasNoiseLevel> ;
+    owl:cardinality "1"^^xsd:nonNegativeInteger
+  ] .
+
+<http://www.demcare.eu/ontologies/combined.owl#Object>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Entity> .
+
+<http://www.demcare.eu/ontologies/combined.owl#ObjectEvent>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Event>, [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#hasAgent> ;
+    owl:someValuesFrom <http://www.demcare.eu/ontologies/combined.owl#Object>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#hasAgent> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onClass <http://www.demcare.eu/ontologies/combined.owl#Object>
+  ] .
+
+<http://www.demcare.eu/ontologies/combined.owl#Off>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#ObjectEvent> .
+
+<http://www.demcare.eu/ontologies/combined.owl#On>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#ObjectEvent> .
+
+<http://www.demcare.eu/ontologies/combined.owl#Open>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#ObjectEvent> .
+
+<http://www.demcare.eu/ontologies/combined.owl#OutdoorPhysicalActivity>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#PhysicalActivity> .
+
+<http://www.demcare.eu/ontologies/combined.owl#Outdoors>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#InLocation> .
+
+<http://www.demcare.eu/ontologies/combined.owl#Patient>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Person> .
+
+<http://www.demcare.eu/ontologies/combined.owl#Person>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Entity> .
+
+<http://www.demcare.eu/ontologies/combined.owl#PhoneRinging>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Ringing>, [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#hasAgent> ;
+    owl:someValuesFrom <http://www.demcare.eu/ontologies/combined.owl#Telephone>
+  ] .
+
+<http://www.demcare.eu/ontologies/combined.owl#PhysicalActivity>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#AtomicActivity> .
+
+<http://www.demcare.eu/ontologies/combined.owl#PhysicalQuality> a owl:Class .
+<http://www.demcare.eu/ontologies/combined.owl#PhysiologicalMeasurement>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Measurement>, [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#refersTo> ;
+    owl:allValuesFrom <http://www.demcare.eu/ontologies/combined.owl#Patient>
+  ] .
+
+<http://www.demcare.eu/ontologies/combined.owl#PickUpPhone>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#AtomicActivity> .
+
+<http://www.demcare.eu/ontologies/combined.owl#Place>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Entity> .
+
+<http://www.demcare.eu/ontologies/combined.owl#Plate>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Object> .
+
+<http://www.demcare.eu/ontologies/combined.owl#Posture>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#State> .
+
+<http://www.demcare.eu/ontologies/combined.owl#PrepareDrink>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#ComplexActivity> .
+
+<http://www.demcare.eu/ontologies/combined.owl#PrepareHotTea>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#PrepareDrink> .
+
+<http://www.demcare.eu/ontologies/combined.owl#PrepareMeal>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#ComplexActivity> .
+
+<http://www.demcare.eu/ontologies/combined.owl#RemoteControl>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Object> .
+
+<http://www.demcare.eu/ontologies/combined.owl#Rest>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#State> ;
+  rdfs:comment "DTI-2" .
+
+<http://www.demcare.eu/ontologies/combined.owl#Ringing>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#ObjectEvent> .
+
+<http://www.demcare.eu/ontologies/combined.owl#Room>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Place> .
+
+<http://www.demcare.eu/ontologies/combined.owl#Running>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#OutdoorPhysicalActivity> .
+
+<http://www.demcare.eu/ontologies/combined.owl#Sitting>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Posture>, [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#objectLocalisation> ;
+    owl:someValuesFrom <http://www.demcare.eu/ontologies/combined.owl#Furniture>
+  ] .
+
+<http://www.demcare.eu/ontologies/combined.owl#SittingToStanding>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#ChangePosture> .
+
+<http://www.demcare.eu/ontologies/combined.owl#SkinConductivity>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#PhysiologicalMeasurement>, [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#hasConductivity> ;
+    owl:allValuesFrom rdfs:Literal
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#hasConductivity> ;
+    owl:cardinality "1"^^xsd:nonNegativeInteger
+  ] .
+
+<http://www.demcare.eu/ontologies/combined.owl#SkinTemperature>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#PhysiologicalMeasurement>, [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#hasTemperature> ;
+    owl:someValuesFrom rdfs:Literal
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#hasTemperature> ;
+    owl:cardinality "1"^^xsd:nonNegativeInteger
+  ] .
+
+<http://www.demcare.eu/ontologies/combined.owl#Sleep>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#AtomicActivity> ;
+  rdfs:comment "Gear 4 / DTI-2" .
+
+<http://www.demcare.eu/ontologies/combined.owl#SocialInteraction>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#ComplexActivity> .
+
+<http://www.demcare.eu/ontologies/combined.owl#Speak>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#AtomicActivity> .
+
+<http://www.demcare.eu/ontologies/combined.owl#StandingToSitting>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#ChangePosture> .
+
+<http://www.demcare.eu/ontologies/combined.owl#State>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#AtomicActivity> .
+
+<http://www.demcare.eu/ontologies/combined.owl#StepCounting>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#AtomicActivity> ;
+  rdfs:comment "WIMU" .
+
+<http://www.demcare.eu/ontologies/combined.owl#TV>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Appliance> .
+
+<http://www.demcare.eu/ontologies/combined.owl#Table>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Furniture> .
+
+<http://www.demcare.eu/ontologies/combined.owl#TableExit>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#ComplexActivity> .
+
+<http://www.demcare.eu/ontologies/combined.owl#Telephone>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Object> .
+
+<http://www.demcare.eu/ontologies/combined.owl#TelephoneInteraction>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#SocialInteraction> .
+
+<http://www.demcare.eu/ontologies/combined.owl#UseObject>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#AtomicActivity> .
+
+<http://www.demcare.eu/ontologies/combined.owl#Walk>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#AtomicActivity> .
+
+<http://www.demcare.eu/ontologies/combined.owl#WashingMachine>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Appliance> .
+
+<http://www.demcare.eu/ontologies/combined.owl#WaterCan>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Object> .
+
+<http://www.demcare.eu/ontologies/combined.owl#Window>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Object> .
+
+<http://www.demcare.eu/ontologies/combined.owl#Accelerometer>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#WearableSensor> .
+
+<http://www.demcare.eu/ontologies/combined.owl#Alert>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Feedback> .
+
+<http://www.demcare.eu/ontologies/combined.owl#Ambient2DVideoCamera>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#FixedSensor> .
+
+<http://www.demcare.eu/ontologies/combined.owl#DTI-2>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#WearableSensor> .
+
+<http://www.demcare.eu/ontologies/combined.owl#Detection>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Observation>, [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#describes> ;
+    owl:allValuesFrom [
+      a owl:Class ;
+      owl:unionOf (
+       <http://www.demcare.eu/ontologies/combined.owl#AtomicActivity>
+       <http://www.demcare.eu/ontologies/combined.owl#ObjectEvent>
+     )
+    ]
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#providedBy> ;
+    owl:allValuesFrom <http://www.demcare.eu/ontologies/combined.owl#ProcessingComponent>
+  ] .
+
+<http://www.demcare.eu/ontologies/combined.owl#Feedback> a owl:Class .
+<http://www.demcare.eu/ontologies/combined.owl#FixedSensor>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Sensor> .
+
+<http://www.demcare.eu/ontologies/combined.owl#Measurement>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Observation>, [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#describes> ;
+    owl:allValuesFrom <http://www.demcare.eu/ontologies/combined.owl#Measurement>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#providedBy> ;
+    owl:allValuesFrom [
+      a owl:Class ;
+      owl:unionOf (
+       <http://www.demcare.eu/ontologies/combined.owl#Person>
+       <http://www.demcare.eu/ontologies/combined.owl#Sensor>
+     )
+    ]
+  ] .
+
+<http://www.demcare.eu/ontologies/combined.owl#Observation>
+  a owl:Class ;
+  rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#describes> ;
+    owl:allValuesFrom <http://www.demcare.eu/ontologies/combined.owl#Event>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#hasReportingTime> ;
+    owl:allValuesFrom time:Instant
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#providedBy> ;
+    owl:allValuesFrom [
+      a owl:Class ;
+      owl:unionOf (
+       <http://www.demcare.eu/ontologies/combined.owl#Person>
+       <http://www.demcare.eu/ontologies/combined.owl#ProcessingComponent>
+       <http://www.demcare.eu/ontologies/combined.owl#Sensor>
+     )
+    ]
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#describes> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onClass <http://www.demcare.eu/ontologies/combined.owl#Event>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#hasReportingTime> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onClass time:Instant
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#providedBy> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onClass [
+      a owl:Class ;
+      owl:unionOf (
+       <http://www.demcare.eu/ontologies/combined.owl#Person>
+       <http://www.demcare.eu/ontologies/combined.owl#ProcessingComponent>
+       <http://www.demcare.eu/ontologies/combined.owl#Sensor>
+     )
+    ]
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#hasPlausibilityMetric> ;
+    owl:allValuesFrom xsd:double
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#hasPlausibilityMetric> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onDataRange xsd:double
+  ] .
+
+<http://www.demcare.eu/ontologies/combined.owl#ProcessingComponent> a owl:Class .
+<http://www.demcare.eu/ontologies/combined.owl#Recognition>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Observation>, [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#describes> ;
+    owl:allValuesFrom <http://www.demcare.eu/ontologies/combined.owl#ComplexActivity>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#providedBy> ;
+    owl:allValuesFrom [
+      a owl:Class ;
+      owl:unionOf (
+       <http://www.demcare.eu/ontologies/combined.owl#Person>
+       <http://www.demcare.eu/ontologies/combined.owl#ProcessingComponent>
+     )
+    ]
+  ] .
+
+<http://www.demcare.eu/ontologies/combined.owl#Report>
+  a owl:Class ;
+  rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#describes> ;
+    owl:allValuesFrom [
+      a owl:Class ;
+      owl:unionOf (
+       <http://www.demcare.eu/ontologies/combined.owl#Questionnaire>
+       <http://www.demcare.eu/ontologies/combined.owl#ClinicalRecord>
+       <http://www.demcare.eu/ontologies/combined.owl#DemographicCharacteristicsRecord>
+     )
+    ]
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#hasReportingTime> ;
+    owl:allValuesFrom time:Instant
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#providedBy> ;
+    owl:allValuesFrom <http://www.demcare.eu/ontologies/combined.owl#Person>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#describes> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onClass [
+      a owl:Class ;
+      owl:unionOf (
+       <http://www.demcare.eu/ontologies/combined.owl#Questionnaire>
+       <http://www.demcare.eu/ontologies/combined.owl#ClinicalRecord>
+       <http://www.demcare.eu/ontologies/combined.owl#DemographicCharacteristicsRecord>
+     )
+    ]
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#hasReportingTime> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onClass time:Instant
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#providedBy> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onClass <http://www.demcare.eu/ontologies/combined.owl#Person>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#hasPlausibilityMetric> ;
+    owl:allValuesFrom xsd:double
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#hasPlausibilityMetric> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onDataRange xsd:double
+  ] .
+
+<http://www.demcare.eu/ontologies/combined.owl#Result>
+  a owl:Class ;
+  rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#describes> ;
+    owl:allValuesFrom [
+      a owl:Class ;
+      owl:unionOf (
+       <http://www.demcare.eu/ontologies/combined.owl#DaySummary>
+       <http://www.demcare.eu/ontologies/combined.owl#Problem>
+     )
+    ]
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#hasReportingTime> ;
+    owl:allValuesFrom time:Instant
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#providedBy> ;
+    owl:allValuesFrom [
+      a owl:Class ;
+      owl:unionOf (
+       <http://www.demcare.eu/ontologies/combined.owl#Person>
+       <http://www.demcare.eu/ontologies/combined.owl#ProcessingComponent>
+     )
+    ]
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#describes> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onClass [
+      a owl:Class ;
+      owl:unionOf (
+       <http://www.demcare.eu/ontologies/combined.owl#DaySummary>
+       <http://www.demcare.eu/ontologies/combined.owl#Problem>
+     )
+    ]
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#hasReportingTime> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onClass time:Instant
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#providedBy> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onClass [
+      a owl:Class ;
+      owl:unionOf (
+       <http://www.demcare.eu/ontologies/combined.owl#Person>
+       <http://www.demcare.eu/ontologies/combined.owl#ProcessingComponent>
+     )
+    ]
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#hasPlausibilityMetric> ;
+    owl:allValuesFrom xsd:double
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#hasPlausibilityMetric> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onDataRange xsd:double
+  ] .
+
+<http://www.demcare.eu/ontologies/combined.owl#Sensor>
+  a owl:Class ;
+  rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#attachedTo> ;
+    owl:allValuesFrom <http://www.demcare.eu/ontologies/combined.owl#Entity>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#attachedTo> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onClass <http://www.demcare.eu/ontologies/combined.owl#Entity>
+  ] .
+
+<http://www.demcare.eu/ontologies/combined.owl#WearableMicrophone>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#WearableSensor> .
+
+<http://www.demcare.eu/ontologies/combined.owl#WearableSensor>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Sensor> .
+
+<http://www.demcare.eu/ontologies/combined.owl#WearableVideoCamera>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#WearableSensor> .
+
+<http://www.demcare.eu/ontologies/combined.owl#_3DVideoCamera>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#FixedSensor> .
+
+<http://www.demcare.eu/ontologies/combined.owl#ADLProblem>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Problem> .
+
+<http://www.demcare.eu/ontologies/combined.owl#ADLSummary>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#DaySummary> .
+
+<http://www.demcare.eu/ontologies/combined.owl#DaySummary>
+  a owl:Class ;
+  rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#forPatient> ;
+    owl:someValuesFrom <http://www.demcare.eu/ontologies/combined.owl#Patient>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#forPatient> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onClass <http://www.demcare.eu/ontologies/combined.owl#Patient>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#date> ;
+    owl:someValuesFrom xsd:dateTime
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#date> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onDataRange xsd:dateTime
+  ] .
+
+<http://www.demcare.eu/ontologies/combined.owl#EatingSummary>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#ADLSummary>, [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#eatingDuration> ;
+    owl:allValuesFrom time:DurationDescription
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#eatingLocation> ;
+    owl:allValuesFrom <http://www.demcare.eu/ontologies/combined.owl#Place>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#eatingDuration> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onClass time:DurationDescription
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#eatingLocation> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onClass <http://www.demcare.eu/ontologies/combined.owl#Place>
+  ] .
+
+<http://www.demcare.eu/ontologies/combined.owl#ExcessiveNapProblem>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#NappingProblem> .
+
+<http://www.demcare.eu/ontologies/combined.owl#ExerciseProblem>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Problem> .
+
+<http://www.demcare.eu/ontologies/combined.owl#ExerciseSummary>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#DaySummary>, [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#exerciseDuration> ;
+    owl:allValuesFrom time:DurationDescription
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#exerciseStartTime> ;
+    owl:allValuesFrom time:Instant
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#exerciseDuration> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onClass time:DurationDescription
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#exerciseStartTime> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onClass time:Instant
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#accelerometerCountsPerMinute> ;
+    owl:allValuesFrom xsd:int
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#distanceTravelled> ;
+    owl:allValuesFrom xsd:double
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#exerciseIntensity> ;
+    owl:allValuesFrom rdfs:Literal
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#heartRate> ;
+    owl:allValuesFrom xsd:double
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#strideLength> ;
+    owl:allValuesFrom xsd:double
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#walkSpeed> ;
+    owl:allValuesFrom xsd:double
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#accelerometerCountsPerMinute> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onDataRange xsd:int
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#distanceTravelled> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onDataRange xsd:double
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#exerciseIntensity> ;
+    owl:cardinality "1"^^xsd:nonNegativeInteger
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#heartRate> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onDataRange xsd:double
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#strideLength> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onDataRange xsd:double
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#walkSpeed> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onDataRange xsd:double
+  ] .
+
+<http://www.demcare.eu/ontologies/combined.owl#FailureToPrepareMeal>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#MealProblem> .
+
+<http://www.demcare.eu/ontologies/combined.owl#FragmentedSleepProblem>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#InterruptedSleepProblem> ;
+  rdfs:comment "Sleep fragmentation" .
+
+<http://www.demcare.eu/ontologies/combined.owl#HighStressLevel>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#MoodProblem> .
+
+<http://www.demcare.eu/ontologies/combined.owl#InappropriateMealDuration>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#MealProblem> .
+
+<http://www.demcare.eu/ontologies/combined.owl#InappropriateMealLocation>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#MealProblem> .
+
+<http://www.demcare.eu/ontologies/combined.owl#InsufficientAccelerometerCounts>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#ExerciseProblem> .
+
+<http://www.demcare.eu/ontologies/combined.owl#InsufficientFaceToFaceInteraction>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#SocialProblem> .
+
+<http://www.demcare.eu/ontologies/combined.owl#InsufficientTelephoneInteraction>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#SocialProblem> .
+
+<http://www.demcare.eu/ontologies/combined.owl#InterruptedMeal>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#MealProblem> .
+
+<http://www.demcare.eu/ontologies/combined.owl#InterruptedSleepProblem>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#SleepProblem> .
+
+<http://www.demcare.eu/ontologies/combined.owl#MealProblem>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#ADLProblem> .
+
+<http://www.demcare.eu/ontologies/combined.owl#MissedMeal>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#MealProblem> .
+
+<http://www.demcare.eu/ontologies/combined.owl#MoodProblem>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Problem> .
+
+<http://www.demcare.eu/ontologies/combined.owl#MoodQuestionnaire>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Questionnaire> .
+
+<http://www.demcare.eu/ontologies/combined.owl#MoodSummary>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#DaySummary>, [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#involvementInDiscussion> ;
+    owl:someValuesFrom owl:Thing
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#physicalHygiene> ;
+    owl:someValuesFrom owl:Thing
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#numberOfSocialInteractions> ;
+    owl:allValuesFrom xsd:int
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#stressLevel> ;
+    owl:allValuesFrom rdfs:Literal
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#numberOfSocialInteractions> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onDataRange xsd:int
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#stressLevel> ;
+    owl:cardinality "1"^^xsd:nonNegativeInteger
+  ] .
+
+<http://www.demcare.eu/ontologies/combined.owl#NappingProblem>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#SleepProblem> .
+
+<http://www.demcare.eu/ontologies/combined.owl#Nocturia>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#InterruptedSleepProblem> ;
+  rdfs:comment "If the individual visits the bathroom more than twice during the night" .
+
+<http://www.demcare.eu/ontologies/combined.owl#PeriodicLimbMovement>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#SleepProblem> .
+
+<http://www.demcare.eu/ontologies/combined.owl#Problem>
+  a owl:Class ;
+  rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#possibleContributingFactor> ;
+    owl:someValuesFrom <http://www.demcare.eu/ontologies/combined.owl#Event>
+  ] .
+
+<http://www.demcare.eu/ontologies/combined.owl#Questionnaire> a owl:Class .
+<http://www.demcare.eu/ontologies/combined.owl#SelfReportedLowMood>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#MoodProblem> .
+
+<http://www.demcare.eu/ontologies/combined.owl#ShortStrideLength>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#ExerciseProblem> .
+
+<http://www.demcare.eu/ontologies/combined.owl#SleepDurationProblem>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#SleepProblem> ;
+  rdfs:comment "Sleep duration is less than 7 hours. " .
+
+<http://www.demcare.eu/ontologies/combined.owl#SleepEfficiencyProblem>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#SleepProblem> ;
+  rdfs:comment "Sleep efficiency is less than 85%." .
+
+<http://www.demcare.eu/ontologies/combined.owl#SleepLatencyProblem>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#SleepProblem> ;
+  rdfs:comment "Sleep latency over 30 minutes." .
+
+<http://www.demcare.eu/ontologies/combined.owl#SleepProblem>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Problem> .
+
+<http://www.demcare.eu/ontologies/combined.owl#SleepQuestionnaire>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Questionnaire> .
+
+<http://www.demcare.eu/ontologies/combined.owl#SleepSummary>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#DaySummary>, [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#duration> ;
+    owl:allValuesFrom xsd:int
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#lightLevel> ;
+    owl:allValuesFrom xsd:string
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#numberOfArousals> ;
+    owl:allValuesFrom xsd:int
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#numberOfAwakenings> ;
+    owl:allValuesFrom xsd:int
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#numberOfBedExits> ;
+    owl:allValuesFrom xsd:int
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#numberOfNaps> ;
+    owl:allValuesFrom xsd:int
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#sleepBedTime> ;
+    owl:allValuesFrom xsd:dateTime
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#sleepEfficiency> ;
+    owl:allValuesFrom xsd:double
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#sleepLatency> ;
+    owl:allValuesFrom xsd:int
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#sleepMovementIndex> ;
+    owl:allValuesFrom xsd:double
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#sleepTime> ;
+    owl:allValuesFrom xsd:dateTime
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#totalDurationOfNaps> ;
+    owl:allValuesFrom xsd:int
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#wakeUpTime> ;
+    owl:allValuesFrom xsd:dateTime
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#duration> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onDataRange xsd:int
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#lightLevel> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onDataRange xsd:string
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#numberOfArousals> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onDataRange xsd:int
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#numberOfAwakenings> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onDataRange xsd:int
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#numberOfBedExits> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onDataRange xsd:int
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#numberOfNaps> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onDataRange xsd:int
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#sleepBedTime> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onDataRange xsd:dateTime
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#sleepEfficiency> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onDataRange xsd:double
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#sleepLatency> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onDataRange xsd:int
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#sleepMovementIndex> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onDataRange xsd:double
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#sleepTime> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onDataRange xsd:dateTime
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#totalDurationOfNaps> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onDataRange xsd:int
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#wakeUpTime> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onDataRange xsd:dateTime
+  ] .
+
+<http://www.demcare.eu/ontologies/combined.owl#SlowWalkSpeed>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#ExerciseProblem> .
+
+<http://www.demcare.eu/ontologies/combined.owl#SocialProblem>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Problem> .
+
+<http://www.demcare.eu/ontologies/combined.owl#SocialSummary>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#DaySummary>, [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#numberOfCommunicativeAttempts> ;
+    owl:allValuesFrom xsd:int
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#numberOfFaceToFaceConversations> ;
+    owl:allValuesFrom xsd:int
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#numberOfPhoneConversations> ;
+    owl:allValuesFrom xsd:int
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#numberOfSocialInteractions> ;
+    owl:allValuesFrom xsd:int
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#numberOfCommunicativeAttempts> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onDataRange xsd:int
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#numberOfFaceToFaceConversations> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onDataRange xsd:int
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#numberOfPhoneConversations> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onDataRange xsd:int
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#numberOfSocialInteractions> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onDataRange xsd:int
+  ] .
+
+<http://www.demcare.eu/ontologies/combined.owl#AbilityToOrganiseAssessment>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#ExperimentalAssessment> .
+
+<http://www.demcare.eu/ontologies/combined.owl#ActivityStatusType>
+  a owl:Class ;
+  owl:equivalentClass [
+    a owl:Class ;
+    owl:oneOf (
+     <http://www.demcare.eu/ontologies/combined.owl#completed>
+     <http://www.demcare.eu/ontologies/combined.owl#incomplete>
+     <http://www.demcare.eu/ontologies/combined.owl#omitted>
+   )
+  ] ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Type> .
+
+<http://www.demcare.eu/ontologies/combined.owl#AnswerPhoneTask>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#SemiDirectedTask> .
+
+<http://www.demcare.eu/ontologies/combined.owl#ApathyAssessment>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#ExperimentalAssessment> .
+
+<http://www.demcare.eu/ontologies/combined.owl#AutonomyAssessment>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#ClinicalAssessment>, [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#iadl_e> ;
+    owl:allValuesFrom xsd:int
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#iadl_e> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onDataRange xsd:int
+  ] .
+
+<http://www.demcare.eu/ontologies/combined.owl#CallPsychologistTask>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#SemiDirectedTask> .
+
+<http://www.demcare.eu/ontologies/combined.owl#ClinicalAssessment> a owl:Class .
+<http://www.demcare.eu/ontologies/combined.owl#ClinicalRecord>
+  a owl:Class ;
+  rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#containsAssessment> ;
+    owl:allValuesFrom [
+      a owl:Class ;
+      owl:unionOf (
+       <http://www.demcare.eu/ontologies/combined.owl#AutonomyAssessment>
+       <http://www.demcare.eu/ontologies/combined.owl#CognitiveAbilitiesAssessment>
+       <http://www.demcare.eu/ontologies/combined.owl#DiagnosisAssessment>
+       <http://www.demcare.eu/ontologies/combined.owl#MotricityAbilitiesAssessment>
+       <http://www.demcare.eu/ontologies/combined.owl#NeuropsychiatricAndMoodAssessment>
+     )
+    ]
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#containsAssessment> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onClass <http://www.demcare.eu/ontologies/combined.owl#AutonomyAssessment>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#containsAssessment> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onClass <http://www.demcare.eu/ontologies/combined.owl#CognitiveAbilitiesAssessment>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#containsAssessment> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onClass <http://www.demcare.eu/ontologies/combined.owl#DiagnosisAssessment>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#containsAssessment> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onClass <http://www.demcare.eu/ontologies/combined.owl#MotricityAbilitiesAssessment>
+  ] .
+
+<http://www.demcare.eu/ontologies/combined.owl#CognitiveAbilitiesAssessment>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#ClinicalAssessment>, [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#fabScore> ;
+    owl:allValuesFrom xsd:int
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#freeAndCuedRemindingAssessment> ;
+    owl:allValuesFrom xsd:string
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#hasMMSEScore> ;
+    owl:allValuesFrom xsd:int
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#shortCognitiveBatteryAssessment> ;
+    owl:allValuesFrom xsd:string
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#trailMakingTest> ;
+    owl:allValuesFrom xsd:string
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#fabScore> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onDataRange xsd:int
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#freeAndCuedRemindingAssessment> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onDataRange xsd:string
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#hasMMSEScore> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onDataRange xsd:int
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#shortCognitiveBatteryAssessment> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onDataRange xsd:string
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#trailMakingTest> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onDataRange xsd:string
+  ] .
+
+<http://www.demcare.eu/ontologies/combined.owl#CognitiveAbilitiesData>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#MeasuredData>, [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#status> ;
+    owl:allValuesFrom <http://www.demcare.eu/ontologies/combined.owl#ActivityStatusType>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#taskDuration> ;
+    owl:allValuesFrom time:DurationDescription
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#status> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onClass <http://www.demcare.eu/ontologies/combined.owl#ActivityStatusType>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#taskDuration> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onClass time:DurationDescription
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#compliantInstructionsOrder> ;
+    owl:allValuesFrom xsd:boolean
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#repetitions> ;
+    owl:allValuesFrom rdfs:Literal
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#compliantInstructionsOrder> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onDataRange xsd:boolean
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#repetitions> ;
+    owl:cardinality "1"^^xsd:nonNegativeInteger
+  ] .
+
+<http://www.demcare.eu/ontologies/combined.owl#CognitiveLoadAssessment>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#ExperimentalAssessment>, [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#hasDualTaskScore> ;
+    owl:allValuesFrom rdfs:Literal
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#hasMonoTaskScore> ;
+    owl:allValuesFrom rdfs:Literal
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#hasDualTaskScore> ;
+    owl:cardinality "1"^^xsd:nonNegativeInteger
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#hasMonoTaskScore> ;
+    owl:cardinality "1"^^xsd:nonNegativeInteger
+  ] .
+
+<http://www.demcare.eu/ontologies/combined.owl#CountingType>
+  a owl:Class ;
+  owl:equivalentClass [
+    a owl:Class ;
+    owl:oneOf (
+     <http://www.demcare.eu/ontologies/combined.owl#_20_0>
+     <http://www.demcare.eu/ontologies/combined.owl#_305_285>
+   )
+  ] ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Type> .
+
+<http://www.demcare.eu/ontologies/combined.owl#DemographicCharacteristicsRecord>
+  a owl:Class ;
+  rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#gender> ;
+    owl:allValuesFrom <http://www.demcare.eu/ontologies/combined.owl#GenderType>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#laterality> ;
+    owl:allValuesFrom <http://www.demcare.eu/ontologies/combined.owl#LateralityType>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#gender> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onClass <http://www.demcare.eu/ontologies/combined.owl#GenderType>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#dateOfBirth> ;
+    owl:allValuesFrom xsd:dateTime
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#educationLevel> ;
+    owl:allValuesFrom rdfs:Literal
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#size> ;
+    owl:allValuesFrom rdfs:Literal
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#dateOfBirth> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onDataRange xsd:dateTime
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#educationLevel> ;
+    owl:cardinality "1"^^xsd:nonNegativeInteger
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#size> ;
+    owl:cardinality "1"^^xsd:nonNegativeInteger
+  ] .
+
+<http://www.demcare.eu/ontologies/combined.owl#DiagnosisAssessment>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#ClinicalAssessment>, [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#hasClinicalDiagnosis> ;
+    owl:allValuesFrom <http://www.demcare.eu/ontologies/combined.owl#DiagnosisType>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#hasClinicalDiagnosis> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onClass <http://www.demcare.eu/ontologies/combined.owl#DiagnosisType>
+  ] .
+
+<http://www.demcare.eu/ontologies/combined.owl#DiagnosisType>
+  a owl:Class ;
+  owl:equivalentClass [
+    a owl:Class ;
+    owl:oneOf (
+     <http://www.demcare.eu/ontologies/combined.owl#dementia>
+     <http://www.demcare.eu/ontologies/combined.owl#healthy>
+     <http://www.demcare.eu/ontologies/combined.owl#predementia>
+   )
+  ] ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Type> .
+
+<http://www.demcare.eu/ontologies/combined.owl#DirectedDiscussionTask>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#DiscussionTask> .
+
+<http://www.demcare.eu/ontologies/combined.owl#DirectedTask>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Task> .
+
+<http://www.demcare.eu/ontologies/combined.owl#DiscussionInvolvementData>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#MeasuredData>, [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#verbalReactionSpontaneity> ;
+    owl:allValuesFrom rdfs:Literal
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#verbalReactionSpontaneity> ;
+    owl:cardinality "1"^^xsd:nonNegativeInteger
+  ] .
+
+<http://www.demcare.eu/ontologies/combined.owl#DiscussionTask>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Task>, [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#measuredData> ;
+    owl:someValuesFrom <http://www.demcare.eu/ontologies/combined.owl#MoodVoiceData>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#measuredData> ;
+    owl:someValuesFrom <http://www.demcare.eu/ontologies/combined.owl#StressData>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#measuredData> ;
+    owl:allValuesFrom [
+      a owl:Class ;
+      owl:unionOf (
+       <http://www.demcare.eu/ontologies/combined.owl#MoodVoiceData>
+       <http://www.demcare.eu/ontologies/combined.owl#StressData>
+     )
+    ]
+  ] .
+
+<http://www.demcare.eu/ontologies/combined.owl#EstablishAccountBalanceTask>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#SemiDirectedTask> .
+
+<http://www.demcare.eu/ontologies/combined.owl#ExperimentalAssessment>
+  a owl:Class ;
+  rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#hasScore> ;
+    owl:allValuesFrom rdfs:Literal
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#hasScore> ;
+    owl:cardinality "1"^^xsd:nonNegativeInteger
+  ] .
+
+<http://www.demcare.eu/ontologies/combined.owl#ExperimentalDiagnosisAssessment>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#ExperimentalAssessment>, [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#hasExperimentalDiagnosis> ;
+    owl:allValuesFrom <http://www.demcare.eu/ontologies/combined.owl#DiagnosisType>
+  ] .
+
+<http://www.demcare.eu/ontologies/combined.owl#ExperimentalRecord>
+  a owl:Class ;
+  rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#containsAssessment> ;
+    owl:allValuesFrom [
+      a owl:Class ;
+      owl:unionOf (
+       <http://www.demcare.eu/ontologies/combined.owl#AbilityToOrganiseAssessment>
+       <http://www.demcare.eu/ontologies/combined.owl#ApathyAssessment>
+       <http://www.demcare.eu/ontologies/combined.owl#CognitiveLoadAssessment>
+       <http://www.demcare.eu/ontologies/combined.owl#ExperimentalDiagnosisAssessment>
+       <http://www.demcare.eu/ontologies/combined.owl#FunctionalAbilityAssessment>
+       <http://www.demcare.eu/ontologies/combined.owl#GaitAssessment>
+       <http://www.demcare.eu/ontologies/combined.owl#MemorySelfAppraisalAssessment>
+       <http://www.demcare.eu/ontologies/combined.owl#StressAssessment>
+     )
+    ]
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#containsAssessment> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onClass <http://www.demcare.eu/ontologies/combined.owl#AbilityToOrganiseAssessment>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#containsAssessment> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onClass <http://www.demcare.eu/ontologies/combined.owl#ApathyAssessment>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#containsAssessment> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onClass <http://www.demcare.eu/ontologies/combined.owl#CognitiveLoadAssessment>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#containsAssessment> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onClass <http://www.demcare.eu/ontologies/combined.owl#ExperimentalDiagnosisAssessment>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#containsAssessment> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onClass <http://www.demcare.eu/ontologies/combined.owl#FunctionalAbilityAssessment>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#containsAssessment> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onClass <http://www.demcare.eu/ontologies/combined.owl#GaitAssessment>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#containsAssessment> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onClass <http://www.demcare.eu/ontologies/combined.owl#MemorySelfAppraisalAssessment>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#containsAssessment> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onClass <http://www.demcare.eu/ontologies/combined.owl#StressAssessment>
+  ] .
+
+<http://www.demcare.eu/ontologies/combined.owl#FindBusLineOnMapTask>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#SemiDirectedTask> .
+
+<http://www.demcare.eu/ontologies/combined.owl#FreeDiscussionTask>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#DiscussionTask> .
+
+<http://www.demcare.eu/ontologies/combined.owl#FunctionalAbilitiesData>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#MeasuredData>, [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#handTrajectory> ;
+    owl:allValuesFrom <http://www.demcare.eu/ontologies/combined.owl#HandTrajectoryType>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#handTrajectory> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onClass <http://www.demcare.eu/ontologies/combined.owl#HandTrajectoryType>
+  ] .
+
+<http://www.demcare.eu/ontologies/combined.owl#FunctionalAbilityAssessment>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#ExperimentalAssessment> .
+
+<http://www.demcare.eu/ontologies/combined.owl#GaitAssessment>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#ExperimentalAssessment>, [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#hasDualTaskScore> ;
+    owl:allValuesFrom rdfs:Literal
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#hasMonoTaskScore> ;
+    owl:allValuesFrom rdfs:Literal
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#hasDualTaskScore> ;
+    owl:cardinality "1"^^xsd:nonNegativeInteger
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#hasMonoTaskScore> ;
+    owl:cardinality "1"^^xsd:nonNegativeInteger
+  ] .
+
+<http://www.demcare.eu/ontologies/combined.owl#GaitData>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#MeasuredData>, [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#dynamicBalance> ;
+    owl:allValuesFrom rdfs:Literal
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#stepLength> ;
+    owl:allValuesFrom rdfs:Literal
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#stoppingDisplacement> ;
+    owl:allValuesFrom xsd:boolean
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#walkingSpeed> ;
+    owl:allValuesFrom rdfs:Literal
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#walkingSpeedInstantaneous> ;
+    owl:allValuesFrom rdfs:Literal
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#dynamicBalance> ;
+    owl:cardinality "1"^^xsd:nonNegativeInteger
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#stepLength> ;
+    owl:cardinality "1"^^xsd:nonNegativeInteger
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#stoppingDisplacement> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onDataRange xsd:boolean
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#walkingSpeed> ;
+    owl:cardinality "1"^^xsd:nonNegativeInteger
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#walkingSpeedInstantaneous> ;
+    owl:cardinality "1"^^xsd:nonNegativeInteger
+  ] .
+
+<http://www.demcare.eu/ontologies/combined.owl#GenderType>
+  a owl:Class ;
+  owl:equivalentClass [
+    a owl:Class ;
+    owl:oneOf (
+     <http://www.demcare.eu/ontologies/combined.owl#female>
+     <http://www.demcare.eu/ontologies/combined.owl#male>
+   )
+  ] ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Type> .
+
+<http://www.demcare.eu/ontologies/combined.owl#HandTrajectoryType>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Type> .
+
+<http://www.demcare.eu/ontologies/combined.owl#HealthyControlParticipant>
+  a owl:Class ;
+  owl:equivalentClass [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#hasRecord> ;
+    owl:someValuesFrom [
+      a owl:Class ;
+      owl:intersectionOf (
+       <http://www.demcare.eu/ontologies/combined.owl#ClinicalRecord>
+       _:genid284
+     )
+    ]
+  ] ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Person> .
+
+<http://www.demcare.eu/ontologies/combined.owl#LatencyData>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#MeasuredData>, [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#latency> ;
+    owl:allValuesFrom rdfs:Literal
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#latency> ;
+    owl:cardinality "1"^^xsd:nonNegativeInteger
+  ] .
+
+<http://www.demcare.eu/ontologies/combined.owl#LateralityType>
+  a owl:Class ;
+  owl:equivalentClass [
+    a owl:Class ;
+    owl:oneOf (
+     <http://www.demcare.eu/ontologies/combined.owl#left_handed>
+     <http://www.demcare.eu/ontologies/combined.owl#right_handed>
+   )
+  ] ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Type> .
+
+<http://www.demcare.eu/ontologies/combined.owl#LeaveRoomTask>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#SemiDirectedTask> .
+
+<http://www.demcare.eu/ontologies/combined.owl#MeasuredData> a owl:Class .
+<http://www.demcare.eu/ontologies/combined.owl#MemorySelfAppraisalAssessment>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#ExperimentalAssessment> .
+
+<http://www.demcare.eu/ontologies/combined.owl#MoodVoiceData>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#MeasuredData> .
+
+<http://www.demcare.eu/ontologies/combined.owl#MotricityAbilitiesAssessment>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#ClinicalAssessment>, [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#hasUPDRSScore> ;
+    owl:allValuesFrom xsd:int
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#hasUPDRSScore> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onDataRange xsd:int
+  ] .
+
+<http://www.demcare.eu/ontologies/combined.owl#NeuropsychiatricAndMoodAssessment>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#ClinicalAssessment>, [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#apathyInventory> ;
+    owl:allValuesFrom xsd:string
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#dsm_ivDepressionCriteria> ;
+    owl:allValuesFrom xsd:string
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#npi> ;
+    owl:allValuesFrom xsd:string
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#apathyInventory> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onDataRange xsd:string
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#dsm_ivDepressionCriteria> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onDataRange xsd:string
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#npi> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onDataRange xsd:string
+  ] .
+
+<http://www.demcare.eu/ontologies/combined.owl#OrganisationEfficiencyData>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#MeasuredData>, [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#areasOfInterestExplored> ;
+    owl:allValuesFrom rdfs:Literal
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#areasOfNoInterestExplored> ;
+    owl:allValuesFrom rdfs:Literal
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#distanceWalked> ;
+    owl:allValuesFrom rdfs:Literal
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#areasOfInterestExplored> ;
+    owl:cardinality "1"^^xsd:nonNegativeInteger
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#areasOfNoInterestExplored> ;
+    owl:cardinality "1"^^xsd:nonNegativeInteger
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#distanceWalked> ;
+    owl:cardinality "1"^^xsd:nonNegativeInteger
+  ] .
+
+<http://www.demcare.eu/ontologies/combined.owl#PayBillTask>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#SemiDirectedTask> .
+
+<http://www.demcare.eu/ontologies/combined.owl#Person>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Person>, [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#hasRecord> ;
+    owl:someValuesFrom <http://www.demcare.eu/ontologies/combined.owl#ClinicalRecord>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#hasRecord> ;
+    owl:someValuesFrom <http://www.demcare.eu/ontologies/combined.owl#DemographicCharacteristicsRecord>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#hasRecord> ;
+    owl:someValuesFrom <http://www.demcare.eu/ontologies/combined.owl#ExperimentalRecord>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#participates> ;
+    owl:someValuesFrom <http://www.demcare.eu/ontologies/combined.owl#Protocol>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#hasRecord> ;
+    owl:allValuesFrom [
+      a owl:Class ;
+      owl:unionOf (
+       <http://www.demcare.eu/ontologies/combined.owl#ClinicalRecord>
+       <http://www.demcare.eu/ontologies/combined.owl#DemographicCharacteristicsRecord>
+       <http://www.demcare.eu/ontologies/combined.owl#ExperimentalRecord>
+     )
+    ]
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#participates> ;
+    owl:allValuesFrom <http://www.demcare.eu/ontologies/combined.owl#Protocol>
+  ] .
+
+<http://www.demcare.eu/ontologies/combined.owl#PersonWithDementia>
+  a owl:Class ;
+  owl:equivalentClass [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#hasRecord> ;
+    owl:someValuesFrom [
+      a owl:Class ;
+      owl:intersectionOf (
+       <http://www.demcare.eu/ontologies/combined.owl#ClinicalRecord>
+       _:genid324
+     )
+    ]
+  ] ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Person> .
+
+<http://www.demcare.eu/ontologies/combined.owl#PersonWithPredementia>
+  a owl:Class ;
+  owl:equivalentClass [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#hasRecord> ;
+    owl:someValuesFrom [
+      a owl:Class ;
+      owl:intersectionOf (
+       <http://www.demcare.eu/ontologies/combined.owl#ClinicalRecord>
+       _:genid335
+     )
+    ]
+  ] ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Person> .
+
+<http://www.demcare.eu/ontologies/combined.owl#PrepareDrugBoxTask>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#SemiDirectedTask> .
+
+<http://www.demcare.eu/ontologies/combined.owl#PrepareHotTeaTask>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#SemiDirectedTask> .
+
+<http://www.demcare.eu/ontologies/combined.owl#Protocol>
+  a owl:Class ;
+  rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#protocolStep> ;
+    owl:someValuesFrom <http://www.demcare.eu/ontologies/combined.owl#ProtocolStep>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#hasParticipant> ;
+    owl:allValuesFrom <http://www.demcare.eu/ontologies/combined.owl#Person>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#protocolStep> ;
+    owl:allValuesFrom <http://www.demcare.eu/ontologies/combined.owl#ProtocolStep>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#hasParticipant> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onClass <http://www.demcare.eu/ontologies/combined.owl#Person>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#date> ;
+    owl:allValuesFrom xsd:dateTime
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#date> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onDataRange xsd:dateTime
+  ] .
+
+<http://www.demcare.eu/ontologies/combined.owl#ProtocolStep>
+  a owl:Class ;
+  rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#involvesTask> ;
+    owl:someValuesFrom <http://www.demcare.eu/ontologies/combined.owl#Task>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#endTime> ;
+    owl:allValuesFrom time:Instant
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#involvesTask> ;
+    owl:allValuesFrom <http://www.demcare.eu/ontologies/combined.owl#Task>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#startTime> ;
+    owl:allValuesFrom time:Instant
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#endTime> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onClass time:Instant
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#startTime> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onClass time:Instant
+  ] .
+
+<http://www.demcare.eu/ontologies/combined.owl#ReadArticleTask>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#SemiDirectedTask> .
+
+<http://www.demcare.eu/ontologies/combined.owl#S1_DirectedActivitiesStep>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#ProtocolStep>, [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#involvesTask> ;
+    owl:allValuesFrom [
+      a owl:Class ;
+      owl:unionOf (
+       <http://www.demcare.eu/ontologies/combined.owl#S1_P11_WalkingTask>
+       <http://www.demcare.eu/ontologies/combined.owl#S1_P12_CountingBackwardsTask>
+       <http://www.demcare.eu/ontologies/combined.owl#S1_P13_WalkingCountingBackwardsTask>
+       <http://www.demcare.eu/ontologies/combined.owl#S1_P21_SentenceRepeatingTask>
+       <http://www.demcare.eu/ontologies/combined.owl#S1_P22_ArticulationControlTask>
+       <http://www.demcare.eu/ontologies/combined.owl#Task>
+     )
+    ]
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#involvesTask> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onClass <http://www.demcare.eu/ontologies/combined.owl#S1_P11_WalkingTask>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#involvesTask> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onClass <http://www.demcare.eu/ontologies/combined.owl#S1_P12_CountingBackwardsTask>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#involvesTask> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onClass <http://www.demcare.eu/ontologies/combined.owl#S1_P13_WalkingCountingBackwardsTask>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#involvesTask> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onClass <http://www.demcare.eu/ontologies/combined.owl#S1_P21_SentenceRepeatingTask>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#involvesTask> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onClass <http://www.demcare.eu/ontologies/combined.owl#S1_P22_ArticulationControlTask>
+  ] .
+
+<http://www.demcare.eu/ontologies/combined.owl#S1_P11_WalkingTask>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#DirectedTask>, [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#measuredData> ;
+    owl:someValuesFrom <http://www.demcare.eu/ontologies/combined.owl#GaitData>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#measuredData> ;
+    owl:someValuesFrom <http://www.demcare.eu/ontologies/combined.owl#LatencyData>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#measuredData> ;
+    owl:allValuesFrom [
+      a owl:Class ;
+      owl:unionOf (
+       <http://www.demcare.eu/ontologies/combined.owl#GaitData>
+       <http://www.demcare.eu/ontologies/combined.owl#LatencyData>
+       <http://www.demcare.eu/ontologies/combined.owl#StressData>
+     )
+    ]
+  ] .
+
+<http://www.demcare.eu/ontologies/combined.owl#S1_P12_CountingBackwardsTask>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#DirectedTask>, [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#measuredData> ;
+    owl:someValuesFrom <http://www.demcare.eu/ontologies/combined.owl#LatencyData>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#measuredData> ;
+    owl:someValuesFrom <http://www.demcare.eu/ontologies/combined.owl#MoodVoiceData>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#countingType> ;
+    owl:allValuesFrom [
+      a owl:Class ;
+      owl:oneOf (
+       <http://www.demcare.eu/ontologies/combined.owl#_20_0>
+       <http://www.demcare.eu/ontologies/combined.owl#_305_285>
+     )
+    ]
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#measuredData> ;
+    owl:allValuesFrom [
+      a owl:Class ;
+      owl:unionOf (
+       <http://www.demcare.eu/ontologies/combined.owl#LatencyData>
+       <http://www.demcare.eu/ontologies/combined.owl#MoodVoiceData>
+       <http://www.demcare.eu/ontologies/combined.owl#StressData>
+     )
+    ]
+  ] .
+
+<http://www.demcare.eu/ontologies/combined.owl#S1_P13_WalkingCountingBackwardsTask>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#DirectedTask>, [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#countingType> ;
+    owl:someValuesFrom <http://www.demcare.eu/ontologies/combined.owl#CountingType>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#measuredData> ;
+    owl:someValuesFrom <http://www.demcare.eu/ontologies/combined.owl#GaitData>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#measuredData> ;
+    owl:someValuesFrom <http://www.demcare.eu/ontologies/combined.owl#LatencyData>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#measuredData> ;
+    owl:someValuesFrom <http://www.demcare.eu/ontologies/combined.owl#MoodVoiceData>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#countingType> ;
+    owl:allValuesFrom <http://www.demcare.eu/ontologies/combined.owl#CountingType>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#measuredData> ;
+    owl:allValuesFrom [
+      a owl:Class ;
+      owl:unionOf (
+       <http://www.demcare.eu/ontologies/combined.owl#GaitData>
+       <http://www.demcare.eu/ontologies/combined.owl#LatencyData>
+       <http://www.demcare.eu/ontologies/combined.owl#MoodVoiceData>
+       <http://www.demcare.eu/ontologies/combined.owl#StressData>
+     )
+    ]
+  ] .
+
+<http://www.demcare.eu/ontologies/combined.owl#S1_P21_SentenceRepeatingTask>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#DirectedTask>, [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#measuredData> ;
+    owl:someValuesFrom <http://www.demcare.eu/ontologies/combined.owl#LatencyData>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#measuredData> ;
+    owl:someValuesFrom <http://www.demcare.eu/ontologies/combined.owl#MoodVoiceData>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#measuredData> ;
+    owl:allValuesFrom [
+      a owl:Class ;
+      owl:unionOf (
+       <http://www.demcare.eu/ontologies/combined.owl#LatencyData>
+       <http://www.demcare.eu/ontologies/combined.owl#MoodVoiceData>
+       <http://www.demcare.eu/ontologies/combined.owl#StressData>
+     )
+    ]
+  ] .
+
+<http://www.demcare.eu/ontologies/combined.owl#S1_P22_ArticulationControlTask>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#DirectedTask>, [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#measuredData> ;
+    owl:someValuesFrom <http://www.demcare.eu/ontologies/combined.owl#LatencyData>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#measuredData> ;
+    owl:allValuesFrom [
+      a owl:Class ;
+      owl:unionOf (
+       <http://www.demcare.eu/ontologies/combined.owl#LatencyData>
+       <http://www.demcare.eu/ontologies/combined.owl#StressData>
+     )
+    ]
+  ] .
+
+<http://www.demcare.eu/ontologies/combined.owl#S2_SemiDirectedActivitiesStep>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#ProtocolStep>, [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#involvesTask> ;
+    owl:allValuesFrom [
+      a owl:Class ;
+      owl:unionOf (
+       <http://www.demcare.eu/ontologies/combined.owl#AnswerPhoneTask>
+       <http://www.demcare.eu/ontologies/combined.owl#CallPsychologistTask>
+       <http://www.demcare.eu/ontologies/combined.owl#EstablishAccountBalanceTask>
+       <http://www.demcare.eu/ontologies/combined.owl#FindBusLineOnMapTask>
+       <http://www.demcare.eu/ontologies/combined.owl#LeaveRoomTask>
+       <http://www.demcare.eu/ontologies/combined.owl#PayBillTask>
+       <http://www.demcare.eu/ontologies/combined.owl#PrepareDrugBoxTask>
+       <http://www.demcare.eu/ontologies/combined.owl#PrepareHotTeaTask>
+       <http://www.demcare.eu/ontologies/combined.owl#Task>
+       <http://www.demcare.eu/ontologies/combined.owl#TurnOnTVTask>
+       <http://www.demcare.eu/ontologies/combined.owl#WaterPlantTask>
+     )
+    ]
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#involvesTask> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onClass <http://www.demcare.eu/ontologies/combined.owl#AnswerPhoneTask>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#involvesTask> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onClass <http://www.demcare.eu/ontologies/combined.owl#CallPsychologistTask>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#involvesTask> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onClass <http://www.demcare.eu/ontologies/combined.owl#EstablishAccountBalanceTask>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#involvesTask> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onClass <http://www.demcare.eu/ontologies/combined.owl#FindBusLineOnMapTask>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#involvesTask> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onClass <http://www.demcare.eu/ontologies/combined.owl#LeaveRoomTask>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#involvesTask> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onClass <http://www.demcare.eu/ontologies/combined.owl#PayBillTask>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#involvesTask> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onClass <http://www.demcare.eu/ontologies/combined.owl#PrepareDrugBoxTask>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#involvesTask> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onClass <http://www.demcare.eu/ontologies/combined.owl#PrepareHotTeaTask>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#involvesTask> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onClass <http://www.demcare.eu/ontologies/combined.owl#TurnOnTVTask>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#involvesTask> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onClass <http://www.demcare.eu/ontologies/combined.owl#WaterPlantTask>
+  ] .
+
+<http://www.demcare.eu/ontologies/combined.owl#S3_DiscussionWithClinicianStep>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#ProtocolStep>, [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#involvesTask> ;
+    owl:allValuesFrom [
+      a owl:Class ;
+      owl:unionOf (
+       <http://www.demcare.eu/ontologies/combined.owl#S3_P1_DirectedExpressionTask>
+       <http://www.demcare.eu/ontologies/combined.owl#S3_P21_PictureDescriptionTask>
+       <http://www.demcare.eu/ontologies/combined.owl#Task>
+     )
+    ]
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#involvesTask> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onClass <http://www.demcare.eu/ontologies/combined.owl#S3_P1_DirectedExpressionTask>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#involvesTask> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onClass <http://www.demcare.eu/ontologies/combined.owl#S3_P21_PictureDescriptionTask>
+  ] .
+
+<http://www.demcare.eu/ontologies/combined.owl#S3_P1_DirectedExpressionTask>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#DirectedDiscussionTask>, [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#measuredData> ;
+    owl:someValuesFrom <http://www.demcare.eu/ontologies/combined.owl#MoodVoiceData>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#measuredData> ;
+    owl:allValuesFrom [
+      a owl:Class ;
+      owl:unionOf (
+       <http://www.demcare.eu/ontologies/combined.owl#MoodVoiceData>
+       <http://www.demcare.eu/ontologies/combined.owl#StressData>
+     )
+    ]
+  ] .
+
+<http://www.demcare.eu/ontologies/combined.owl#S3_P21_PictureDescriptionTask>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#FreeDiscussionTask> .
+
+<http://www.demcare.eu/ontologies/combined.owl#S3_P22_PictureDiscussionTask>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#FreeDiscussionTask> .
+
+<http://www.demcare.eu/ontologies/combined.owl#SemiDirectedTask>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#Task>, [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#measuredData> ;
+    owl:someValuesFrom <http://www.demcare.eu/ontologies/combined.owl#CognitiveAbilitiesData>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#measuredData> ;
+    owl:someValuesFrom <http://www.demcare.eu/ontologies/combined.owl#FunctionalAbilitiesData>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#measuredData> ;
+    owl:allValuesFrom [
+      a owl:Class ;
+      owl:unionOf (
+       <http://www.demcare.eu/ontologies/combined.owl#CognitiveAbilitiesData>
+       <http://www.demcare.eu/ontologies/combined.owl#FunctionalAbilitiesData>
+       <http://www.demcare.eu/ontologies/combined.owl#StressData>
+     )
+    ]
+  ] .
+
+<http://www.demcare.eu/ontologies/combined.owl#StressAssessment>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#ExperimentalAssessment> .
+
+<http://www.demcare.eu/ontologies/combined.owl#StressData>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#MeasuredData>, [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#stressLevel> ;
+    owl:allValuesFrom rdfs:Literal
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#stressLevel> ;
+    owl:cardinality "1"^^xsd:nonNegativeInteger
+  ] .
+
+<http://www.demcare.eu/ontologies/combined.owl#Task>
+  a owl:Class ;
+  rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#measuredData> ;
+    owl:someValuesFrom <http://www.demcare.eu/ontologies/combined.owl#StressData>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#endTime> ;
+    owl:allValuesFrom time:Instant
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#measuredData> ;
+    owl:allValuesFrom <http://www.demcare.eu/ontologies/combined.owl#StressData>
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#startTime> ;
+    owl:allValuesFrom time:Instant
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#endTime> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onClass time:Instant
+  ], [
+    a owl:Restriction ;
+    owl:onProperty <http://www.demcare.eu/ontologies/combined.owl#startTime> ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onClass time:Instant
+  ] .
+
+<http://www.demcare.eu/ontologies/combined.owl#TurnOnTVTask>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#SemiDirectedTask> .
+
+<http://www.demcare.eu/ontologies/combined.owl#Type> a owl:Class .
+<http://www.demcare.eu/ontologies/combined.owl#WaterPlantTask>
+  a owl:Class ;
+  rdfs:subClassOf <http://www.demcare.eu/ontologies/combined.owl#SemiDirectedTask> .
+
+time:DateTimeDescription
+  a owl:Class ;
+  rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty time:unitType ;
+    owl:cardinality "1"^^xsd:nonNegativeInteger
+  ], [
+    a owl:Restriction ;
+    owl:onProperty time:dayOfWeek ;
+    owl:maxCardinality "1"^^xsd:nonNegativeInteger
+  ], [
+    a owl:Restriction ;
+    owl:onProperty time:timeZone ;
+    owl:maxCardinality "1"^^xsd:nonNegativeInteger
+  ], [
+    a owl:Restriction ;
+    owl:onProperty time:day ;
+    owl:maxCardinality "1"^^xsd:nonNegativeInteger
+  ], [
+    a owl:Restriction ;
+    owl:onProperty time:dayOfYear ;
+    owl:maxCardinality "1"^^xsd:nonNegativeInteger
+  ], [
+    a owl:Restriction ;
+    owl:onProperty time:hour ;
+    owl:maxCardinality "1"^^xsd:nonNegativeInteger
+  ], [
+    a owl:Restriction ;
+    owl:onProperty time:minute ;
+    owl:maxCardinality "1"^^xsd:nonNegativeInteger
+  ], [
+    a owl:Restriction ;
+    owl:onProperty time:month ;
+    owl:maxCardinality "1"^^xsd:nonNegativeInteger
+  ], [
+    a owl:Restriction ;
+    owl:onProperty time:second ;
+    owl:maxCardinality "1"^^xsd:nonNegativeInteger
+  ], [
+    a owl:Restriction ;
+    owl:onProperty time:week ;
+    owl:maxCardinality "1"^^xsd:nonNegativeInteger
+  ], [
+    a owl:Restriction ;
+    owl:onProperty time:year ;
+    owl:maxCardinality "1"^^xsd:nonNegativeInteger
+  ] .
+
+time:DateTimeInterval
+  a owl:Class ;
+  rdfs:subClassOf time:ProperInterval .
+
+time:DayOfWeek
+  a owl:Class ;
+  owl:equivalentClass [
+    a owl:Class ;
+    owl:oneOf (
+     time:Friday
+     time:Monday
+     time:Saturday
+     time:Sunday
+     time:Thursday
+     time:Tuesday
+     time:Wednesday
+   )
+  ] .
+
+time:DurationDescription
+  a owl:Class ;
+  rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty time:days ;
+    owl:maxCardinality "1"^^xsd:nonNegativeInteger
+  ], [
+    a owl:Restriction ;
+    owl:onProperty time:hours ;
+    owl:maxCardinality "1"^^xsd:nonNegativeInteger
+  ], [
+    a owl:Restriction ;
+    owl:onProperty time:minutes ;
+    owl:maxCardinality "1"^^xsd:nonNegativeInteger
+  ], [
+    a owl:Restriction ;
+    owl:onProperty time:months ;
+    owl:maxCardinality "1"^^xsd:nonNegativeInteger
+  ], [
+    a owl:Restriction ;
+    owl:onProperty time:seconds ;
+    owl:maxCardinality "1"^^xsd:nonNegativeInteger
+  ], [
+    a owl:Restriction ;
+    owl:onProperty time:weeks ;
+    owl:maxCardinality "1"^^xsd:nonNegativeInteger
+  ], [
+    a owl:Restriction ;
+    owl:onProperty time:years ;
+    owl:maxCardinality "1"^^xsd:nonNegativeInteger
+  ] .
+
+time:Instant
+  a owl:Class ;
+  rdfs:subClassOf time:TemporalEntity ;
+  owl:disjointWith time:ProperInterval .
+
+time:Interval
+  a owl:Class ;
+  rdfs:subClassOf time:TemporalEntity .
+
+time:January
+  a owl:Class ;
+  rdfs:subClassOf time:DateTimeDescription, [
+    a owl:Restriction ;
+    owl:onProperty time:unitType ;
+    owl:hasValue time:unitMonth
+  ], [
+    a owl:Restriction ;
+    owl:onProperty time:month ;
+    owl:hasValue "--01"^^xsd:gMonth
+  ] .
+
+time:ProperInterval
+  a owl:Class ;
+  rdfs:subClassOf time:Interval .
+
+time:TemporalEntity
+  a owl:Class ;
+  owl:equivalentClass [
+    a owl:Class ;
+    owl:unionOf (
+     time:Instant
+     time:Interval
+   )
+  ] .
+
+time:TemporalUnit
+  a owl:Class ;
+  owl:equivalentClass [
+    a owl:Class ;
+    owl:oneOf (
+     time:unitDay
+     time:unitHour
+     time:unitMinute
+     time:unitMonth
+     time:unitSecond
+     time:unitWeek
+     time:unitYear
+   )
+  ] .
+
+time:Year
+  a owl:Class ;
+  rdfs:subClassOf time:DurationDescription, [
+    a owl:Restriction ;
+    owl:onProperty time:days ;
+    owl:cardinality "0"^^xsd:nonNegativeInteger
+  ], [
+    a owl:Restriction ;
+    owl:onProperty time:hours ;
+    owl:cardinality "0"^^xsd:nonNegativeInteger
+  ], [
+    a owl:Restriction ;
+    owl:onProperty time:minutes ;
+    owl:cardinality "0"^^xsd:nonNegativeInteger
+  ], [
+    a owl:Restriction ;
+    owl:onProperty time:months ;
+    owl:cardinality "0"^^xsd:nonNegativeInteger
+  ], [
+    a owl:Restriction ;
+    owl:onProperty time:seconds ;
+    owl:cardinality "0"^^xsd:nonNegativeInteger
+  ], [
+    a owl:Restriction ;
+    owl:onProperty time:weeks ;
+    owl:cardinality "0"^^xsd:nonNegativeInteger
+  ], [
+    a owl:Restriction ;
+    owl:onProperty time:years ;
+    owl:cardinality "1"^^xsd:nonNegativeInteger
+  ] .
+
+<http://www.w3.org/2006/timezone#TimeZone> a owl:Class .
+<http://www.demcare.eu/ontologies/combined.owl#_20_0> a owl:NamedIndividual, <http://www.demcare.eu/ontologies/combined.owl#CountingType> .
+<http://www.demcare.eu/ontologies/combined.owl#_305_285> a owl:NamedIndividual, <http://www.demcare.eu/ontologies/combined.owl#CountingType> .
+<http://www.demcare.eu/ontologies/combined.owl#completed> a owl:NamedIndividual, <http://www.demcare.eu/ontologies/combined.owl#ActivityStatusType> .
+<http://www.demcare.eu/ontologies/combined.owl#dementia> a owl:NamedIndividual, <http://www.demcare.eu/ontologies/combined.owl#DiagnosisType> .
+<http://www.demcare.eu/ontologies/combined.owl#female> a owl:NamedIndividual, <http://www.demcare.eu/ontologies/combined.owl#GenderType> .
+<http://www.demcare.eu/ontologies/combined.owl#healthy>
+  a owl:NamedIndividual, <http://www.demcare.eu/ontologies/combined.owl#DiagnosisType> ;
+  ns0:hasClinicalDiagnosis ns0:dementia .
+
+ns0:incomplete a owl:NamedIndividual, ns0:ActivityStatusType .
+ns0:left_handed a owl:NamedIndividual, ns0:LateralityType .
+ns0:male a owl:NamedIndividual, ns0:GenderType .
+ns0:omitted a owl:NamedIndividual, ns0:ActivityStatusType .
+ns0:predementia a owl:NamedIndividual, ns0:DiagnosisType .
+ns0:right_handed a owl:NamedIndividual, ns0:LateralityType .
+time:Friday a owl:NamedIndividual, time:DayOfWeek .
+time:Monday a owl:NamedIndividual, time:DayOfWeek .
+time:Saturday a owl:NamedIndividual, time:DayOfWeek .
+time:Sunday a owl:NamedIndividual, time:DayOfWeek .
+time:Thursday a owl:NamedIndividual, time:DayOfWeek .
+time:Tuesday a owl:NamedIndividual, time:DayOfWeek .
+time:Wednesday a owl:NamedIndividual, time:DayOfWeek .
+time:unitDay a owl:NamedIndividual, time:TemporalUnit .
+time:unitHour a owl:NamedIndividual, time:TemporalUnit .
+time:unitMinute a owl:NamedIndividual, time:TemporalUnit .
+time:unitMonth a owl:NamedIndividual, time:TemporalUnit .
+time:unitSecond a owl:NamedIndividual, time:TemporalUnit .
+time:unitWeek a owl:NamedIndividual, time:TemporalUnit .
+time:unitYear a owl:NamedIndividual, time:TemporalUnit .
+_:genid284
+  a owl:Restriction ;
+  owl:onProperty ns0:containsAssessment ;
+  owl:someValuesFrom [
+    a owl:Class ;
+    owl:intersectionOf (
+     ns0:DiagnosisAssessment
+     _:genid288
+   )
+  ] .
+
+_:genid288
+  a owl:Restriction ;
+  owl:onProperty ns0:hasClinicalDiagnosis ;
+  owl:someValuesFrom [
+    a owl:Class ;
+    owl:oneOf ( ns0:healthy )
+  ] .
+
+_:genid324
+  a owl:Restriction ;
+  owl:onProperty ns0:containsAssessment ;
+  owl:someValuesFrom [
+    a owl:Class ;
+    owl:intersectionOf (
+     ns0:DiagnosisAssessment
+     _:genid328
+   )
+  ] .
+
+_:genid328
+  a owl:Restriction ;
+  owl:onProperty ns0:hasClinicalDiagnosis ;
+  owl:someValuesFrom [
+    a owl:Class ;
+    owl:oneOf ( ns0:dementia )
+  ] .
+
+_:genid335
+  a owl:Restriction ;
+  owl:onProperty ns0:containsAssessment ;
+  owl:someValuesFrom [
+    a owl:Class ;
+    owl:intersectionOf (
+     ns0:DiagnosisAssessment
+     _:genid339
+   )
+  ] .
+
+_:genid339
+  a owl:Restriction ;
+  owl:onProperty ns0:hasClinicalDiagnosis ;
+  owl:someValuesFrom [
+    a owl:Class ;
+    owl:oneOf ( ns0:predementia )
+  ] .

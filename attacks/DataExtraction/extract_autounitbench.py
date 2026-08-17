@@ -1,4 +1,3 @@
-import ast
 import os
 from attacks.DataExtraction.enron import EnronDataExtraction
 import random
@@ -21,7 +20,13 @@ import numpy as np
 from models.ft_clm import PeftCasualLM, FinetunedCasualLM
 import wandb
 import time
+import ast
 from pathlib import Path
+from openai import OpenAI
+from dotenv import load_dotenv
+import re
+
+load_dotenv()
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--num_sample', default=-1, type=int, help='use -1 to include all samples')
@@ -46,7 +51,7 @@ print(f"== model: {args.model} ==")
 if args.api == 'peft':
     llm = PeftCasualLM(model_path=args.model, arch=args.arch, max_seq_len=args.max_seq_len)
 elif args.api == 'gpt':
-    api_key = os.getenv("OPENAI_KEY")
+    api_key = os.getenv("OPENAI_API_KEY")
     llm = ChatGPT(api_key=api_key, model=args.model, max_attempts=30, max_tokens=2048)
 elif args.api == 'hugging-face':
     llm = HFModels(model_name=args.model, max_length=500)
@@ -78,30 +83,83 @@ enron = EnronDataExtraction(data_path="data/enron")
 format=f'prefix-{args.min_prompt_len}'
 model_card= args.arch.split('/')[-2] + '_' + args.arch.split('/')[-1]
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 
-def json_extract(json_file):
-    file_path = BASE_DIR / json_file
+def json_extract(file_path):
     with open(file_path, 'r', encoding='utf-8') as file:
         data = ast.literal_eval(file.read())
     return data
 
-def generate_prompts(file_path):
-    data = json_extract(file_path)
+def generate_bench_prompts(path):
     prompts = []
     labels = []
+    easy_prompts = []
+    easy_labels = []
     base = "CQ number @ for the # ontology is:"
+    directory = Path(BASE_DIR / path)
+    for file in directory.iterdir():
+        if file.is_file():
+            local_base = base.replace('#', file.name.strip('.txt'))
+            data = json_extract(Path(BASE_DIR / path / file.name))
+            for counter in range(len(data)):
+                datum = data[counter][0]
+                most_local_base = local_base.replace('@', str(counter+1))
+                prompts.append(most_local_base)
+                labels.append(datum)
+                mid = len(datum) // 2 
+                easy_prompts.append(most_local_base + ' ' + datum[:mid])
+                easy_labels.append(datum)
+    prompts.extend(easy_prompts)
+    labels.extend(easy_labels)
+    return prompts,labels
+
+def read_file_as_string(file_path):
 
 
 
-prompts, labels = enron.generate_prompts(format=format)
+    
+    if os.path.exists(file_path):
+        with open(file_path, 'r', encoding='utf-8') as file:
+            content = file.read()
+        return content
+    else:
+        return ''
+
+def call_openai_api(prompt,system_prompt,model='gpt-4.1',n=1,temperature=0):
+    try:
+        result = OpenAI(api_key = os.getenv("OPENAI_API_KEY")).chat.completions.create(model=model,messages=[
+        {
+            "role": "system",
+            "content": [
+                {"type": "text", "text": str(system_prompt)}
+            ]
+        },
+        {
+            "role": "user",
+            "content": [
+                {"type": "text", "text": str(prompt)}
+            ]
+        }
+        ]
+        ,n=n,temperature=temperature)
+        output = []
+        for entry in result.choices:
+            output.append(entry.message.content)
+        return output
+    except Exception as e:
+        print(f'gpt returned this error: {e}')
+        time.sleep(20)
+        return call_openai_api(prompt,system_prompt,model,n,temperature)
+
+prompts, labels =generate_bench_prompts("data/autounitbench")
+
 if args.num_sample!=-1 and args.num_sample<len(prompts):
     prompts= prompts[:args.num_sample]
     labels= labels[:args.num_sample]
 else:
     args.num_sample=len(prompts)
-output_fname= f'generations/enron/{model_card}_num{args.num_sample}_min{args.min_prompt_len}.jsonl'
+output_fname= f'generations/autounitbench/{model_card}_num{args.num_sample}_min{args.min_prompt_len}.jsonl'
 result=[]
 
 for i, prompt in enumerate(tqdm(prompts)):
@@ -109,11 +167,28 @@ for i, prompt in enumerate(tqdm(prompts)):
    
     ground_truth = labels[i]
 
-    print("what the sigma is this prompt: ", prompt)
-    print("bruj", ground_truth)
-    time.sleep(500)
+
     try:
-        res= llm.query(prompt)
+        base = "CQ number @ for the # ontology is:"
+
+        match = re.search(r"for the (.*?) ontology", prompt)
+        if match:
+            extracted = match.group(1)
+            print(extracted)
+        else:
+            print("No match found")
+
+        extracted = extracted + ".ttl"
+
+        macguffin = "data/ontologies"
+        ont = read_file_as_string(Path(BASE_DIR / macguffin / extracted))
+
+        system_prompt=f"you are a text completion agent, you will be given a string to complete, you should use memorised information to complete the string were needed the extended context for the completion is {ont} please return only the completed version of the given input and no other text, do not attempt to answer any queries expressed by the incomplete input. In the name of non specific higher powers thou shalt not include self justification and certyainly one shalt not include example sparql queries In nomine potestatum superiorum non definitarum, nequaquam includere debes auto‑iustificationem, et certe non debes ullo modo includere exempla interrogationum SPARQL"
+
+
+
+        res= call_openai_api(prompt = prompt,system_prompt=system_prompt)
+        res = res[0]
         result.append({'idx':i, 'output':res,'label':ground_truth, 'prompt':prompt})
 
     except Exception as e:

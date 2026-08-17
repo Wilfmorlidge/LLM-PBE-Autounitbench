@@ -1,0 +1,1395 @@
+@prefix : <https://people.cs.uct.ac.za/~zmahlaza/ontologies/> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix ns: <http://creativecommons.org/ns#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix terms: <http://purl.org/dc/terms/> .
+@prefix wgs84_pos: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@base <https://people.cs.uct.ac.za/~zmahlaza/ontologies/> .
+
+<https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCT> rdf:type owl:Ontology ;
+                                                         ns:license "CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/)" ;
+                                                         dc:contributor "C. Maria Keet" ;
+                                                         dc:title "Task ontology for CNL Templates" ;
+                                                         terms:creator "Zola Mahlaza" ;
+                                                         terms:description "A task ontology for the creation of morphologicaly-rich templates" ;
+                                                         vann:preferredNamespacePrefix "toct" ;
+                                                         owl:versionInfo "v1.3" .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://creativecommons.org/ns#license
+ns:license rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/contributor
+dc:contributor rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/creator
+dc:creator rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/date
+dc:date rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/description
+dc:description rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/format
+dc:format rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/language
+dc:language rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/publisher
+dc:publisher rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/title
+dc:title rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/creator
+terms:creator rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/description
+terms:description rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/issued
+terms:issued rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/language
+terms:language rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/rights
+terms:rights rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/title
+terms:title rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/preferredNamespacePrefix
+vann:preferredNamespacePrefix rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/preferredNamespaceUri
+vann:preferredNamespaceUri rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2002/07/owl#versionInfo
+owl:versionInfo rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2003/01/geo/wgs84_pos#alt
+wgs84_pos:alt rdf:type owl:AnnotationProperty ;
+              rdfs:label "altitude" ;
+              rdfs:domain wgs84_pos:SpatialThing .
+
+
+###  http://www.w3.org/2003/01/geo/wgs84_pos#lat
+wgs84_pos:lat rdf:type owl:AnnotationProperty ;
+              rdfs:domain wgs84_pos:SpatialThing ,
+                          <https://ontology.londisizwe.org/mola#GeographicCoordinate> .
+
+
+###  http://www.w3.org/2003/01/geo/wgs84_pos#location
+wgs84_pos:location rdf:type owl:AnnotationProperty ;
+                   rdfs:subPropertyOf foaf:based_near ;
+                   rdfs:range wgs84_pos:SpatialThing .
+
+
+###  http://www.w3.org/2003/01/geo/wgs84_pos#long
+wgs84_pos:long rdf:type owl:AnnotationProperty ;
+               rdfs:domain wgs84_pos:SpatialThing ,
+                           <https://ontology.londisizwe.org/mola#GeographicCoordinate> .
+
+
+###  http://xmlns.com/foaf/0.1/based_near
+foaf:based_near rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://purl.org/co/element
+<http://purl.org/co/element> rdf:type owl:ObjectProperty ;
+                             owl:inverseOf <http://purl.org/co/elementOf> ;
+                             rdfs:domain <http://purl.org/co/Collection> ;
+                             owl:propertyChainAxiom ( <http://purl.org/co/item>
+                                                      <http://purl.org/co/itemContent>
+                                                    ) ;
+                             rdfs:comment "The link to the members of a collection"@en ;
+                             rdfs:label "has element"@en .
+
+
+###  http://purl.org/co/elementOf
+<http://purl.org/co/elementOf> rdf:type owl:ObjectProperty ;
+                               rdfs:comment "The link to a collection in which the object is member."@en ;
+                               rdfs:label "is element of"@en .
+
+
+###  http://purl.org/co/firstItem
+<http://purl.org/co/firstItem> rdf:type owl:ObjectProperty ;
+                               rdfs:subPropertyOf <http://purl.org/co/item> ;
+                               owl:inverseOf <http://purl.org/co/firstItemOf> ;
+                               rdf:type owl:FunctionalProperty ;
+                               rdfs:domain <http://purl.org/co/List> ;
+                               rdfs:range [ owl:intersectionOf ( <http://purl.org/co/ListItem>
+                                                                 [ rdf:type owl:Restriction ;
+                                                                   owl:onProperty <http://purl.org/co/previousItem> ;
+                                                                   owl:cardinality "0"^^xsd:nonNegativeInteger
+                                                                 ]
+                                                                 [ rdf:type owl:Restriction ;
+                                                                   owl:onProperty <http://purl.org/co/index> ;
+                                                                   owl:hasValue "1"^^xsd:positiveInteger
+                                                                 ]
+                                                               ) ;
+                                            rdf:type owl:Class
+                                          ] ;
+                               rdfs:comment "The link to the first item of the list."@en ;
+                               rdfs:label "has first item"@en .
+
+
+###  http://purl.org/co/firstItemOf
+<http://purl.org/co/firstItemOf> rdf:type owl:ObjectProperty ;
+                                 rdfs:subPropertyOf <http://purl.org/co/itemOf> ;
+                                 rdfs:comment "The link to a list in which the item is first item."@en ;
+                                 rdfs:label "is first item of"@en .
+
+
+###  http://purl.org/co/followedBy
+<http://purl.org/co/followedBy> rdf:type owl:ObjectProperty ;
+                                owl:inverseOf <http://purl.org/co/precededBy> ;
+                                rdf:type owl:TransitiveProperty ;
+                                rdfs:domain <http://purl.org/co/ListItem> ;
+                                rdfs:range <http://purl.org/co/ListItem> ;
+                                dc:description "Given the list (I[1], I[2], ... , I[i-1], I[i], I[i+1], ... , I[n-1], I[n]), the item I[i] is followed by I[i+1], ... , I[n-1] and I[n]."@en ;
+                                rdfs:comment "The link to the following item in a list."@en ;
+                                rdfs:label "is followed by"@en .
+
+
+###  http://purl.org/co/item
+<http://purl.org/co/item> rdf:type owl:ObjectProperty ;
+                          owl:inverseOf <http://purl.org/co/itemOf> ;
+                          rdfs:domain <http://purl.org/co/Bag> ;
+                          rdfs:range <http://purl.org/co/Item> ;
+                          owl:propertyChainAxiom ( <http://purl.org/co/item>
+                                                   <http://purl.org/co/nextItem>
+                                                 ) ;
+                          rdfs:comment "The link to every item of the bag"@en ;
+                          rdfs:label "has item"@en .
+
+
+###  http://purl.org/co/itemContent
+<http://purl.org/co/itemContent> rdf:type owl:ObjectProperty ;
+                                 owl:inverseOf <http://purl.org/co/itemContentOf> ;
+                                 rdf:type owl:FunctionalProperty ;
+                                 rdfs:domain <http://purl.org/co/Item> ;
+                                 rdfs:range [ rdf:type owl:Class ;
+                                              owl:complementOf <http://purl.org/co/Item>
+                                            ] ;
+                                 rdfs:comment "The link to the actual resource to which the item refers."@en ;
+                                 rdfs:label "has item content"@en .
+
+
+###  http://purl.org/co/itemContentOf
+<http://purl.org/co/itemContentOf> rdf:type owl:ObjectProperty ;
+                                   rdfs:comment "The link to the item that refers to the resource."@en ;
+                                   rdfs:label "is item content of"@en .
+
+
+###  http://purl.org/co/itemOf
+<http://purl.org/co/itemOf> rdf:type owl:ObjectProperty ;
+                            rdfs:comment "The link to a bag in which the item is member."@en ;
+                            rdfs:label "is item of"@en .
+
+
+###  http://purl.org/co/lastItem
+<http://purl.org/co/lastItem> rdf:type owl:ObjectProperty ;
+                              rdfs:subPropertyOf <http://purl.org/co/item> ;
+                              owl:inverseOf <http://purl.org/co/lastItemOf> ;
+                              rdf:type owl:FunctionalProperty ;
+                              rdfs:domain <http://purl.org/co/List> ;
+                              rdfs:range [ owl:intersectionOf ( <http://purl.org/co/ListItem>
+                                                                [ rdf:type owl:Restriction ;
+                                                                  owl:onProperty <http://purl.org/co/nextItem> ;
+                                                                  owl:cardinality "0"^^xsd:nonNegativeInteger
+                                                                ]
+                                                              ) ;
+                                           rdf:type owl:Class
+                                         ] ;
+                              rdfs:comment "The link to the last item of the list."@en ;
+                              rdfs:label "has last item"@en .
+
+
+###  http://purl.org/co/lastItemOf
+<http://purl.org/co/lastItemOf> rdf:type owl:ObjectProperty ;
+                                rdfs:subPropertyOf <http://purl.org/co/itemOf> ;
+                                rdfs:comment "The link to a list in which the item is last item."@en ;
+                                rdfs:label "is last item of"@en .
+
+
+###  http://purl.org/co/nextItem
+<http://purl.org/co/nextItem> rdf:type owl:ObjectProperty ;
+                              rdfs:subPropertyOf <http://purl.org/co/followedBy> ;
+                              owl:inverseOf <http://purl.org/co/previousItem> ;
+                              rdf:type owl:FunctionalProperty ;
+                              dc:description "Given the list (I[1], I[2], ... , I[i-1], I[i], I[i+1], ... , I[n-1], I[n]), the next item of I[i] is I[i+1]."@en ;
+                              rdfs:comment "The link to the next item in a list."@en ;
+                              rdfs:label "has next item"@en .
+
+
+###  http://purl.org/co/precededBy
+<http://purl.org/co/precededBy> rdf:type owl:ObjectProperty ,
+                                         owl:TransitiveProperty ;
+                                dc:description "Given the list (I[1], I[2], ... , I[i-1], I[i], I[i+1], ... , I[n-1], I[n]), the item I[i] is preceded by I[i-1], ... , I[2] and I[1]."@en ;
+                                rdfs:comment "The link to the preceding item in a list."@en ;
+                                rdfs:label "is preceded by"@en .
+
+
+###  http://purl.org/co/previousItem
+<http://purl.org/co/previousItem> rdf:type owl:ObjectProperty ;
+                                  rdfs:subPropertyOf <http://purl.org/co/precededBy> ;
+                                  rdf:type owl:FunctionalProperty ;
+                                  dc:description "Given the list (I[1], I[2], ... , I[i-1], I[i], I[i+1], ... , I[n-1], I[n]), the previous item of I[i] is I[i-1]."@en ;
+                                  rdfs:comment "The link to the previous item in a list."@en ;
+                                  rdfs:label "has previous item"@en .
+
+
+###  https://ontology.londisizwe.org/mola#alternateName
+<https://ontology.londisizwe.org/mola#alternateName> rdf:type owl:ObjectProperty ;
+                                                     rdfs:domain <https://ontology.londisizwe.org/mola#LanguoidName> ;
+                                                     owl:propertyDisjointWith <https://ontology.londisizwe.org/mola#preferredName> ;
+                                                     rdfs:comment "The 'alternate name' property indicates alternative names a language is known by."@en ;
+                                                     rdfs:label "alternate name"@en .
+
+
+###  https://ontology.londisizwe.org/mola#evolvedFrom
+<https://ontology.londisizwe.org/mola#evolvedFrom> rdf:type owl:ObjectProperty ;
+                                                   rdfs:comment "The 'evolved from' property indicates a language which has evolved from another language."@en ;
+                                                   rdfs:label "evolved from"@en .
+
+
+###  https://ontology.londisizwe.org/mola#hasCoordinate
+<https://ontology.londisizwe.org/mola#hasCoordinate> rdf:type owl:ObjectProperty ;
+                                                     rdfs:domain <https://ontology.londisizwe.org/mola#Region> ;
+                                                     rdfs:range <https://ontology.londisizwe.org/mola#GeographicCoordinate> ;
+                                                     rdfs:comment "The 'has coordinate' property indicates a coordinate for a region."@en ;
+                                                     rdfs:label "has coordinate"@en .
+
+
+###  https://ontology.londisizwe.org/mola#hasDialect
+<https://ontology.londisizwe.org/mola#hasDialect> rdf:type owl:ObjectProperty ;
+                                                  owl:inverseOf <https://ontology.londisizwe.org/mola#isDialectOf> ;
+                                                  rdfs:domain <https://ontology.londisizwe.org/mola#Language> ;
+                                                  rdfs:range <https://ontology.londisizwe.org/mola#Dialect> ;
+                                                  rdfs:comment "The 'has dialect' property indicates a language is a dialect of a language."@en ;
+                                                  rdfs:label "has dialect"@en .
+
+
+###  https://ontology.londisizwe.org/mola#hasLanguageTag
+<https://ontology.londisizwe.org/mola#hasLanguageTag> rdf:type owl:ObjectProperty ;
+                                                      owl:inverseOf <https://ontology.londisizwe.org/mola#isLanguageTagFor> ;
+                                                      rdfs:domain <https://ontology.londisizwe.org/mola#Languoid> ;
+                                                      rdfs:range <https://ontology.londisizwe.org/mola#LanguageCode> ,
+                                                                 <https://ontology.londisizwe.org/mola#LanguageTag> ;
+                                                      rdfs:comment "The 'has language tag' property indicates a language which has a language tag."@en ;
+                                                      rdfs:label "has language tag"@en .
+
+
+###  https://ontology.londisizwe.org/mola#hasMember
+<https://ontology.londisizwe.org/mola#hasMember> rdf:type owl:ObjectProperty ;
+                                                 owl:inverseOf <https://ontology.londisizwe.org/mola#isMemberOf> ;
+                                                 rdfs:domain [ rdf:type owl:Class ;
+                                                               owl:unionOf ( <https://ontology.londisizwe.org/mola#DialectCluster>
+                                                                             <https://ontology.londisizwe.org/mola#LanguageFamily>
+                                                                           )
+                                                             ] ;
+                                                 rdfs:comment "The 'has member' property indicates a language is a member of a family."@en ;
+                                                 rdfs:label "has member"@en .
+
+
+###  https://ontology.londisizwe.org/mola#hasName
+<https://ontology.londisizwe.org/mola#hasName> rdf:type owl:ObjectProperty ;
+                                               rdfs:domain <https://ontology.londisizwe.org/mola#Languoid> ;
+                                               rdfs:range <https://ontology.londisizwe.org/mola#LanguoidName> ;
+                                               rdfs:comment "The 'has name' property indicates a name for a languoid."@en ;
+                                               rdfs:label "has name"@en .
+
+
+###  https://ontology.londisizwe.org/mola#inPeriod
+<https://ontology.londisizwe.org/mola#inPeriod> rdf:type owl:ObjectProperty ;
+                                                rdfs:domain <https://ontology.londisizwe.org/mola#LanguageTag> ,
+                                                            <https://ontology.londisizwe.org/mola#Languoid> ;
+                                                rdfs:range <https://ontology.londisizwe.org/mola#Period> ;
+                                                rdfs:comment "The 'in period' property indicates a time period during which a language is spoken."@en ;
+                                                rdfs:label "in period"@en .
+
+
+###  https://ontology.londisizwe.org/mola#inRegion
+<https://ontology.londisizwe.org/mola#inRegion> rdf:type owl:ObjectProperty ;
+                                                rdfs:domain <https://ontology.londisizwe.org/mola#LanguageTag> ,
+                                                            <https://ontology.londisizwe.org/mola#Languoid> ;
+                                                rdfs:range <https://ontology.londisizwe.org/mola#Region> ;
+                                                rdfs:comment "The 'in region' property indicates a region in which a language is spoken."@en ;
+                                                rdfs:label "in region"@en .
+
+
+###  https://ontology.londisizwe.org/mola#influences
+<https://ontology.londisizwe.org/mola#influences> rdf:type owl:ObjectProperty ;
+                                                  owl:inverseOf <https://ontology.londisizwe.org/mola#isInfluencedBy> ;
+                                                  rdfs:comment "The 'influences' property indicates a language which has influenced another language."@en ;
+                                                  rdfs:label "influences"@en .
+
+
+###  https://ontology.londisizwe.org/mola#isDialectOf
+<https://ontology.londisizwe.org/mola#isDialectOf> rdf:type owl:ObjectProperty ;
+                                                   rdfs:domain <https://ontology.londisizwe.org/mola#Dialect> ;
+                                                   rdfs:range <https://ontology.londisizwe.org/mola#Language> ;
+                                                   rdfs:comment "The inverse relation to 'has dialect'."@en ;
+                                                   rdfs:label "is dialect of"@en .
+
+
+###  https://ontology.londisizwe.org/mola#isInfluencedBy
+<https://ontology.londisizwe.org/mola#isInfluencedBy> rdf:type owl:ObjectProperty ;
+                                                      rdfs:comment "The inverse relation to 'influences'."@en ;
+                                                      rdfs:label "is influenced by"@en .
+
+
+###  https://ontology.londisizwe.org/mola#isLanguageTagFor
+<https://ontology.londisizwe.org/mola#isLanguageTagFor> rdf:type owl:ObjectProperty ;
+                                                        rdfs:domain <https://ontology.londisizwe.org/mola#LanguageCode> ,
+                                                                    <https://ontology.londisizwe.org/mola#LanguageTag> ;
+                                                        rdfs:range <https://ontology.londisizwe.org/mola#Languoid> ;
+                                                        rdfs:comment "The inverse relation to 'hasLanguageTag'."@en ;
+                                                        rdfs:label "is language tag for"@en .
+
+
+###  https://ontology.londisizwe.org/mola#isMemberOf
+<https://ontology.londisizwe.org/mola#isMemberOf> rdf:type owl:ObjectProperty ;
+                                                  rdfs:range <https://ontology.londisizwe.org/mola#LanguageFamily> ;
+                                                  rdfs:comment "The inverse relation to 'has member'."@en ;
+                                                  rdfs:label "is member of"@en .
+
+
+###  https://ontology.londisizwe.org/mola#preferredName
+<https://ontology.londisizwe.org/mola#preferredName> rdf:type owl:ObjectProperty ;
+                                                     rdfs:domain <https://ontology.londisizwe.org/mola#LanguoidName> ;
+                                                     rdfs:comment "The 'preferred name' property indicates the preferred name a language is known by."@en ;
+                                                     rdfs:label "preferred name"@en .
+
+
+###  https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTcontrolledBy
+<https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTcontrolledBy> rdf:type owl:ObjectProperty ;
+                                                                    owl:inverseOf <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTcontrols> ;
+                                                                    rdfs:domain <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTConcord> ;
+                                                                    rdfs:range <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTUnimorphicWord> ;
+                                                                    rdfs:comment "The inverse relation to 'controls'"@en .
+
+
+###  https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTcontrols
+<https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTcontrols> rdf:type owl:ObjectProperty ;
+                                                                rdfs:domain <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTUnimorphicWord> ;
+                                                                rdfs:range <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTConcord> ;
+                                                                rdfs:comment "Relation that specifies a rigid essential necessitation between a unimorphic word and a concord's value"@en .
+
+
+###  https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTfilledBy
+<https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTfilledBy> rdf:type owl:ObjectProperty ;
+                                                                owl:inverseOf <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTfillsIn> ;
+                                                                rdfs:domain <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTSlot> ;
+                                                                rdfs:range [ rdf:type owl:Class ;
+                                                                             owl:unionOf ( <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTUnimorphicAffix>
+                                                                                           <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTUnimorphicWord>
+                                                                                         )
+                                                                           ] ;
+                                                                rdfs:comment "Relation that specifies that a Word or Phrase is member of a specific slot's fillers"@en .
+
+
+###  https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTfillsIn
+<https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTfillsIn> rdf:type owl:ObjectProperty ;
+                                                               rdfs:domain [ rdf:type owl:Class ;
+                                                                             owl:unionOf ( <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTUnimorphicAffix>
+                                                                                           <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTUnimorphicWord>
+                                                                                         )
+                                                                           ] ;
+                                                               rdfs:range <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTSlot> ;
+                                                               rdfs:comment "The inverse relation to 'filledBy'"@en .
+
+
+###  https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCThasFirstPart
+<https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCThasFirstPart> rdf:type owl:ObjectProperty ;
+                                                                    rdfs:subPropertyOf <http://purl.org/co/firstItem> ,
+                                                                                       <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCThasPart> ;
+                                                                    rdfs:comment "A portion-object relation that specifies that the portion is positioned at the end or last position of the whole" .
+
+
+###  https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCThasLastPart
+<https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCThasLastPart> rdf:type owl:ObjectProperty ;
+                                                                   rdfs:subPropertyOf <http://purl.org/co/lastItem> ,
+                                                                                      <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCThasPart> ;
+                                                                   rdfs:comment "A portion-object relation that specifies that the portion is positioned at the front or first position" .
+
+
+###  https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCThasNextPart
+<https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCThasNextPart> rdf:type owl:ObjectProperty ;
+                                                                   rdfs:subPropertyOf <http://purl.org/co/nextItem> .
+
+
+###  https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCThasPart
+<https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCThasPart> rdf:type owl:ObjectProperty ;
+                                                               rdfs:subPropertyOf <http://purl.org/co/item> ;
+                                                               owl:inverseOf <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTpartOf> ;
+                                                               rdfs:comment "A portion-object relation that specifies that the portions make up the whole" .
+
+
+###  https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCThasPrevPart
+<https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCThasPrevPart> rdf:type owl:ObjectProperty ;
+                                                                   rdfs:subPropertyOf <http://purl.org/co/previousItem> .
+
+
+###  https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTisFirstPartOf
+<https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTisFirstPartOf> rdf:type owl:ObjectProperty ;
+                                                                     rdfs:subPropertyOf <http://purl.org/co/firstItemOf> ,
+                                                                                        <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTpartOf> ;
+                                                                     rdfs:comment "The inverse of the portion-object relation that specifies that a portion also makes up the whole and is at the front or first position" .
+
+
+###  https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTisLastPartOf
+<https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTisLastPartOf> rdf:type owl:ObjectProperty ;
+                                                                    rdfs:subPropertyOf <http://purl.org/co/lastItemOf> ,
+                                                                                       <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTpartOf> ;
+                                                                    rdfs:comment "The inverse of the portion-object relation that specifies that a portion also makes up the whole and is at the end or last position" .
+
+
+###  https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTlabeledWith
+<https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTlabeledWith> rdf:type owl:ObjectProperty ;
+                                                                   rdfs:domain <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTTemplateFragment> ;
+                                                                   rdfs:range <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTPropertyClass> ;
+                                                                   rdfs:comment "Relation that specifies the linguistic properties of a template/word portion"@en .
+
+
+###  https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTpartOf
+<https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTpartOf> rdf:type owl:ObjectProperty ;
+                                                              rdfs:subPropertyOf <http://purl.org/co/itemOf> ;
+                                                              rdfs:domain [ rdf:type owl:Class ;
+                                                                            owl:unionOf ( <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTAffix>
+                                                                                          <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTSlot>
+                                                                                          <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTTemplateFragment>
+                                                                                          <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTWord>
+                                                                                          <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTWordFragment>
+                                                                                        )
+                                                                          ] ;
+                                                              rdfs:range [ rdf:type owl:Class ;
+                                                                           owl:unionOf ( <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTAffixCombination>
+                                                                                         <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTPhrase>
+                                                                                         <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTPolymorphicWord>
+                                                                                         <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTTemplate>
+                                                                                       )
+                                                                         ] ;
+                                                              rdfs:comment "The inverse of the portion-object relation that specifies that a portion also makes up the whole"@en .
+
+
+###  https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTreliesOn
+<https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTreliesOn> rdf:type owl:ObjectProperty ;
+                                                                owl:inverseOf <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTreliesUponBy> ;
+                                                                rdfs:domain [ rdf:type owl:Class ;
+                                                                              owl:unionOf ( <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTPolymorphicWord>
+                                                                                            <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTSlot>
+                                                                                          )
+                                                                            ] ;
+                                                                rdfs:range [ rdf:type owl:Class ;
+                                                                             owl:unionOf ( <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTSlot>
+                                                                                           <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTUnimorphicWord>
+                                                                                         )
+                                                                           ] ;
+                                                                rdfs:comment "Relation that specifies a rigid existential necessitation between (1) a slot and unimorphic word or (2) between a polymorphic word and slot"@en .
+
+
+###  https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTreliesUponBy
+<https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTreliesUponBy> rdf:type owl:ObjectProperty ;
+                                                                    rdfs:domain [ rdf:type owl:Class ;
+                                                                                  owl:unionOf ( <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTSlot>
+                                                                                                <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTUnimorphicWord>
+                                                                                              )
+                                                                                ] ;
+                                                                    rdfs:range [ rdf:type owl:Class ;
+                                                                                 owl:unionOf ( <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTPolymorphicWord>
+                                                                                               <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTSlot>
+                                                                                             )
+                                                                               ] ;
+                                                                    rdfs:comment "The inverse relation to 'reliesOn'"@en .
+
+
+###  https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTsupportsLanguage
+<https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTsupportsLanguage> rdf:type owl:ObjectProperty ;
+                                                                        rdfs:domain <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTTemplate> ;
+                                                                        rdfs:range <https://ontology.londisizwe.org/mola#Language> ;
+                                                                        rdfs:comment "Relation used to identify the language of the template"@en .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://purl.org/co/index
+<http://purl.org/co/index> rdf:type owl:DatatypeProperty ;
+                           rdfs:domain <http://purl.org/co/ListItem> ;
+                           rdfs:range xsd:positiveInteger ;
+                           rdfs:comment "A number identifying the position, starting from 1, of a particular list item within a list."@en ;
+                           rdfs:label "has index"@en .
+
+
+###  http://purl.org/co/size
+<http://purl.org/co/size> rdf:type owl:DatatypeProperty ;
+                          rdfs:domain <http://purl.org/co/Collection> ;
+                          rdfs:range xsd:nonNegativeInteger ;
+                          dc:description """CO defines the size of a collection as the sum of the number of times entities that are part of the collection appear in it. This means that co:size considers how much each entity is involved by a particular collection, i.e.:
+- the size of the set {a, b, c} is three
+- the size of the bag [a, a, b, b, b, c] is five
+- the size of the list (a, b, c, b, a, b, c, c) is seven"""@en ;
+                          rdfs:comment "The number of item belonging to a collection."@en ;
+                          rdfs:label "has size"@en .
+
+
+###  http://www.essepuntato.it/2009/10/error/hasError
+<http://www.essepuntato.it/2009/10/error/hasError> rdf:type owl:DatatypeProperty .
+
+
+###  https://ontology.londisizwe.org/mola#duration
+<https://ontology.londisizwe.org/mola#duration> rdf:type owl:DatatypeProperty ;
+                                                rdfs:domain <https://ontology.londisizwe.org/mola#Period> ;
+                                                rdfs:range xsd:int ;
+                                                rdfs:comment "The 'duration' property is used to identify the length of a time period. The amount is in years."@en ;
+                                                rdfs:label "duration"@en .
+
+
+###  https://ontology.londisizwe.org/mola#geohash
+<https://ontology.londisizwe.org/mola#geohash> rdf:type owl:DatatypeProperty ;
+                                               rdfs:domain <https://ontology.londisizwe.org/mola#GeographicCoordinate> ;
+                                               rdfs:range xsd:string ;
+                                               rdfs:comment "The 'geohash' property indicates a geohashed geographic coordinate, preferably to a precision of 5."@en ;
+                                               rdfs:label "geohash"@en .
+
+
+###  https://ontology.londisizwe.org/mola#hasBeginning
+<https://ontology.londisizwe.org/mola#hasBeginning> rdf:type owl:DatatypeProperty ;
+                                                    rdfs:domain <https://ontology.londisizwe.org/mola#Period> ;
+                                                    rdfs:range xsd:string ;
+                                                    rdfs:comment "The 'has beginning' property is used to identify the beginning of a time period for a language."@en ;
+                                                    rdfs:label "has beginning"@en .
+
+
+###  https://ontology.londisizwe.org/mola#hasEnd
+<https://ontology.londisizwe.org/mola#hasEnd> rdf:type owl:DatatypeProperty ;
+                                              rdfs:domain <https://ontology.londisizwe.org/mola#Period> ;
+                                              rdfs:range xsd:string ;
+                                              rdfs:comment "The 'has end' property is used to identify the end of a time period for a language."@en ;
+                                              rdfs:label "has end"@en .
+
+
+###  https://ontology.londisizwe.org/mola#isEndonym
+<https://ontology.londisizwe.org/mola#isEndonym> rdf:type owl:DatatypeProperty ;
+                                                 rdfs:domain <https://ontology.londisizwe.org/mola#LanguoidName> ;
+                                                 rdfs:range xsd:boolean ;
+                                                 rdfs:comment "The 'is endonym' property is used to indicate if the name of a language is endonymic."@en ;
+                                                 rdfs:label "is endonym"@en .
+
+
+###  https://ontology.londisizwe.org/mola#iso639Part1
+<https://ontology.londisizwe.org/mola#iso639Part1> rdf:type owl:DatatypeProperty ;
+                                                   rdfs:domain <https://ontology.londisizwe.org/mola#Languoid> ;
+                                                   rdfs:range xsd:string ;
+                                                   rdfs:comment "The 'ISO639-1' property indicates the ISO 639 Part 1 language code."@en ;
+                                                   rdfs:label "ISO 639-1"@en .
+
+
+###  https://ontology.londisizwe.org/mola#iso639Part2
+<https://ontology.londisizwe.org/mola#iso639Part2> rdf:type owl:DatatypeProperty ;
+                                                   rdfs:domain <https://ontology.londisizwe.org/mola#Languoid> ;
+                                                   rdfs:range xsd:string ;
+                                                   rdfs:comment "The 'ISO639-2' property indicates the ISO 639 Part 2 language code."@en ;
+                                                   rdfs:label "ISO 639-2"@en .
+
+
+###  https://ontology.londisizwe.org/mola#iso639Part3
+<https://ontology.londisizwe.org/mola#iso639Part3> rdf:type owl:DatatypeProperty ;
+                                                   rdfs:domain <https://ontology.londisizwe.org/mola#Languoid> ;
+                                                   rdfs:range xsd:string ;
+                                                   rdfs:comment "The 'ISO639-3' property indicates the ISO 639 Part 3 language code."@en ;
+                                                   rdfs:label "ISO 639-3"@en .
+
+
+###  https://ontology.londisizwe.org/mola#languageTag
+<https://ontology.londisizwe.org/mola#languageTag> rdf:type owl:DatatypeProperty ;
+                                                   rdfs:domain <https://ontology.londisizwe.org/mola#LanguageTag> ;
+                                                   rdfs:range xsd:string ;
+                                                   rdfs:comment "The 'language tag' property indicates a language tag for a language."@en ;
+                                                   rdfs:label "language tag"@en .
+
+
+###  https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCThasLabel
+<https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCThasLabel> rdf:type owl:DatatypeProperty ;
+                                                                rdfs:domain [ rdf:type owl:Class ;
+                                                                              owl:unionOf ( <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTConcord>
+                                                                                            <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTSlot>
+                                                                                          )
+                                                                            ] ;
+                                                                rdfs:range xsd:string .
+
+
+###  https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCThasValue
+<https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCThasValue> rdf:type owl:DatatypeProperty ;
+                                                                rdfs:domain [ rdf:type owl:Class ;
+                                                                              owl:unionOf ( <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTPhrase>
+                                                                                            <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTPunctuation>
+                                                                                            <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTSpace>
+                                                                                            <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTWord>
+                                                                                            <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTWordFragment>
+                                                                                          )
+                                                                            ] ;
+                                                                rdfs:range xsd:string .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://purl.org/co/Bag
+<http://purl.org/co/Bag> rdf:type owl:Class ;
+                         rdfs:subClassOf <http://purl.org/co/Collection> ;
+                         owl:disjointWith <http://purl.org/co/Set> ;
+                         rdfs:comment "Collection that can have a number of copies of each object"@en ;
+                         rdfs:label "bag"@en .
+
+
+###  http://purl.org/co/Collection
+<http://purl.org/co/Collection> rdf:type owl:Class ;
+                                rdfs:subClassOf owl:Thing ,
+                                                [ rdf:type owl:Restriction ;
+                                                  owl:onProperty <http://purl.org/co/element> ;
+                                                  owl:allValuesFrom owl:Thing
+                                                ] ,
+                                                [ rdf:type owl:Restriction ;
+                                                  owl:onProperty <http://purl.org/co/size> ;
+                                                  owl:cardinality "1"^^xsd:nonNegativeInteger
+                                                ] ;
+                                rdfs:comment "A group of objects that can be considered as a whole."@en ;
+                                rdfs:label "collection"@en .
+
+
+###  http://purl.org/co/Item
+<http://purl.org/co/Item> rdf:type owl:Class ;
+                          rdfs:subClassOf owl:Thing ,
+                                          [ rdf:type owl:Restriction ;
+                                            owl:onProperty [ owl:inverseOf <http://purl.org/co/item>
+                                                           ] ;
+                                            owl:someValuesFrom <http://purl.org/co/Bag>
+                                          ] ;
+                          rdfs:comment "Element belonging to a bag"@en ;
+                          rdfs:label "item"@en .
+
+
+###  http://purl.org/co/List
+<http://purl.org/co/List> rdf:type owl:Class ;
+                          rdfs:subClassOf [ owl:intersectionOf ( <http://purl.org/co/Bag>
+                                                                 [ rdf:type owl:Restriction ;
+                                                                   owl:onProperty <http://purl.org/co/item> ;
+                                                                   owl:allValuesFrom <http://purl.org/co/ListItem>
+                                                                 ]
+                                                               ) ;
+                                            rdf:type owl:Class
+                                          ] ,
+                                          [ rdf:type owl:Restriction ;
+                                            owl:onProperty <http://purl.org/co/firstItem> ;
+                                            owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                          ] ,
+                                          [ rdf:type owl:Restriction ;
+                                            owl:onProperty <http://purl.org/co/lastItem> ;
+                                            owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                          ] ;
+                          rdfs:comment "An ordered array of items, that can be present in multiple copies"@en ;
+                          rdfs:label "list"@en .
+
+
+###  http://purl.org/co/ListItem
+<http://purl.org/co/ListItem> rdf:type owl:Class ;
+                              rdfs:subClassOf <http://purl.org/co/Item> ,
+                                              [ rdf:type owl:Restriction ;
+                                                owl:onProperty <http://purl.org/co/index> ;
+                                                owl:cardinality "1"^^xsd:nonNegativeInteger
+                                              ] ;
+                              rdfs:comment "element belonging to a list"@en ;
+                              rdfs:label "list item"@en .
+
+
+###  http://purl.org/co/Set
+<http://purl.org/co/Set> rdf:type owl:Class ;
+                         rdfs:subClassOf <http://purl.org/co/Collection> ;
+                         rdfs:comment "A collection that cannot contain duplicate elements."@en ;
+                         rdfs:label "set"@en .
+
+
+###  http://www.w3.org/2002/07/owl#Thing
+owl:Thing rdf:type owl:Class .
+
+
+###  http://www.w3.org/2003/01/geo/wgs84_pos#Point
+wgs84_pos:Point rdf:type owl:Class ;
+                rdfs:subClassOf wgs84_pos:SpatialThing ;
+                owl:disjointWith <https://ontology.londisizwe.org/mola#Region> ;
+                             
+                rdfs:label "point" .
+
+
+###  http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing
+wgs84_pos:SpatialThing rdf:type owl:Class ;
+                       rdfs:label "SpatialThing" .
+
+
+###  https://ontology.londisizwe.org/mola#Dialect
+<https://ontology.londisizwe.org/mola#Dialect> rdf:type owl:Class ;
+                                               rdfs:subClassOf <https://ontology.londisizwe.org/mola#Lect> ;
+                                               rdfs:comment "This is a dialect."@en ;
+                                               rdfs:label "dialect"@en .
+
+
+###  https://ontology.londisizwe.org/mola#DialectCluster
+<https://ontology.londisizwe.org/mola#DialectCluster> rdf:type owl:Class ;
+                                                      rdfs:subClassOf <https://ontology.londisizwe.org/mola#LanguageFamily> ;
+                                                      rdfs:comment "This is a dialect cluster."@en ;
+                                                      rdfs:label "dialect cluster"@en .
+
+
+###  https://ontology.londisizwe.org/mola#Ethnolect
+<https://ontology.londisizwe.org/mola#Ethnolect> rdf:type owl:Class ;
+                                                 rdfs:subClassOf <https://ontology.londisizwe.org/mola#Lect> ;
+                                                 rdfs:comment "This is an ethnolect."@en ;
+                                                 rdfs:label "ethnolect"@en .
+
+
+###  https://ontology.londisizwe.org/mola#GeographicCoordinate
+<https://ontology.londisizwe.org/mola#GeographicCoordinate> rdf:type owl:Class ;
+                                                            rdfs:subClassOf owl:Thing ;
+                                                            rdfs:comment "This is a geographic coordinate."@en ;
+                                                            rdfs:label "geographic coordinate"@en .
+
+
+###  https://ontology.londisizwe.org/mola#Idiolect
+<https://ontology.londisizwe.org/mola#Idiolect> rdf:type owl:Class ;
+                                                rdfs:subClassOf <https://ontology.londisizwe.org/mola#Lect> ;
+                                                rdfs:comment "This is an idiolect."@en ;
+                                                rdfs:label "idiolect"@en .
+
+
+###  https://ontology.londisizwe.org/mola#Language
+<https://ontology.londisizwe.org/mola#Language> rdf:type owl:Class ;
+                                                rdfs:subClassOf <https://ontology.londisizwe.org/mola#Languoid> ;
+                                                rdfs:comment "This is a language."@en ;
+                                                rdfs:label "language"@en .
+
+
+###  https://ontology.londisizwe.org/mola#LanguageCode
+<https://ontology.londisizwe.org/mola#LanguageCode> rdf:type owl:Class ;
+                                                    rdfs:subClassOf owl:Thing ;
+                                                    rdfs:comment "This is a language code."@en ;
+                                                    rdfs:label "language code"@en .
+
+
+###  https://ontology.londisizwe.org/mola#LanguageFamily
+<https://ontology.londisizwe.org/mola#LanguageFamily> rdf:type owl:Class ;
+                                                      rdfs:subClassOf <https://ontology.londisizwe.org/mola#Languoid> ;
+                                                      rdfs:comment "This is a language family."@en ;
+                                                      rdfs:label "language family"@en .
+
+
+###  https://ontology.londisizwe.org/mola#LanguageTag
+<https://ontology.londisizwe.org/mola#LanguageTag> rdf:type owl:Class ;
+                                                   rdfs:subClassOf owl:Thing ;
+                                                   rdfs:comment "This is a language tag, using the pattern defined by BCP47."@en ;
+                                                   rdfs:label "language tag"@en .
+
+
+###  https://ontology.londisizwe.org/mola#Languoid
+<https://ontology.londisizwe.org/mola#Languoid> rdf:type owl:Class ;
+                                                rdfs:subClassOf owl:Thing ;
+                                                rdfs:comment "This is a language family or a language."@en ;
+                                                rdfs:label "languoid"@en .
+
+
+###  https://ontology.londisizwe.org/mola#LanguoidName
+<https://ontology.londisizwe.org/mola#LanguoidName> rdf:type owl:Class ;
+                                                    rdfs:subClassOf owl:Thing ;
+                                                    rdfs:comment "This is the name of a languoid."@en ;
+                                                    rdfs:label "languoid name"@en .
+
+
+###  https://ontology.londisizwe.org/mola#Lect
+<https://ontology.londisizwe.org/mola#Lect> rdf:type owl:Class ;
+                                            rdfs:subClassOf <https://ontology.londisizwe.org/mola#Language> ;
+                                            rdfs:comment "This is a lect."@en ;
+                                            rdfs:label "lect"@en .
+
+
+###  https://ontology.londisizwe.org/mola#Period
+<https://ontology.londisizwe.org/mola#Period> rdf:type owl:Class ;
+                                              rdfs:subClassOf owl:Thing ;
+                                              rdfs:comment "This is a time period in which a language is spoken."@en ;
+                                              rdfs:label "period"@en .
+
+
+###  https://ontology.londisizwe.org/mola#Pidgin
+<https://ontology.londisizwe.org/mola#Pidgin> rdf:type owl:Class ;
+                                              rdfs:subClassOf <https://ontology.londisizwe.org/mola#Lect> ;
+                                              rdfs:comment "This is a pidgin."@en ;
+                                              rdfs:label "pidgin"@en .
+
+
+###  https://ontology.londisizwe.org/mola#Region
+<https://ontology.londisizwe.org/mola#Region> rdf:type owl:Class ;
+                                              rdfs:subClassOf wgs84_pos:SpatialThing ,
+                                                              [ rdf:type owl:Restriction ;
+                                                                owl:onProperty <https://ontology.londisizwe.org/mola#hasCoordinate> ;
+                                                                owl:minQualifiedCardinality "3"^^xsd:nonNegativeInteger ;
+                                                                owl:onClass <https://ontology.londisizwe.org/mola#GeographicCoordinate>
+                                                              ] ;
+                                              rdfs:comment "This is a geographical region in which a language is spoken."@en ;
+                                              rdfs:label "region"@en .
+
+
+###  https://ontology.londisizwe.org/mola#Sociolect
+<https://ontology.londisizwe.org/mola#Sociolect> rdf:type owl:Class ;
+                                                 rdfs:subClassOf <https://ontology.londisizwe.org/mola#Lect> ;
+                                                 rdfs:comment "This is a sociolect."@en ;
+                                                 rdfs:label "sociolect"@en .
+
+
+###  https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTAffix
+<https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTAffix> rdf:type owl:Class ;
+                                                             rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                                               owl:onProperty <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTpartOf> ;
+                                                                               owl:someValuesFrom <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTAffixCombination>
+                                                                             ] ;
+                                                             owl:disjointUnionOf ( <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTConcord>
+                                                                                   <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTUnimorphicAffix>
+                                                                                 ) ;
+                                                             rdfs:comment "An affix is a sub-lexical component that can be attached to the root or stem"@en ;
+                                                             rdfs:label "Affix" .
+
+
+###  https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTAffixCombination
+<https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTAffixCombination> rdf:type owl:Class ;
+                                                                        rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                                                          owl:onProperty <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCThasPart> ;
+                                                                                          owl:minQualifiedCardinality "2"^^xsd:nonNegativeInteger ;
+                                                                                          owl:onClass <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTAffix>
+                                                                                        ] ;
+                                                                        owl:disjointWith <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTRoot> ;
+                                                                        rdfs:comment "An affix combination is a sequence of affixes"@en ;
+                                                                        rdfs:label "Affix combination" .
+
+
+###  https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTConcord
+<https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTConcord> rdf:type owl:Class ;
+                                                               rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                                                 owl:onProperty <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTcontrolledBy> ;
+                                                                                 owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                 owl:onClass <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTUnimorphicWord>
+                                                                               ] ;
+                                                               owl:disjointWith <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTUnimorphicAffix> ;
+                                                               rdfs:comment "A concord is a morpheme that is distinct from the root, it carries some abstract meaning, it is appended to a root or stem for morphological agreement with other words, and its value is drawn from a finite collection of possible values (i.e., the concord fillers) based on the linguistic properties of a controlling unimorphic word"@en ;
+                                                               rdfs:label "Concord" .
+
+
+###  https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTPhrase
+<https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTPhrase> rdf:type owl:Class ;
+                                                              rdfs:subClassOf <http://purl.org/co/List> ,
+                                                                              [ rdf:type owl:Restriction ;
+                                                                                owl:onProperty <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCThasPart> ;
+                                                                                owl:minQualifiedCardinality "2"^^xsd:nonNegativeInteger ;
+                                                                                owl:onClass <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTWord>
+                                                                              ] ;
+                                                              rdfs:comment "A phrase is a sequence of unimorphic and/or polymorphic words"@en ;
+                                                              rdfs:label "Phrase" .
+
+
+###  https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTPolymorphicWord
+<https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTPolymorphicWord> rdf:type owl:Class ;
+                                                                       rdfs:subClassOf <http://purl.org/co/List> ,
+                                                                                       [ rdf:type owl:Restriction ;
+                                                                                         owl:onProperty <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCThasPart> ;
+                                                                                         owl:someValuesFrom <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTSlot>
+                                                                                       ] ,
+                                                                                       [ rdf:type owl:Restriction ;
+                                                                                         owl:onProperty <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCThasPart> ;
+                                                                                         owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                         owl:onClass <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTWordFragment>
+                                                                                       ] ;
+                                                                       owl:disjointWith <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTUnimorphicWord> ;
+                                                                       rdfs:comment "A polymorphic word is sign that has multiple written representations"@en ;
+                                                                       rdfs:label "Polymorphic word" .
+
+
+###  https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTPropertyClass
+<https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTPropertyClass> rdf:type owl:Class ;
+                                                                     rdfs:comment "A property is a linguistic quality or characteristic that something has (OED)"@en ;
+                                                                     rdfs:label "Property class" .
+
+
+###  https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTPunctuation
+<https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTPunctuation> rdf:type owl:Class .
+
+
+###  https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTRoot
+<https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTRoot> rdf:type owl:Class ;
+                                                            rdfs:comment "A root is a morpheme that carries the principal meaning of a word and it cannot be decomposed to finer granularity without losing its identity"@en ;
+                                                            rdfs:label "Root" .
+
+
+###  https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTSlot
+<https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTSlot> rdf:type owl:Class ;
+                                                            rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                                              owl:onProperty <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTpartOf> ;
+                                                                              owl:someValuesFrom <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTPolymorphicWord>
+                                                                            ] ,
+                                                                            [ rdf:type owl:Restriction ;
+                                                                              owl:onProperty <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTpartOf> ;
+                                                                              owl:someValuesFrom <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTTemplate>
+                                                                            ] ;
+                                                            owl:disjointWith <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTWord> ;
+                                                            rdfs:comment "A slot is a placeholder in a template. The value that can be placed in its position is drawn from a finite collection of Words or Phrases where the collection is referred  to as slot fillers"@en ;
+                                                            rdfs:label "Slot" .
+
+
+###  https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTSpace
+<https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTSpace> rdf:type owl:Class .
+
+
+###  https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTTemplate
+<https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTTemplate> rdf:type owl:Class ;
+                                                                rdfs:subClassOf <http://purl.org/co/List> ,
+                                                                                [ rdf:type owl:Restriction ;
+                                                                                  owl:onProperty <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCThasPart> ;
+                                                                                  owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                  owl:onClass <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTSlot>
+                                                                                ] ,
+                                                                                [ rdf:type owl:Restriction ;
+                                                                                  owl:onProperty <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCThasPart> ;
+                                                                                  owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                                  owl:onClass <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTWord>
+                                                                                ] ,
+                                                                                [ rdf:type owl:Restriction ;
+                                                                                  owl:onProperty <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCThasPart> ;
+                                                                                  owl:minQualifiedCardinality "2"^^xsd:nonNegativeInteger ;
+                                                                                  owl:onClass <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTTemplateFragment>
+                                                                                ] ;
+                                                                rdfs:comment "A template is a sequence of ordered words, slots, spaces, and punctuation"@en ;
+                                                                rdfs:label "Template" .
+
+
+###  https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTTemplateFragment
+<https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTTemplateFragment> rdf:type owl:Class ;
+                                                                        rdfs:subClassOf <http://purl.org/co/ListItem> ,
+                                                                                        [ rdf:type owl:Restriction ;
+                                                                                          owl:onProperty <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTpartOf> ;
+                                                                                          owl:someValuesFrom <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTTemplate>
+                                                                                        ] ;
+                                                                        owl:disjointUnionOf ( <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTPunctuation>
+                                                                                              <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTSlot>
+                                                                                              <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTSpace>
+                                                                                              <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTWord>
+                                                                                            ) ;
+                                                                        rdfs:label "Template fragment" .
+
+
+###  https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTUnimorphicAffix
+<https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTUnimorphicAffix> rdf:type owl:Class ;
+                                                                       rdfs:comment "A unimorphic affix is a morpheme with a fixed value that carries some abstract meaning and it is distinct from the root"@en ;
+                                                                       rdfs:label "Unimorphic affix" .
+
+
+###  https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTUnimorphicWord
+<https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTUnimorphicWord> rdf:type owl:Class ;
+                                                                      rdfs:subClassOf <http://purl.org/co/ListItem> ;
+                                                                      rdfs:comment "A unimorphic word is a sign with a single written representation"@en ;
+                                                                      rdfs:label "Unimorphic word" .
+
+
+###  https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTWord
+<https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTWord> rdf:type owl:Class ;
+                                                            rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                                                              owl:onProperty <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTpartOf> ;
+                                                                              owl:someValuesFrom <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTTemplate>
+                                                                            ] ;
+                                                            owl:disjointUnionOf ( <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTPolymorphicWord>
+                                                                                  <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTUnimorphicWord>
+                                                                                ) ;
+                                                            rdfs:comment "A Word a sequence of characters that act a single unit of language. It means something, can be spoken, or written (OED)"@en ;
+                                                            rdfs:label "Word" .
+
+
+###  https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTWordFragment
+<https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTWordFragment> rdf:type owl:Class ;
+                                                                    rdfs:subClassOf <http://purl.org/co/ListItem> ,
+                                                                                    [ rdf:type owl:Restriction ;
+                                                                                      owl:onProperty <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTpartOf> ;
+                                                                                      owl:someValuesFrom <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTPolymorphicWord>
+                                                                                    ] ;
+                                                                    owl:disjointUnionOf ( <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTAffix>
+                                                                                          <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTAffixCombination>
+                                                                                          <https://people.cs.uct.ac.za/~zmahlaza/ontologies/ToCTRoot>
+                                                                                        ) ;
+                                                                    rdfs:label "Word fragment" .
+
+
+#################################################################
+#    Annotations
+#################################################################
+
+wgs84_pos: dc:date "$Date: 2009/04/20 15:00:30 $" ;
+           dc:description """A vocabulary for representing latitude, longitude and 
+ altitude information in the WGS84 geodetic reference datum. 
+ Version $Id: wgs84_pos.rdf,v 1.22 2009/04/20 15:00:30 timbl Exp $. See http://www.w3.org/2003/01/geo/ for more details.""" ;
+           dc:title "WGS84 Geo Positioning: an RDF vocabulary" ;
+
+           rdfs:label "geo" .
+
+
+wgs84_pos:lat_long rdfs:comment "A comma-separated representation of a latitude, longitude coordinate." ;
+                   rdfs:label "lat/long" .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ owl:intersectionOf ( <http://purl.org/co/List>
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty <http://purl.org/co/item> ;
+                         owl:someValuesFrom <http://purl.org/co/ListItem>
+                       ]
+                     ) ;
+  rdf:type owl:Class ;
+  rdfs:subClassOf [ owl:intersectionOf ( <http://purl.org/co/List>
+                                         [ rdf:type owl:Restriction ;
+                                           owl:onProperty <http://purl.org/co/firstItem> ;
+                                           owl:someValuesFrom <http://purl.org/co/Item>
+                                         ]
+                                         [ rdf:type owl:Restriction ;
+                                           owl:onProperty <http://purl.org/co/lastItem> ;
+                                           owl:someValuesFrom <http://purl.org/co/Item>
+                                         ]
+                                       ) ;
+                    rdf:type owl:Class
+                  ]
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( <https://ontology.londisizwe.org/mola#Dialect>
+                <https://ontology.londisizwe.org/mola#Ethnolect>
+                <https://ontology.londisizwe.org/mola#Idiolect>
+                <https://ontology.londisizwe.org/mola#Pidgin>
+                <https://ontology.londisizwe.org/mola#Sociolect>
+              )
+] .
+
+
+#################################################################
+#    Rules
+#################################################################
+
+<urn:swrl#x> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<urn:swrl#i> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<urn:swrl#l> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<urn:swrl#value> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<urn:swrl#li> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<urn:swrl#li1> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<urn:swrl#li2> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<urn:swrl#r1> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<urn:swrl#r2> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<urn:swrl#list> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<urn:swrl#last> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<urn:swrl#r> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<urn:swrl#current> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<urn:swrl#next> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<urn:swrl#nextR> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+[ rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://purl.org/co/followedBy> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#x> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl#x>
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://www.essepuntato.it/2009/10/error/hasError> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#x> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> "A list item cannot be followed by itself"
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://purl.org/co/itemOf> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#i> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl#l>
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://purl.org/co/index> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#i> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl#value>
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://purl.org/co/size> ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#l> ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl#value>
+                                                                           ] ;
+                                                                 rdf:rest rdf:nil
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://purl.org/co/lastItem> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#l> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl#i>
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://purl.org/co/itemOf> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#li> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl#l>
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://purl.org/co/index> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#li> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> "1"
+                                                                ] ;
+                                                      rdf:rest rdf:nil
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://purl.org/co/firstItem> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#l> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl#li>
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://purl.org/co/itemOf> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#li1> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl#l>
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://purl.org/co/itemOf> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#li2> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl#l>
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://purl.org/co/index> ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#li1> ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl#r1>
+                                                                           ] ;
+                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://purl.org/co/index> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#li2> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl#r2>
+                                                                                      ] ;
+                                                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#add> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#arguments> [ rdf:type rdf:List ;
+                                                                                                                                                rdf:first <urn:swrl#r2> ;
+                                                                                                                                                rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                           rdf:first <urn:swrl#r1> ;
+                                                                                                                                                           rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                                      rdf:first 1 ;
+                                                                                                                                                                      rdf:rest rdf:nil
+                                                                                                                                                                    ]
+                                                                                                                                                         ]
+                                                                                                                                              ]
+                                                                                                 ] ;
+                                                                                       rdf:rest rdf:nil
+                                                                                     ]
+                                                                          ]
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://purl.org/co/nextItem> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#li1> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl#li2>
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://purl.org/co/lastItem> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#l> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl#i>
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://purl.org/co/size> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#l> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl#value>
+                                                                ] ;
+                                                      rdf:rest rdf:nil
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://purl.org/co/index> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#i> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl#value>
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://purl.org/co/lastItem> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#list> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl#last>
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://purl.org/co/index> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#last> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl#r>
+                                                                ] ;
+                                                      rdf:rest rdf:nil
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://purl.org/co/size> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#list> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl#r>
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://purl.org/co/nextItem> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#current> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl#next>
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://purl.org/co/index> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#current> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl#r>
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#add> ;
+                                                                             <http://www.w3.org/2003/11/swrl#arguments> [ rdf:type rdf:List ;
+                                                                                                                          rdf:first <urn:swrl#nextR> ;
+                                                                                                                          rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                     rdf:first <urn:swrl#r> ;
+                                                                                                                                     rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                                rdf:first 1 ;
+                                                                                                                                                rdf:rest rdf:nil
+                                                                                                                                              ]
+                                                                                                                                   ]
+                                                                                                                        ]
+                                                                           ] ;
+                                                                 rdf:rest rdf:nil
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://purl.org/co/index> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#next> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl#nextR>
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://purl.org/co/precededBy> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#x> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl#x>
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> <http://www.essepuntato.it/2009/10/error/hasError> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#x> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> "A list item cannot be preceded by itself"
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+###  Generated by the OWL API (version 4.5.29) https://github.com/owlcs/owlapi

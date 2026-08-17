@@ -1,0 +1,1116 @@
+PREFIX :     <http://www.meteck.org/files/ontologies/stuff.owl#>
+PREFIX WV:   <http://www.wurvoc.org/vocabularies/WV/>
+PREFIX bibo: <http://purl.org/ontology/bibo/>
+PREFIX dc:   <http://purl.org/dc/elements/1.1/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX om-1: <http://www.wurvoc.org/vocabularies/om-1.8/>
+PREFIX owl:  <http://www.w3.org/2002/07/owl#>
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX xml:  <http://www.w3.org/XML/1998/namespace>
+PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
+
+[ rdf:type     owl:AllDisjointClasses;
+  owl:members  ( :Gas :Liquid :Solid )
+] .
+
+[ rdf:type     owl:AllDisjointClasses;
+  owl:members  ( :Emulsion :Foam :Gel :LiquidAerosol :Sol :SolidAerosol :SolidFoam :SolidSol )
+] .
+
+[ rdf:type     owl:AllDisjointClasses;
+  owl:members  ( :Atom :Ion :Molecule :MultiMoleculeParticle )
+] .
+
+[ rdf:type     owl:AllDisjointClasses;
+  owl:members  ( :AssociationalColloid :DispersionColloid :MolecularColloid )
+] .
+
+[ rdf:type     owl:AllDisjointClasses;
+  owl:members  ( :AmountOfStuff :Atom :Ion :Molecule :MultiMoleculeParticle )
+] .
+
+[ rdf:type     owl:AllDisjointClasses;
+  owl:members  ( :Abstract :Endurant :Perdurant :Quality )
+] .
+
+om-1:Unit_of_measure  rdfs:subClassOf  :Abstract .
+
+:Solution  rdf:type          owl:Class;
+      
+        owl:equivalentClass  [ rdf:type            owl:Class;
+                               owl:intersectionOf  ( :HomogeneousMixture
+                                                     [ rdf:type            owl:Restriction;
+                                                       owl:onProperty      :hasPartStuff;
+                                                       owl:someValuesFrom  [ rdf:type            owl:Class;
+                                                                             owl:intersectionOf  ( :Stuff
+                                                                                                   [ rdf:type            owl:Restriction;
+                                                                                                     owl:onProperty      [ owl:inverseOf  :srInheresIn ];
+                                                                                                     owl:someValuesFrom  :Solute
+                                                                                                   ]
+                                                                                                   [ rdf:type           owl:Restriction;
+                                                                                                     owl:allValuesFrom  [ rdf:type     owl:Class;
+                                                                                                                          owl:unionOf  ( :Atom :Ion :Molecule )
+                                                                                                                        ];
+                                                                                                     owl:onProperty     :hasGranuleType
+                                                                                                   ]
+                                                                                                 )
+                                                                           ]
+                                                     ]
+                                                     [ rdf:type            owl:Restriction;
+                                                       owl:onProperty      :hasPartStuff;
+                                                       owl:someValuesFrom  [ rdf:type            owl:Class;
+                                                                             owl:intersectionOf  ( :Stuff
+                                                                                                   [ rdf:type            owl:Restriction;
+                                                                                                     owl:onProperty      [ owl:inverseOf  :srInheresIn ];
+                                                                                                     owl:someValuesFrom  :Solvent
+                                                                                                   ]
+                                                                                                   [ rdf:type           owl:Restriction;
+                                                                                                     owl:allValuesFrom  [ rdf:type     owl:Class;
+                                                                                                                          owl:unionOf  ( :Atom :Ion :Molecule )
+                                                                                                                        ];
+                                                                                                     owl:onProperty     :hasGranuleType
+                                                                                                   ]
+                                                                                                 )
+                                                                           ]
+                                                     ]
+                                                     [ rdf:type            owl:Restriction;
+                                                       owl:onProperty      :hasNrOfPhase;
+                                                       owl:someValuesFrom  [ rdf:type              rdfs:Datatype;
+                                                                             owl:onDatatype        xsd:int;
+                                                                             owl:withRestrictions  ( [ xsd:maxInclusive  1 ]
+                                                                                                   )
+                                                                           ]
+                                                     ]
+                                                   )
+                             ] .
+
+:SolidSol  rdf:type          owl:Class;
+        rdfs:subClassOf      :DispersionColloid;
+        owl:equivalentClass  [ rdf:type            owl:Class;
+                               owl:intersectionOf  ( :DispersionColloid
+                                                     [ rdf:type                  owl:Restriction;
+                                                       owl:onClass               [ rdf:type            owl:Class;
+                                                                                   owl:intersectionOf  ( :Stuff
+                                                                                                         [ rdf:type            owl:Restriction;
+                                                                                                           owl:onProperty      :hasState;
+                                                                                                           owl:someValuesFrom  :Solid
+                                                                                                         ]
+                                                                                                         [ rdf:type            owl:Restriction;
+                                                                                                           owl:onProperty      [ owl:inverseOf  :srInheresIn ];
+                                                                                                           owl:someValuesFrom  :ContinuousMedium
+                                                                                                         ]
+                                                                                                       )
+                                                                                 ];
+                                                       owl:onProperty            :hasPartStuff;
+                                                       owl:qualifiedCardinality  """1"""^^xsd:nonNegativeInteger
+                                                     ]
+                                                     [ rdf:type                  owl:Restriction;
+                                                       owl:onClass               [ rdf:type            owl:Class;
+                                                                                   owl:intersectionOf  ( :Stuff
+                                                                                                         [ rdf:type            owl:Restriction;
+                                                                                                           owl:onProperty      :hasState;
+                                                                                                           owl:someValuesFrom  :Solid
+                                                                                                         ]
+                                                                                                         [ rdf:type            owl:Restriction;
+                                                                                                           owl:onProperty      [ owl:inverseOf  :srInheresIn ];
+                                                                                                           owl:someValuesFrom  :DispersedPhase
+                                                                                                         ]
+                                                                                                       )
+                                                                                 ];
+                                                       owl:onProperty            :hasPartStuff;
+                                                       owl:qualifiedCardinality  """1"""^^xsd:nonNegativeInteger
+                                                     ]
+                                                   )
+                             ] .
+
+:SolidHeterogeneousMixture
+        rdf:type             owl:Class;
+        rdfs:comment         """the solid version of a suspension (heterogenous mixture, not homogenised). Example: wood has a compartmentalisation of the components (cellulose, hemicellulose, ligning, and other stuffs called 'extractives' [plant hormone, waxes, terpenes, etc.]).""" ;
+        rdfs:subClassOf      :HeterogeneousMixture;
+        owl:equivalentClass  [ rdf:type            owl:Class;
+                               owl:intersectionOf  ( :HeterogeneousMixture
+                                                     [ rdf:type                     owl:Restriction;
+                                                       owl:minQualifiedCardinality  """2"""^^xsd:nonNegativeInteger;
+                                                       owl:onClass                  [ rdf:type            owl:Class;
+                                                                                      owl:intersectionOf  ( :Stuff
+                                                                                                            [ rdf:type            owl:Restriction;
+                                                                                                              owl:onProperty      :hasState;
+                                                                                                              owl:someValuesFrom  :Solid
+                                                                                                            ]
+                                                                                                          )
+                                                                                    ];
+                                                       owl:onProperty               :hasPartStuff
+                                                     ]
+                                                   )
+                             ] .
+
+:SolidFoam  rdf:type         owl:Class;
+        rdfs:comment         """continuous medium: solid dispersed phase: gas Examples: aerogel, styrofoam """ ;
+        rdfs:subClassOf      :DispersionColloid;
+        owl:equivalentClass  [ rdf:type            owl:Class;
+                               owl:intersectionOf  ( :DispersionColloid
+                                                     [ rdf:type                  owl:Restriction;
+                                                       owl:onClass               [ rdf:type            owl:Class;
+                                                                                   owl:intersectionOf  ( :Stuff
+                                                                                                         [ rdf:type            owl:Restriction;
+                                                                                                           owl:onProperty      :hasState;
+                                                                                                           owl:someValuesFrom  :Gas
+                                                                                                         ]
+                                                                                                         [ rdf:type            owl:Restriction;
+                                                                                                           owl:onProperty      [ owl:inverseOf  :srInheresIn ];
+                                                                                                           owl:someValuesFrom  :DispersedPhase
+                                                                                                         ]
+                                                                                                       )
+                                                                                 ];
+                                                       owl:onProperty            :hasPartStuff;
+                                                       owl:qualifiedCardinality  """1"""^^xsd:nonNegativeInteger
+                                                     ]
+                                                     [ rdf:type                  owl:Restriction;
+                                                       owl:onClass               [ rdf:type            owl:Class;
+                                                                                   owl:intersectionOf  ( :Stuff
+                                                                                                         [ rdf:type            owl:Restriction;
+                                                                                                           owl:onProperty      :hasState;
+                                                                                                           owl:someValuesFrom  :Solid
+                                                                                                         ]
+                                                                                                         [ rdf:type            owl:Restriction;
+                                                                                                           owl:onProperty      [ owl:inverseOf  :srInheresIn ];
+                                                                                                           owl:someValuesFrom  :ContinuousMedium
+                                                                                                         ]
+                                                                                                       )
+                                                                                 ];
+                                                       owl:onProperty            :hasPartStuff;
+                                                       owl:qualifiedCardinality  """1"""^^xsd:nonNegativeInteger
+                                                     ]
+                                                   )
+                             ] .
+
+:SolidAerosol  rdf:type      owl:Class;
+        rdfs:comment         """continuous medium: gas dispersed phase: solid Examples: smoke, cloud, solid particulates """ ;
+        rdfs:subClassOf      :DispersionColloid;
+        owl:equivalentClass  [ rdf:type            owl:Class;
+                               owl:intersectionOf  ( :DispersionColloid
+                                                     [ rdf:type                  owl:Restriction;
+                                                       owl:onClass               [ rdf:type            owl:Class;
+                                                                                   owl:intersectionOf  ( :Stuff
+                                                                                                         [ rdf:type            owl:Restriction;
+                                                                                                           owl:onProperty      :hasState;
+                                                                                                           owl:someValuesFrom  :Gas
+                                                                                                         ]
+                                                                                                         [ rdf:type            owl:Restriction;
+                                                                                                           owl:onProperty      [ owl:inverseOf  :srInheresIn ];
+                                                                                                           owl:someValuesFrom  :ContinuousMedium
+                                                                                                         ]
+                                                                                                       )
+                                                                                 ];
+                                                       owl:onProperty            :hasPartStuff;
+                                                       owl:qualifiedCardinality  """1"""^^xsd:nonNegativeInteger
+                                                     ]
+                                                     [ rdf:type                  owl:Restriction;
+                                                       owl:onClass               [ rdf:type            owl:Class;
+                                                                                   owl:intersectionOf  ( :Stuff
+                                                                                                         [ rdf:type            owl:Restriction;
+                                                                                                           owl:onProperty      :hasState;
+                                                                                                           owl:someValuesFrom  :Solid
+                                                                                                         ]
+                                                                                                         [ rdf:type            owl:Restriction;
+                                                                                                           owl:onProperty      [ owl:inverseOf  :srInheresIn ];
+                                                                                                           owl:someValuesFrom  :DispersedPhase
+                                                                                                         ]
+                                                                                                       )
+                                                                                 ];
+                                                       owl:onProperty            :hasPartStuff;
+                                                       owl:qualifiedCardinality  """1"""^^xsd:nonNegativeInteger
+                                                     ]
+                                                   )
+                             ] .
+
+:Sol    rdf:type             owl:Class;
+        rdfs:comment         """continuous medium: liquid dispersed phase: solid Examples: pigmented ink, blood """ ;
+        rdfs:subClassOf      :DispersionColloid;
+        owl:equivalentClass  [ rdf:type            owl:Class;
+                               owl:intersectionOf  ( :DispersionColloid
+                                                     [ rdf:type                  owl:Restriction;
+                                                       owl:onClass               [ rdf:type            owl:Class;
+                                                                                   owl:intersectionOf  ( :Stuff
+                                                                                                         [ rdf:type            owl:Restriction;
+                                                                                                           owl:onProperty      :hasState;
+                                                                                                           owl:someValuesFrom  :Liquid
+                                                                                                         ]
+                                                                                                         [ rdf:type            owl:Restriction;
+                                                                                                           owl:onProperty      [ owl:inverseOf  :srInheresIn ];
+                                                                                                           owl:someValuesFrom  :ContinuousMedium
+                                                                                                         ]
+                                                                                                       )
+                                                                                 ];
+                                                       owl:onProperty            :hasPartStuff;
+                                                       owl:qualifiedCardinality  """1"""^^xsd:nonNegativeInteger
+                                                     ]
+                                                     [ rdf:type                  owl:Restriction;
+                                                       owl:onClass               [ rdf:type            owl:Class;
+                                                                                   owl:intersectionOf  ( :Stuff
+                                                                                                         [ rdf:type            owl:Restriction;
+                                                                                                           owl:onProperty      :hasState;
+                                                                                                           owl:someValuesFrom  :Solid
+                                                                                                         ]
+                                                                                                         [ rdf:type            owl:Restriction;
+                                                                                                           owl:onProperty      [ owl:inverseOf  :srInheresIn ];
+                                                                                                           owl:someValuesFrom  :DispersedPhase
+                                                                                                         ]
+                                                                                                       )
+                                                                                 ];
+                                                       owl:onProperty            :hasPartStuff;
+                                                       owl:qualifiedCardinality  """1"""^^xsd:nonNegativeInteger
+                                                     ]
+                                                   )
+                             ] .
+
+:Slice  rdf:type         owl:Class;
+        rdfs:comment     """type of a piece, added as example. e.g., slice of bread""" ;
+        rdfs:subClassOf  :Piece .
+
+:UnstructuredPureStuff
+        rdf:type             owl:Class;
+        rdfs:comment         """this definition is actually meant as 'has basis type exactly *one type of* atom', not just one single individual atom."""  , """synonym: Element""" , """Stuff that consists of the same kind of atoms. Examples: an amount of helium, an amount of gold Realistically, there may well be undetectable impurities, and so on, but we don't care about that here""" ;
+        rdfs:subClassOf      :PureStuff;
+        owl:equivalentClass  [ rdf:type            owl:Class;
+                               owl:intersectionOf  ( :PureStuff
+                                                     [ rdf:type           owl:Restriction;
+                                                       owl:allValuesFrom  :Atom;
+                                                       owl:onProperty     :hasGranuleType
+                                                     ]
+                                                     [ rdf:type                  owl:Restriction;
+                                                       owl:onClass               :Atom;
+                                                       owl:onProperty            :hasGranuleType;
+                                                       owl:qualifiedCardinality  """1"""^^xsd:nonNegativeInteger
+                                                     ]
+                                                   )
+                             ] .
+
+:PureBulk  rdf:type          owl:Class;
+        rdfs:comment         """there should be a 'has basis type exactly *one type of* multimoleculeparticle' , not just one single individual multimoleculeparticle.""" , """difference with StructuredPureStuff and UnstructuredPureStuff: basis type, which is a multi-molecular object/particle. Examples: a silo of soy beans, a packet of tea biscuits, a bag of cashew nuts""";
+        rdfs:subClassOf      :PureStuff;
+        owl:equivalentClass  [ rdf:type            owl:Class;
+                               owl:intersectionOf  ( :PureStuff
+                                                     [ rdf:type           owl:Restriction;
+                                                       owl:allValuesFrom  :MultiMoleculeParticle;
+                                                       owl:onProperty     :hasGranuleType
+                                                     ]
+                                                     [ rdf:type                  owl:Restriction;
+                                                       owl:onClass               :MultiMoleculeParticle;
+                                                       owl:onProperty            :hasGranuleType;
+                                                       owl:qualifiedCardinality  """1"""^^xsd:nonNegativeInteger
+                                                     ]
+                                                   )
+                             ] .
+
+:PhysicalRegion  rdf:type  owl:Class;
+        rdfs:subClassOf  :Region .
+
+om-1:Quantity  rdfs:subClassOf  :Region .
+
+:Suspension  rdf:type        owl:Class;
+        rdfs:comment         """heterogenous mixture of larger particles in a liquid, and that substance naturally separates (i.e., separation due to sedimentation, creaming, flocculation, or coalescence, unless 'stabilized' and 'homogenised' [as regularly happens in the production process]). E.g. tomato juice, mud. TBA: the particle size of the solid is usually >1 micron""" ;
+        rdfs:subClassOf      :HeterogeneousMixture;
+        rdfs:subClassOf      [ rdf:type            owl:Class;
+                               owl:intersectionOf  ( [ rdf:type            owl:Restriction;
+                                                       owl:onProperty      :hasGranuleType;
+                                                       owl:someValuesFrom  :Molecule
+                                                     ]
+                                                     [ rdf:type            owl:Restriction;
+                                                       owl:onProperty      :hasGranuleType;
+                                                       owl:someValuesFrom  :MultiMoleculeParticle
+                                                     ]
+                                                   )
+                             ];
+        owl:equivalentClass  [ rdf:type            owl:Class;
+                               owl:intersectionOf  ( :HeterogeneousMixture
+                                                     [ rdf:type            owl:Restriction;
+                                                       owl:onProperty      :hasPartStuff;
+                                                       owl:someValuesFrom  [ rdf:type            owl:Class;
+                                                                             owl:intersectionOf  ( :Stuff
+                                                                                                   [ rdf:type            owl:Restriction;
+                                                                                                     owl:onProperty      :hasState;
+                                                                                                     owl:someValuesFrom  :Liquid
+                                                                                                   ]
+                                                                                                   [ rdf:type            owl:Restriction;
+                                                                                                     owl:onProperty      [ owl:inverseOf  :srInheresIn ];
+                                                                                                     owl:someValuesFrom  :ContinuousMedium
+                                                                                                   ]
+                                                                                                 )
+                                                                           ]
+                                                     ]
+                                                     [ rdf:type            owl:Restriction;
+                                                       owl:onProperty      :hasPartStuff;
+                                                       owl:someValuesFrom  [ rdf:type            owl:Class;
+                                                                             owl:intersectionOf  ( :Stuff
+                                                                                                   [ rdf:type            owl:Restriction;
+                                                                                                     owl:onProperty      :hasState;
+                                                                                                     owl:someValuesFrom  :Solid
+                                                                                                   ]
+                                                                                                   [ rdf:type            owl:Restriction;
+                                                                                                     owl:onProperty      [ owl:inverseOf  :srInheresIn ];
+                                                                                                     owl:someValuesFrom  :DispersedPhase
+                                                                                                   ]
+                                                                                                 )
+                                                                           ]
+                                                     ]
+                                                   )
+                             ] .
+
+:Paste  rdf:type         owl:Class;
+        rdfs:comment     """suspension with less dispersion medium and the dispersed phase is connected""";
+        rdfs:subClassOf  :Suspension .
+
+:NumberOfPhases  rdf:type  owl:Class;
+        rdfs:comment     """alternative way of modelling the number of phases, the other one being with the data type""";
+        rdfs:subClassOf  :AbstractRegion;
+        rdfs:subClassOf  [ rdf:type            owl:Restriction;
+                           owl:onProperty      :hasDataValue;
+                           owl:someValuesFrom  xsd:nonNegativeInteger
+                         ] .
+
+:MolecularColloid  rdf:type  owl:Class;
+        rdfs:comment     """Colloid where the molecules are so big they have the behaviour of that of the intermediate particle size in the other colloids. Example: latex (and other starchy things, with big polymers)""";
+        rdfs:subClassOf  :Colloid .
+
+:MicellarColloid  rdf:type  owl:Class;
+        rdfs:comment     """A careful reader will observe tehre is no distinction between this and the Associational colloid. The distinction is largely due to terminology in food physics and physics & colloid chemistry.""";
+        rdfs:subClassOf  :AssociationalColloid .
+
+:Lump   rdf:type         owl:Class;
+        rdfs:comment     """type of a piece, added as example. e.g., lump of clay""" ;
+        rdfs:subClassOf  :Piece .
+
+:LiquidAerosol  rdf:type     owl:Class;
+        rdfs:comment         """continuous medium: gas dispersed phase: liquid Examples: fog mist, hair sprays """ ;
+        rdfs:subClassOf      :DispersionColloid;
+        owl:equivalentClass  [ rdf:type            owl:Class;
+                               owl:intersectionOf  ( :DispersionColloid
+                                                     [ rdf:type                  owl:Restriction;
+                                                       owl:onClass               [ rdf:type            owl:Class;
+                                                                                   owl:intersectionOf  ( :Stuff
+                                                                                                         [ rdf:type            owl:Restriction;
+                                                                                                           owl:onProperty      :hasState;
+                                                                                                           owl:someValuesFrom  :Gas
+                                                                                                         ]
+                                                                                                         [ rdf:type            owl:Restriction;
+                                                                                                           owl:onProperty      [ owl:inverseOf  :srInheresIn ];
+                                                                                                           owl:someValuesFrom  :ContinuousMedium
+                                                                                                         ]
+                                                                                                       )
+                                                                                 ];
+                                                       owl:onProperty            :hasPartStuff;
+                                                       owl:qualifiedCardinality  """1"""^^xsd:nonNegativeInteger
+                                                     ]
+                                                     [ rdf:type                  owl:Restriction;
+                                                       owl:onClass               [ rdf:type            owl:Class;
+                                                                                   owl:intersectionOf  ( :Stuff
+                                                                                                         [ rdf:type            owl:Restriction;
+                                                                                                           owl:onProperty      :hasState;
+                                                                                                           owl:someValuesFrom  :Liquid
+                                                                                                         ]
+                                                                                                         [ rdf:type            owl:Restriction;
+                                                                                                           owl:onProperty      [ owl:inverseOf  :srInheresIn ];
+                                                                                                           owl:someValuesFrom  :DispersedPhase
+                                                                                                         ]
+                                                                                                       )
+                                                                                 ];
+                                                       owl:onProperty            :hasPartStuff;
+                                                       owl:qualifiedCardinality  """1"""^^xsd:nonNegativeInteger
+                                                     ]
+                                                   )
+                             ] .
+
+:Portion  rdf:type       owl:Class;
+        rdfs:subClassOf  :AmountOfStuff;
+        rdfs:subClassOf  [ rdf:type            owl:Restriction;
+                           owl:onProperty      :portionOf;
+                           owl:someValuesFrom  :AmountOfStuff
+                         ] .
+
+:LeastPortion  rdf:type  owl:Class;
+        rdfs:comment     """The smallest portion that still exhibits the macroscopic properties of that kind of stuff. like Atom in merology, but then for stuffs.""" ;
+        rdfs:subClassOf  :Portion;
+        rdfs:subClassOf  [ rdf:type          owl:Class;
+                           owl:complementOf  [ rdf:type            owl:Restriction;
+                                               owl:onProperty      :hasPortion;
+                                               owl:someValuesFrom  :Portion
+                                             ]
+                         ] .
+
+:Ion    rdf:type         owl:Class;
+        rdfs:subClassOf  :PhysicalObject .
+
+:PureStuff  rdf:type         owl:Class;
+        rdfs:comment         """Composed of the same kind of molecules. For instance, Water, which consists of H2O molecules only, Alcohol, consisting of ethanol molecules only, etc, manganese and likewise for the other elements.  This primarily serves as a useful theoretical category, i.e., it is an idealised case, as in reality the 'pure stuffs' are only pure with respect to the measuring device with which one would be able to detect an impurity."""  , """Called 'Unstructed stuff' in Donnelly & Bittner, Phil Stud, 2009, and 'discrete stuff' by Barnett, Phil Rev, 2004. They are refined here.""" ;
+        rdfs:subClassOf      :Stuff;
+        owl:disjointUnionOf  ( :PureBulk :StructuredPureStuff :UnstructuredPureStuff );
+        owl:equivalentClass  [ rdf:type            owl:Class;
+                               owl:intersectionOf  ( :Stuff
+                                                     [ rdf:type                  owl:Restriction;
+                                                       owl:onClass               [ rdf:type     owl:Class;
+                                                                                   owl:unionOf  ( :Atom :Molecule :MultiMoleculeParticle )
+                                                                                 ];
+                                                       owl:onProperty            :hasGranuleType;
+                                                       owl:qualifiedCardinality  """1"""^^xsd:nonNegativeInteger
+                                                     ]
+                                                     [ rdf:type                  owl:Restriction;
+                                                       owl:onClass               [ rdf:type     owl:Class;
+                                                                                   owl:unionOf  ( :PureBulk :StructuredPureStuff :UnstructuredPureStuff )
+                                                                                 ];
+                                                       owl:onProperty            :hasPartStuff;
+                                                       owl:qualifiedCardinality  """1"""^^xsd:nonNegativeInteger
+                                                     ]
+                                                     [ rdf:type                  owl:Restriction;
+                                                       owl:onClass               :EvenDistribution;
+                                                       owl:onProperty            :hasStuffDistribution;
+                                                       owl:qualifiedCardinality  """1"""^^xsd:nonNegativeInteger
+                                                     ]
+                                                   )
+                             ] .
+
+:HeterogeneousMixture
+        rdf:type          owl:Class;
+        rdfs:comment      """Combination of different stuffs (of which at least one with a fairly large particle size) that don't react, and can be separated by purely physical means (filtration, etc). Contrast with homogenously mixed stuffs like colloids and solutions where its components are evenly distributed across the stuff. portion in the sense of taking a 'part'/section of this heterogenous stuff, then it generally is the case that the subquantity is not of the same stuffkind as the whole quantity, only when the portion is carefully constructed and the so-called stuff-forming relation still holds.""" ;
+        rdfs:subClassOf   :MixedStuff;
+        rdfs:subClassOf   [ rdf:type                  owl:Restriction;
+                            owl:onClass               :UnevenDistribution;
+                            owl:onProperty            :hasStuffDistribution;
+                            owl:qualifiedCardinality  """1"""^^xsd:nonNegativeInteger
+                          ];
+        rdfs:subClassOf   [ rdf:type                     owl:Restriction;
+                            owl:minQualifiedCardinality  """2"""^^xsd:nonNegativeInteger;
+                            owl:onClass                  [ rdf:type     owl:Class;
+                                                           owl:unionOf  ( :MixedStuff :PureStuff )
+                                                         ];
+                            owl:onProperty               :hasPartStuff
+                          ];
+        rdfs:subClassOf   [ rdf:type                     owl:Restriction;
+                            owl:minQualifiedCardinality  """2"""^^xsd:nonNegativeInteger;
+                            owl:onClass                  [ rdf:type     owl:Class;
+                                                           owl:unionOf  ( :Molecule :MultiMoleculeParticle )
+                                                         ];
+                            owl:onProperty               :hasGranuleType
+                          ];
+        owl:disjointWith  :HomogeneousMixture .
+
+:Solid  rdf:type         owl:Class;
+        rdfs:subClassOf  :StuffState .
+
+:Gel    rdf:type             owl:Class;
+        rdfs:comment         """continuous medium: solid dispersed phase: liquid Examples: agar, gelatin, jelly  """ ;
+        rdfs:subClassOf      :DispersionColloid;
+        owl:equivalentClass  [ rdf:type            owl:Class;
+                               owl:intersectionOf  ( :DispersionColloid
+                                                     [ rdf:type                  owl:Restriction;
+                                                       owl:onClass               [ rdf:type            owl:Class;
+                                                                                   owl:intersectionOf  ( :Stuff
+                                                                                                         [ rdf:type            owl:Restriction;
+                                                                                                           owl:onProperty      :hasState;
+                                                                                                           owl:someValuesFrom  :Liquid
+                                                                                                         ]
+                                                                                                         [ rdf:type            owl:Restriction;
+                                                                                                           owl:onProperty      [ owl:inverseOf  :srInheresIn ];
+                                                                                                           owl:someValuesFrom  :DispersedPhase
+                                                                                                         ]
+                                                                                                       )
+                                                                                 ];
+                                                       owl:onProperty            :hasPartStuff;
+                                                       owl:qualifiedCardinality  """1"""^^xsd:nonNegativeInteger
+                                                     ]
+                                                     [ rdf:type                  owl:Restriction;
+                                                       owl:onClass               [ rdf:type            owl:Class;
+                                                                                   owl:intersectionOf  ( :Stuff
+                                                                                                         [ rdf:type            owl:Restriction;
+                                                                                                           owl:onProperty      :hasState;
+                                                                                                           owl:someValuesFrom  :Solid
+                                                                                                         ]
+                                                                                                         [ rdf:type            owl:Restriction;
+                                                                                                           owl:onProperty      [ owl:inverseOf  :srInheresIn ];
+                                                                                                           owl:someValuesFrom  :ContinuousMedium
+                                                                                                         ]
+                                                                                                       )
+                                                                                 ];
+                                                       owl:onProperty            :hasPartStuff;
+                                                       owl:qualifiedCardinality  """1"""^^xsd:nonNegativeInteger
+                                                     ]
+                                                   )
+                             ] .
+
+:Gas    rdf:type         owl:Class;
+        rdfs:subClassOf  :StuffState .
+
+:Foam   rdf:type             owl:Class;
+        rdfs:comment         """continuous medium: liquid dispersed phase: gas Examples: whipped cream, shaving cream """ ;
+        rdfs:subClassOf      :DispersionColloid;
+        owl:equivalentClass  [ rdf:type            owl:Class;
+                               owl:intersectionOf  ( :DispersionColloid
+                                                     [ rdf:type                  owl:Restriction;
+                                                       owl:onClass               [ rdf:type            owl:Class;
+                                                                                   owl:intersectionOf  ( :Stuff
+                                                                                                         [ rdf:type            owl:Restriction;
+                                                                                                           owl:onProperty      :hasState;
+                                                                                                           owl:someValuesFrom  :Gas
+                                                                                                         ]
+                                                                                                         [ rdf:type            owl:Restriction;
+                                                                                                           owl:onProperty      [ owl:inverseOf  :srInheresIn ];
+                                                                                                           owl:someValuesFrom  :DispersedPhase
+                                                                                                         ]
+                                                                                                       )
+                                                                                 ];
+                                                       owl:onProperty            :hasPartStuff;
+                                                       owl:qualifiedCardinality  """1"""^^xsd:nonNegativeInteger
+                                                     ]
+                                                     [ rdf:type                  owl:Restriction;
+                                                       owl:onClass               [ rdf:type            owl:Class;
+                                                                                   owl:intersectionOf  ( :Stuff
+                                                                                                         [ rdf:type            owl:Restriction;
+                                                                                                           owl:onProperty      :hasState;
+                                                                                                           owl:someValuesFrom  :Liquid
+                                                                                                         ]
+                                                                                                         [ rdf:type            owl:Restriction;
+                                                                                                           owl:onProperty      [ owl:inverseOf  :srInheresIn ];
+                                                                                                           owl:someValuesFrom  :ContinuousMedium
+                                                                                                         ]
+                                                                                                       )
+                                                                                 ];
+                                                       owl:onProperty            :hasPartStuff;
+                                                       owl:qualifiedCardinality  """1"""^^xsd:nonNegativeInteger
+                                                     ]
+                                                   )
+                             ] .
+
+:Liquid  rdf:type        owl:Class;
+        rdfs:subClassOf  :StuffState .
+
+:Emulsion  rdf:type          owl:Class;
+        rdfs:comment         """continuous medium: liquid dispersed phase: liquid Examples: milk, mayonnaise, hand cream """ ;
+        rdfs:subClassOf      :DispersionColloid;
+        owl:equivalentClass  [ rdf:type            owl:Class;
+                               owl:intersectionOf  ( :DispersionColloid
+                                                     [ rdf:type                  owl:Restriction;
+                                                       owl:onClass               [ rdf:type            owl:Class;
+                                                                                   owl:intersectionOf  ( :Stuff
+                                                                                                         [ rdf:type            owl:Restriction;
+                                                                                                           owl:onProperty      :hasState;
+                                                                                                           owl:someValuesFrom  :Liquid
+                                                                                                         ]
+                                                                                                         [ rdf:type            owl:Restriction;
+                                                                                                           owl:onProperty      [ owl:inverseOf  :srInheresIn ];
+                                                                                                           owl:someValuesFrom  :ContinuousMedium
+                                                                                                         ]
+                                                                                                       )
+                                                                                 ];
+                                                       owl:onProperty            :hasPartStuff;
+                                                       owl:qualifiedCardinality  """1"""^^xsd:nonNegativeInteger
+                                                     ]
+                                                     [ rdf:type                  owl:Restriction;
+                                                       owl:onClass               [ rdf:type            owl:Class;
+                                                                                   owl:intersectionOf  ( :Stuff
+                                                                                                         [ rdf:type            owl:Restriction;
+                                                                                                           owl:onProperty      :hasState;
+                                                                                                           owl:someValuesFrom  :Liquid
+                                                                                                         ]
+                                                                                                         [ rdf:type            owl:Restriction;
+                                                                                                           owl:onProperty      [ owl:inverseOf  :srInheresIn ];
+                                                                                                           owl:someValuesFrom  :DispersedPhase
+                                                                                                         ]
+                                                                                                       )
+                                                                                 ];
+                                                       owl:onProperty            :hasPartStuff;
+                                                       owl:qualifiedCardinality  """1"""^^xsd:nonNegativeInteger
+                                                     ]
+                                                   )
+                             ] .
+
+:Piece  rdf:type         owl:Class;
+        rdfs:comment     """self-contained amounts, like slices, lumps, etc. Only three subcalsses are added, for illustration, but feel free to add more.""" ;
+        rdfs:subClassOf  :Portion;
+        rdfs:subClassOf  [ rdf:type            owl:Restriction;
+                           owl:onProperty      :isSelfContainedScatteredPortionOf;
+                           owl:someValuesFrom  :AmountOfStuff
+                         ] .
+
+:Drop   rdf:type         owl:Class;
+        rdfs:comment     """type of a piece, added as example. e.g., a drop of blood""" ;
+        rdfs:subClassOf  :Piece .
+
+:UnevenDistribution  rdf:type  owl:Class;
+        rdfs:subClassOf  :AbstractRegion .
+
+:EvenDistribution  rdf:type  owl:Class;
+        rdfs:subClassOf  :AbstractRegion .
+
+:Distribution  rdf:type  owl:Class;
+        rdfs:subClassOf  :Quality;
+        rdfs:subClassOf  [ rdf:type            owl:Restriction;
+                           owl:onProperty      :hasQuale;
+                           owl:someValuesFrom  [ rdf:type     owl:Class;
+                                                 owl:unionOf  ( :EvenDistribution :UnevenDistribution )
+                                               ]
+                         ] .
+
+:DispersionColloid  rdf:type  owl:Class;
+        rdfs:comment     """the most common type of colloids (cf. the other two)""";
+        rdfs:subClassOf  :Colloid .
+
+:Container  rdf:type     owl:Class;
+        rdfs:comment     """For if an amount of matter is not-selfcontained""" ;
+        rdfs:subClassOf  :PhysicalEndurant;
+        rdfs:subClassOf  [ rdf:type           owl:Restriction;
+                           owl:allValuesFrom  [ rdf:type     owl:Class;
+                                                owl:unionOf  ( :AmountOfStuff :PhysicalObject )
+                                              ];
+                           owl:onProperty     [ owl:inverseOf  :containedIn ]
+                         ] .
+
+:StuffState  rdf:type    owl:Class;
+        rdfs:comment     """This should be refined.  On the one hand, we can have, say, water in the solid state, in the liquid state and in the gaseous state.  On the other hand, when considering colloids, then one of the two stuffs is in one state and the other either in the same state or in another state, regardless the actual stuff type (like whether it is liquid sunflower oil or lineseed oil, or CO2 gas or air). That is, for colloids, the state the stuff is in when mixing is the defining characteristics. Here, with the stuffs, we are interested in the state in general, not the state of a stuff.""" ;
+        rdfs:subClassOf  :State .
+
+:HomogeneousMixture  rdf:type  owl:Class;
+        rdfs:comment     """the mixed stuffs are evenly distributed across the amount of matter (macroscopic sameness). Some would call only a solution a homogeneous mixture, not colloids, because solutions have one phase only, whereas colloids have at least 2. We take an inclusive approach here, and refine further in the two subclasses.""";
+        rdfs:subClassOf  :MixedStuff;
+        rdfs:subClassOf  [ rdf:type                  owl:Restriction;
+                           owl:onClass               :EvenDistribution;
+                           owl:onProperty            :hasStuffDistribution;
+                           owl:qualifiedCardinality  """1"""^^xsd:nonNegativeInteger
+                         ];
+        rdfs:subClassOf  [ rdf:type           owl:Restriction;
+                           owl:allValuesFrom  [ rdf:type     owl:Class;
+                                                owl:unionOf  ( :Atom :Ion :Molecule )
+                                              ];
+                           owl:onProperty     :hasGranuleType
+                         ] .
+
+:StructuredPureStuff  rdf:type  owl:Class;
+        rdfs:comment         """there should be a 'has basis type exactly *one type of* molecule' (ok, we ignore the minor impurities here), not just one single individual molecule."""  , """synonym: Compound""" , """Stuff that consists of the same kind of molecules (give or take the finer-grained conformation changes, temporary dissociations of, say, H, the occasional D in the 'H2O' etc.). Examples: an amount of water (H2O), an amount of tablesugar (glucose-fructose), silica/silicon dioxide (SiO2), vitamin A, etc.""" ;
+        rdfs:subClassOf      :PureStuff;
+        owl:disjointWith     :UnstructuredPureStuff;
+        owl:equivalentClass  [ rdf:type            owl:Class;
+                               owl:intersectionOf  ( :PureStuff
+                                                     [ rdf:type           owl:Restriction;
+                                                       owl:allValuesFrom  :Molecule;
+                                                       owl:onProperty     :hasGranuleType
+                                                     ]
+                                                     [ rdf:type                  owl:Restriction;
+                                                       owl:onClass               :Molecule;
+                                                       owl:onProperty            :hasGranuleType;
+                                                       owl:qualifiedCardinality  """1"""^^xsd:nonNegativeInteger
+                                                     ]
+                                                   )
+                             ] .
+
+:MixedStuff  rdf:type        owl:Class;
+        rdfs:comment         """Note: categorisation according to components, with their role. We do not include 'phase mixtures', like having an ice cube (solid water) in a glass of liquid water; in that case, it is still the pure stuff water.  For colloids, one does have to take into account the state of the stuff to define different kinds of colloids, but the point is that they are composed of different kinds of stuff. """ , """Core differences between mixtures and compouds: the proportions of the components may vary, the individual components are observable, and the components can be separated by physical means. [Silberberg, 4th ed, p73]""";
+        rdfs:subClassOf      :Stuff;
+        rdfs:subClassOf      [ rdf:type            owl:Class;
+                               owl:intersectionOf  ( :Stuff
+                                                     [ rdf:type                     owl:Restriction;
+                                                       owl:minQualifiedCardinality  """2"""^^xsd:nonNegativeInteger;
+                                                       owl:onClass                  :Stuff;
+                                                       owl:onProperty               :hasPartStuff
+                                                     ]
+                                                   )
+                             ];
+        owl:disjointUnionOf  ( :HeterogeneousMixture :HomogeneousMixture );
+        owl:disjointWith     :PureStuff .
+
+:MultiMoleculeParticle
+        rdf:type         owl:Class;
+        rdfs:comment     """see annotation to Molecule that this class' instances is a bit of a hack."""  , """Multi-molecular particle, like those in a suspension, the droplets in a colloid (i.e, not the sub-atomic particles)""";
+        rdfs:subClassOf  :PhysicalObject .
+
+:Molecule  rdf:type      owl:Class;
+        rdfs:comment     """has as part two or more chemically bonded atoms (but if I say >=2 in the axiom, then it's not simple anymore, adn have to give up transitivity, which I don't want to)""" , """The instances of this class are sort of a hack so as to stay within first order logc. Strictly speaking, the molecues that are here included as example are classes, not individuals (an individual H2O molecule in your body is), but typically we do not care about one individual such molecule. also, putting them as indivisuals in the ontology, when we have, say, hasConstituent =1 Molecule, we're actually talking of type of molecule, not an individual one. but pushing everything one level down, we get the desired behaviour of the reasoner....""" ;
+        rdfs:subClassOf  :PhysicalObject;
+        rdfs:subClassOf  [ rdf:type            owl:Restriction;
+                           owl:onProperty      :hasPart;
+                           owl:someValuesFrom  :Atom
+                         ] .
+
+:Bulk   rdf:type         owl:Class;
+        rdfs:comment     """Bulk goods, like (a silo of) soy beans, coffee, nuts, pet food, tea, whole grains, sugar. This term is typically used in the food industry. Flour and honey are indeed kinds of stuff, but, on the face of it, one can count each nut and cookie. However, the latter are, in that context, meant to go only in amounts, not individual nuts or cookies; e.g., a bag of nuts, a packet of cookies. This is just a matter of scale: the basis type of the latter is the nut or cookie instead of the countable molecule, and it goes in quantities, like a bag of peanuts or packet of cookies. In addition, bulk can come as StructuredPureStuff (sugar), HomogenousMixedStuff (the processed peanut butter with the stabilizer and possibly also sugar, not the ones from the health shop that settle and separate in peanut paste and oil on top), and HeterogenousMixedStuff, like pet food and breakfast cereals. Actually, it can be anything, except UnstructuredPureStuff""" ;
+        rdfs:subClassOf  :Stuff;
+        rdfs:subClassOf  [ rdf:type     owl:Class;
+                           owl:unionOf  ( :MixedStuff :StructuredPureStuff )
+                         ];
+        rdfs:subClassOf  [ rdf:type            owl:Class;
+                           owl:intersectionOf  ( [ rdf:type     owl:Class;
+                                                   owl:unionOf  ( [ rdf:type            owl:Restriction;
+                                                                    owl:onProperty      :hasGranuleType;
+                                                                    owl:someValuesFrom  [ rdf:type     owl:Class;
+                                                                                          owl:unionOf  ( :Molecule :MultiMoleculeParticle )
+                                                                                        ]
+                                                                  ]
+                                                                  [ rdf:type            owl:Restriction;
+                                                                    owl:onProperty      :hasPartStuff;
+                                                                    owl:someValuesFrom  :Stuff
+                                                                  ]
+                                                                )
+                                                 ]
+                                                 [ rdf:type     owl:Class;
+                                                   owl:unionOf  ( [ rdf:type           owl:Restriction;
+                                                                    owl:allValuesFrom  [ rdf:type     owl:Class;
+                                                                                         owl:unionOf  ( :Molecule :MultiMoleculeParticle )
+                                                                                       ];
+                                                                    owl:onProperty     :hasGranuleType
+                                                                  ]
+                                                                  [ rdf:type           owl:Restriction;
+                                                                    owl:allValuesFrom  :Stuff;
+                                                                    owl:onProperty     :hasPartStuff
+                                                                  ]
+                                                                )
+                                                 ]
+                                               )
+                         ] .
+
+:Atom   rdf:type         owl:Class;
+        rdfs:subClassOf  :PhysicalObject .
+
+:Colloid  rdf:type           owl:Class;
+        rdfs:comment         """one can nag about the surfactants and stabilizers and enhancers. For instance, for whipping cream in homebaking, one can add the powder to keep the whipped cream stiff for longer (i.e., stabilise the colloid). """ , """homogenous mixture with intermediate particle size. One stuff, the so-called 'dispersed medium', is microscopically dispersed evenly throughout another stuff, called the 'continuous medium' (note: there's >1 phase, whereas a solution has =1 phase; because of that, we cannot have colloid isa solution). Examples: milk, mayonaise, agar, fog  Colloids can be distinguished from solutions using the Tyndall effect. (A beam of light passing through a true solution is not visible, but light passing through a colloid will be reflected by the larger particles and the light beam will be visible.)   it should be noted that the two stuffs are in a colloidFormingRelation. This is done separately over at the ContinuousMedium and DispersedPhase classes, because it is not inherent in the stuffs themselves.""" ;
+        rdfs:subClassOf      :HomogeneousMixture;
+        owl:equivalentClass  [ rdf:type            owl:Class;
+                               owl:intersectionOf  ( :HomogeneousMixture
+                                                     [ rdf:type                  owl:Restriction;
+                                                       owl:onClass               [ rdf:type            owl:Class;
+                                                                                   owl:intersectionOf  ( :Stuff
+                                                                                                         [ rdf:type            owl:Restriction;
+                                                                                                           owl:onProperty      :hasState;
+                                                                                                           owl:someValuesFrom  :StuffState
+                                                                                                         ]
+                                                                                                         [ rdf:type            owl:Restriction;
+                                                                                                           owl:onProperty      [ owl:inverseOf  :srInheresIn ];
+                                                                                                           owl:someValuesFrom  :ContinuousMedium
+                                                                                                         ]
+                                                                                                       )
+                                                                                 ];
+                                                       owl:onProperty            :hasPartStuff;
+                                                       owl:qualifiedCardinality  """1"""^^xsd:nonNegativeInteger
+                                                     ]
+                                                     [ rdf:type                  owl:Restriction;
+                                                       owl:onClass               [ rdf:type            owl:Class;
+                                                                                   owl:intersectionOf  ( :Stuff
+                                                                                                         [ rdf:type            owl:Restriction;
+                                                                                                           owl:onProperty      :hasState;
+                                                                                                           owl:someValuesFrom  :StuffState
+                                                                                                         ]
+                                                                                                         [ rdf:type            owl:Restriction;
+                                                                                                           owl:onProperty      [ owl:inverseOf  :srInheresIn ];
+                                                                                                           owl:someValuesFrom  :DispersedPhase
+                                                                                                         ]
+                                                                                                       )
+                                                                                 ];
+                                                       owl:onProperty            :hasPartStuff;
+                                                       owl:qualifiedCardinality  """1"""^^xsd:nonNegativeInteger
+                                                     ]
+                                                     [ rdf:type            owl:Restriction;
+                                                       owl:onProperty      :hasNrOfPhase;
+                                                       owl:someValuesFrom  [ rdf:type              rdfs:Datatype;
+                                                                             owl:onDatatype        xsd:int;
+                                                                             owl:withRestrictions  ( [ xsd:minInclusive  2 ]
+                                                                                                   )
+                                                                           ]
+                                                     ]
+                                                   )
+                             ] .
+
+:AssociationalColloid
+        rdf:type         owl:Class;
+        rdfs:comment     """like hydrophibic/hydrophilic. micellar colloids, like soap. Optionally, one can add properties like the aggregation number (amount of molecules in the micels), which is normally a range, due to the critical micelle concentration adn so on.""";
+        rdfs:subClassOf  :Colloid .
+
+:Region  rdf:type        owl:Class;
+        rdfs:subClassOf  :Abstract .
+
+:AbstractRegion  rdf:type  owl:Class;
+        rdfs:subClassOf  :Region .
+
+:hasNrOfPhase  rdf:type  owl:DatatypeProperty;
+        rdfs:domain  :Stuff;
+        rdfs:range   xsd:integer .
+
+:hasDataValue  rdf:type  owl:DatatypeProperty;
+        rdfs:comment  """the range should be 'any data type', but it doesn't allow that anymore, in the sense that when I specilfy elsewhere in an axiom that it is, say, string, then it gives me an error, though theoretically [conceptually, if you will] it shouldn't. tried literal, tried anyType (rejected outright) and tried anyURI. workaround: removed range specification. """;
+        rdfs:domain   :Abstract .
+
+:StuffRole  rdf:type     owl:Class;
+        rdfs:comment     """The role a stuff plays in a mixture.""";
+        rdfs:subClassOf  :Role;
+        rdfs:subClassOf  [ rdf:type            owl:Restriction;
+                           owl:onProperty      :srInheresIn;
+                           owl:someValuesFrom  :Stuff
+                         ] .
+
+:srInheresIn  rdf:type      owl:ObjectProperty;
+        rdfs:domain         :StuffRole;
+        rdfs:range          :Stuff;
+        rdfs:subPropertyOf  :inheresIn .
+
+:Solute  rdf:type         owl:Class;
+        rdfs:comment      """A substance dissolved in another substance (the solvent)""";
+        rdfs:subClassOf   :StuffRole;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction;
+                            owl:onProperty      [ owl:inverseOf  :solutionFormingRelation ];
+                            owl:someValuesFrom  :Solvent
+                          ];
+        owl:disjointWith  :Solvent .
+
+:Solvent  rdf:type       owl:Class;
+        rdfs:comment     """The solutionFormingRelation is a bit of a catch-all for the chemical reactions that occur when te solute is dissolved in the solvent""" , """A substance in which another substance (the solute) is dissolved""";
+        rdfs:subClassOf  :StuffRole .
+
+:solutionFormingRelation
+        rdf:type            owl:ObjectProperty;
+        rdfs:comment        """this one is for chemically dissolving one stuff in another""";
+        rdfs:domain         :Solvent;
+        rdfs:range          :Solute;
+        rdfs:subPropertyOf  :stuffFormingRelation .
+
+:properContainedIn  rdf:type  owl:ObjectProperty;
+        rdfs:subPropertyOf  :properPartOf .
+
+:scatteredPortionOf  rdf:type   owl:ObjectProperty;
+        rdfs:comment            """This property is supposed to be a suproperty of portionOf, but then the chain 'scatteredPortionOf o portionOf isa scatteredPortionOf' is prohibited (it leads to a cycle, because scatteredPortionOf isa portion, and those cycles lead to undecidability). Because DL reasoners do not do much with the hierarchy in the RBox and the semantic differences between these properties---temporality---cannot be represented in OWL anyway, they are made siblings, for the inferences with the property chains are deemed more important.""" ;
+        rdfs:domain             [ rdf:type     owl:Class;
+                                  owl:unionOf  ( :AmountOfStuff :Stuff )
+                                ];
+        rdfs:range              [ rdf:type     owl:Class;
+                                  owl:unionOf  ( :AmountOfStuff :Stuff )
+                                ];
+        rdfs:subPropertyOf      :properPartOf;
+        owl:propertyChainAxiom  ( :scatteredPortionOf :portionOf ) .
+
+:AmountOfStuff  rdf:type  owl:Class;
+        rdfs:comment     """as in dolce's amount of matter, for particulars only.""" ;
+        rdfs:subClassOf  :PhysicalEndurant .
+
+:instantiation  rdf:type  owl:ObjectProperty;
+        rdfs:comment  """this object property is intentionally typed, so as to not use it elsewhere than for this case of putting 1st and 2nd order in the same ontology in the TBox. Particular amounts of matter are instances of some type of stuff, like 1kg of gold is an instance of the stuff Gold.""" ;
+        rdfs:domain   :AmountOfStuff;
+        rdfs:range    :Stuff .
+
+:Role   rdf:type         owl:Class;
+        rdfs:subClassOf  :Endurant .
+
+:inheresIn  rdf:type  owl:ObjectProperty;
+        rdfs:domain  :Role;
+        rdfs:range   :PhysicalEndurant .
+
+:hasStuffDistribution
+        rdf:type  owl:ObjectProperty .
+
+:State  rdf:type         owl:Class;
+        rdfs:subClassOf  :Perdurant .
+
+:PhysicalEndurant  rdf:type  owl:Class;
+        rdfs:subClassOf      :Endurant;
+        rdfs:subClassOf      [ rdf:type                  owl:Restriction;
+                               owl:onClass               om-1:Quantity;
+                               owl:onProperty            om-1:quantity;
+                               owl:qualifiedCardinality  """1"""^^xsd:nonNegativeInteger
+                             ];
+        owl:disjointWith     :Role;
+        owl:equivalentClass  om-1:Phenomenon .
+
+:hasState  rdf:type         owl:ObjectProperty;
+        rdfs:domain         :PhysicalEndurant;
+        rdfs:range          :State;
+        rdfs:subPropertyOf  owl:topObjectProperty .
+
+:isSelfContainedScatteredPortionOf
+        rdf:type            owl:ObjectProperty;
+        rdfs:comment        """this portion *was* a portion of a larger amount of stuff; it is a self-standing piece (e.g., a lump, drop, slide). (cf. contiguous portion) example: the slice of the cake was part of the cake""" ;
+        rdfs:domain         [ rdf:type     owl:Class;
+                              owl:unionOf  ( :AmountOfStuff :Stuff )
+                            ];
+        rdfs:range          [ rdf:type     owl:Class;
+                              owl:unionOf  ( :AmountOfStuff :Stuff )
+                            ];
+        rdfs:subPropertyOf  :scatteredPortionOf .
+
+:hasSelfContainedScatteredPortion
+        rdf:type            owl:ObjectProperty;
+        rdfs:comment        """this if for the pieces, such as lumps, puddle, slice, etc.""" ;
+        rdfs:subPropertyOf  :scatterPortion;
+        owl:inverseOf       :isSelfContainedScatteredPortionOf .
+
+:scatteredStuffPartOf
+        rdf:type                owl:ObjectProperty;
+        rdfs:comment            """this is supposed to be a subproperty of stuffpartOf, relating  amounts of matter or stuffs (like gold, milk, mayonnaise), i.e., those entities that are in natural language indicated with mass nouns and are not countable, or only countable in amounts of the stuff. This one is specific for a stuff and its 'ingredient' that is of *another* type of stuff. (cf. portions). examples: alcohol is a stuff-part of wine, oil in mayonnaise, sugar in cake etc.  but then the property chains won't work, due to cycles.  And it is supposed to be a termporalised relation, in that the scattereed part *was* a contiguous proper part of the whole.""" ;
+        rdfs:domain             [ rdf:type     owl:Class;
+                                  owl:unionOf  ( :AmountOfStuff :Stuff )
+                                ];
+        rdfs:range              [ rdf:type     owl:Class;
+                                  owl:unionOf  ( :AmountOfStuff :Stuff )
+                                ];
+        rdfs:subPropertyOf      :properPartOf;
+        owl:propertyChainAxiom  ( :stuffPartOf :contiguousPortion :isSelfContainedScatteredPortionOf ) .
+
+:hasScatterStuffPart  rdf:type  owl:ObjectProperty;
+        rdfs:subPropertyOf  :hasProperPart;
+        owl:inverseOf       :scatteredStuffPartOf .
+
+:Perdurant  rdf:type  owl:Class .
+
+:Endurant  rdf:type       owl:Class;
+        owl:disjointWith  :Perdurant .
+
+:hasQuality  rdf:type  owl:ObjectProperty;
+        rdfs:domain  [ rdf:type     owl:Class;
+                       owl:unionOf  ( :Endurant :Perdurant )
+                     ];
+        rdfs:range   :Quality .
+
+:Abstract  rdf:type  owl:Class .
+
+:Quality  rdf:type  owl:Class .
+
+:hasQuale  rdf:type  owl:ObjectProperty;
+        rdfs:domain  :Quality;
+        rdfs:range   :Abstract .
+
+:properPartOf  rdf:type     owl:ObjectProperty;
+        rdfs:comment        """usual proper parthood in mereology""" ;
+        rdfs:subPropertyOf  :partOf .
+
+:portionOf  rdf:type        owl:ObjectProperty;
+        rdfs:comment        """relation between amounts of matter or stuffs (like gold, milk, mayonnaise), i.e., those entities that are in natural langauge indicated with mass nouns and are not countable, or only countable in amounts of the stuff. this one is specific for a stuff and a portion that is of the *same* type of stuff. (cf. stuff-part) examples: slice of the cake is a portion of the cake, glass of wine is a portion of the bottle of wine, etc.""";
+        rdfs:domain         [ rdf:type     owl:Class;
+                              owl:unionOf  ( :AmountOfStuff :Stuff )
+                            ];
+        rdfs:range          [ rdf:type     owl:Class;
+                              owl:unionOf  ( :AmountOfStuff :Stuff )
+                            ];
+        rdfs:subPropertyOf  :properPartOf .
+
+:hasPortion  rdf:type       owl:ObjectProperty;
+        rdfs:comment        """a part that is of the same stuffkind as its whole. (not reflected as such in the OWL ontology, due to expressiveness limtations) Example: the top-half of the wine in my glass and the bottom-half are portions of the whole amount of wine in my wine glass (assume this is instantaneous division [recolelction motin of molecules]), the wine in the wineglass was/is a portion of the amount that was in the wine bottle, etc. """  , """Note that, when any of the portions, or portions of the portions, loses some molecules due to some reaction or radioactive degradation (not due to phase change), then the original quantity ceases to exist. according to philosphers. Given that that happens pretty much continuously, then in the strict sense, there isn't much point in talking of portions. Practically, they are useful though ('naive chemistry', if you will)""" ;
+        rdfs:subPropertyOf  :hasProperPart;
+        owl:inverseOf       :portionOf .
+
+:stuffPartOf  rdf:type      owl:ObjectProperty;
+        rdfs:comment        """relation between amounts of matter or stuffs (like gold, milk, mayonnaise), i.e., those entities that are in natural langauge indicated with mass nouns and are not countable, or only countable in amounts of the stuff. this one is specific for a stuff and its 'ingredient' that is of *another* type of stuff. (cf. portions) examples: alcohol is a stuff-part of wine, oil in mayonnaise, sugar in cake etc.""" ;
+        rdfs:domain         [ rdf:type     owl:Class;
+                              owl:unionOf  ( :AmountOfStuff :Stuff )
+                            ];
+        rdfs:range          [ rdf:type     owl:Class;
+                              owl:unionOf  ( :AmountOfStuff :Stuff )
+                            ];
+        rdfs:subPropertyOf  :properPartOf .
+
+:hasPartStuff  rdf:type     owl:ObjectProperty;
+        rdfs:comment        """What the domain and range axiom fail to capture is that they have to be distinct kinds of stuffs.""" ;
+        rdfs:subPropertyOf  :hasProperPart;
+        owl:inverseOf       :stuffPartOf .
+
+:hasPart  rdf:type     owl:ObjectProperty;
+        rdfs:comment   """note: domain and range axioms, where applicable, are declared in the part-of branch (the inverses) only (as it infers them here then)."""  , """concerning some possible hasComponent and composedOf sub-property for stuffs: is hasComponent == composedOf? Somehow, the composedOf seem 'essential', whereas an hasComponent less so, but I can't nail it down. vodka has component alcohol, but it is not composed of alcohol. One is an object-centred view with a 'z happens to have x and y as components', the other a process-centred view with an 'we put x and y together to obtain z'. Example: wine happens to have alcohol thanks to the fermentation, but for whipped cream, we put air and cream together. This deserves closer scrutiny, but is an orthogonal aspect.""" ;
+        owl:inverseOf  :partOf .
+
+:PhysicalObject  rdf:type  owl:Class;
+        rdfs:subClassOf   :PhysicalEndurant;
+        owl:disjointWith  :Stuff .
+
+:Stuff  rdf:type             owl:Class;
+        rdfs:comment         """Synonym: Amount of Matter""" ;
+        rdfs:subClassOf      :PhysicalEndurant;
+        rdfs:subClassOf      [ rdf:type                     owl:Restriction;
+                               owl:maxQualifiedCardinality  """3"""^^xsd:nonNegativeInteger;
+                               owl:onClass                  :StuffState;
+                               owl:onProperty               :hasState
+                             ];
+        rdfs:subClassOf      [ rdf:type           owl:Restriction;
+                               owl:allValuesFrom  :StuffState;
+                               owl:onProperty     :hasState
+                             ];
+        owl:disjointUnionOf  ( :MixedStuff :PureStuff ) .
+
+:hasGranuleType  rdf:type   owl:ObjectProperty;
+        rdfs:comment        """terms like 'has grain' and 'has granular part' tend to be used for this relation as well. but lots of stuffs use bases that are not of one single type/grain/level of granularity (i.e., not only atoms or only molecules or only multi-molecular object). What one does do, is define the basis for analysis, with an implict 'we don't look any more fine-grained than that, and this is out level of analysis', like, say, the H2O molecules water is composed of, not the p-orbitals or neutrons of those water molecules. then there's one thing with asserting 'we go as far as the molecules, not below' for some kind/category of stuff and another one to assert that SugaryWater is composed of (or has component) water and sugar, which is asserting the composition at the molecule level and as macroscopic stuffs, and based on that analysis at that level, it is a solution.""";
+        rdfs:domain         :Stuff;
+        rdfs:range          :PhysicalObject;
+        rdfs:subPropertyOf  owl:topObjectProperty .
+
+:isContainedScatteredPortionOf
+        rdf:type            owl:ObjectProperty;
+        rdfs:comment        """this portion *was* a portion of a larger amount of stuff; it needs a container. (cf. self-contained portion) example: the wine in the wine glass is a scattered portion of the total amount that was in the wine bottle""" ;
+        rdfs:domain         [ rdf:type     owl:Class;
+                              owl:unionOf  ( :AmountOfStuff :Stuff )
+                            ];
+        rdfs:range          [ rdf:type     owl:Class;
+                              owl:unionOf  ( :AmountOfStuff :Stuff )
+                            ];
+        rdfs:subPropertyOf  :scatteredPortionOf .
+
+:scatterPortion  rdf:type   owl:ObjectProperty;
+        rdfs:comment        """like portion, but then the temporal aspect to it: some portion x of y was a  contiguous part of y at time t and that portion x is now on the moon at time t' (with t'>t). Mundane example: the wine in the wine glass you just poured from the wine in the wine bottle, the slice of bread that you just sliced from the loaf of bread. For the modelling, it might perhaps be useful to have two subproperties: one for  (sub)portions that each come with its container, and one that does not. It's one thing to talk of lumps, puddles, slices etc. that merely give a vague indication of the amount and are 'selfstanding' amounts, and another that needs to have the container recorded with it, like a silo of grain, cup of tea, sachet of sugar. """ ;
+        rdfs:subPropertyOf  :hasProperPart;
+        owl:inverseOf       :scatteredPortionOf .
+
+:hasContainedScatteredPortion
+        rdf:type            owl:ObjectProperty;
+        rdfs:comment        """these scattered portions are necessarily contained in a container (such as a glass)""" ;
+        rdfs:subPropertyOf  :scatterPortion;
+        owl:inverseOf       :isContainedScatteredPortionOf .
+
+:isContiguousPortionOf
+        rdf:type            owl:ObjectProperty;
+        rdfs:comment        """This property is supposed to be a suproperty of portionOf, but then the chains involving portionOf would be prohibited (it leads to a cycle, and those cycles lead to undecidability). Because DL reasoners do not do much with the hierarchy in the RBox and the semantic differences between these properties---temporality---cannot be represented in OWL anyway, they are made siblings, for the inferences with the property chains are deemed more important.""" ;
+        rdfs:domain         [ rdf:type     owl:Class;
+                              owl:unionOf  ( :AmountOfStuff :Stuff )
+                            ];
+        rdfs:range          [ rdf:type     owl:Class;
+                              owl:unionOf  ( :AmountOfStuff :Stuff )
+                            ];
+        rdfs:subPropertyOf  :properPartOf .
+
+:hasProperPart  rdf:type    owl:ObjectProperty;
+        rdfs:subPropertyOf  :hasPart;
+        owl:inverseOf       :properPartOf .
+
+:contiguousPortion  rdf:type  owl:ObjectProperty;
+        rdfs:subPropertyOf  :hasProperPart;
+        owl:inverseOf       :isContiguousPortionOf .
+
+:partOf  rdf:type  owl:TransitiveProperty , owl:ObjectProperty .
+
+:containedIn  rdf:type      owl:ObjectProperty;
+        rdfs:subPropertyOf  :partOf .
+
+:DispersedPhase  rdf:type  owl:Class;
+        rdfs:comment     """the colloidFormingRelation is between the DispersedPhase and the ContinuousMedium and not their respective bearers (stuffs), because if you put the stuffs together just like that, you won't get the colloid; put differently, they have to be mixed in a particular way for it to become a homogenous mixture. E.g., opening a cup of cream and exposing it to an amount of air won't get you whipped cream, and putting the right amount of egg yolk and oil in the mixing bowl does not instantly become mayonnaise. It only work if the stuff that plays the role of dispersed phase is added gradually to the continuous medium in order to become a stable colloid. The same stuff can play eitehr role, depending on the colloid to be formed""";
+        rdfs:subClassOf  :StuffRole .
+
+:ContinuousMedium  rdf:type  owl:Class;
+        rdfs:comment      """also called dispersion medium""";
+        rdfs:subClassOf   :StuffRole;
+        rdfs:subClassOf   [ rdf:type            owl:Restriction;
+                            owl:onProperty      :colloidFormingRelation;
+                            owl:someValuesFrom  :DispersedPhase
+                          ];
+        owl:disjointWith  :DispersedPhase .
+
+:stuffFormingRelation
+        rdf:type      owl:ObjectProperty;
+        rdfs:comment  """the stuffFormingRelation is now (over?)loaded with the semantics of representing the notions that there is a relation forming between the objects in the stuff, like, surface tension of the particles in the colloid, H-bond, and so on, and the ratio as regards to how things are mixed (e.g., we only have lemonade when we have them in a mixture of  water:sugar:lemonjuice in the ratio of, say, 8:1:1, that is, proportional amounts in ml, grams, whatever). """;
+        rdfs:domain   [ rdf:type     owl:Class;
+                        owl:unionOf  ( :ContinuousMedium :DispersedPhase :Solute :Solvent )
+                      ];
+        rdfs:range    [ rdf:type     owl:Class;
+                        owl:unionOf  ( :ContinuousMedium :DispersedPhase :Solute :Solvent )
+                      ] .
+
+:colloidFormingRelation
+        rdf:type            owl:ObjectProperty;
+        rdfs:comment        """this one is for the colloids, which also takes care of the surface tension etc. (and does not necessarily involve a chemical reaction like with the solutions)""";
+        rdfs:domain         :ContinuousMedium;
+        rdfs:range          :DispersedPhase;
+        rdfs:subPropertyOf  :stuffFormingRelation .
+
+:       rdf:type      owl:Ontology;
+        rdfs:comment  """This is the third version of the stuff ontology (July 2016). The main updates are the stuff relations (portions and stuff-parts/ingredients) and the import of a module of the OM ontology."""  , """This is the second version of an ontology about stuffkinds (v1.0, d.d. 11-04-2012, v1.5, d.d. 25-6-2014), developed by C. Maria Keet. The paper that describes the details:  Keet, C.M. A core ontology of macroscopic stuff. 19th International Conference on Knowledge Engineering and Knowledge Management (EKAW'14). K. Janowicz et al. (Eds.). 24-28 Nov, 2014, Linkoping, Sweden. Springer LNAI vol. 8876, 209-224 For questions and comments, please write an email to mkeet@cs.uct.ac.za.""" ;
+        owl:imports   om-1: .

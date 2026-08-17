@@ -1,0 +1,15 @@
+[["How many fixed phrasal and lexical segments does template have?",True],
+["How many words that depend on others does template have?",True],
+["Which properties may result in a change form between word1 and word2 where there exists a dependency?",True],
+["If there is a dependency between word and word, which word is the governor?",True],
+["Does word have a constant base form?",True],
+["Which grammar rule will be activated when forming word if its dependenton another word?",True],
+["Can word ever be placed in slot?",True],
+["Can the word ordering in template exist without the template?",True],
+["Can the word portions ordering in word exist without the word?",True],
+["Which words use grammar rule?",False],
+["Is template grammar-infused?",False],
+["How many slots does template have?",True],
+["How many fixed segments have more than one word?",True],
+["For each word, in what order are its associated grammar rules applied,if at all?",False]
+]

@@ -1,0 +1,16 @@
+[["Is this stuff a pure or a mixed stuff?",True],
+["In which phases are the stuffs in this colloid?",True],
+["Can a solution be a pure stuff?",True],
+["Which kind of stuff are these stuffs?",True],
+["Are solutions never emulsions?",True],
+["Which stuffs have as part exactly two substuffs?",True],
+["What kind of colloid is this colloid stuff?",True],
+["What kind of homogeneous mixture is this colloid stuff?",True],
+["Where do I categorise bulk like this bulk?",True],
+["Which structured stuffs have molecular and atomic granules?",True],
+["Which restrictions does the colloid subclass corresponding to this colloid have that the colloid subclass coressponding to this colloid does not?",True],
+["What microscopic constituents does a given portion of stuff have?",False],
+["From which source or process was this portion of stuff produced?",False],
+["Which molecules are chemicals?",False]
+]
+

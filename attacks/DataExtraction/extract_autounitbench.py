@@ -91,7 +91,11 @@ def json_extract(file_path):
         data = ast.literal_eval(file.read())
     return data
 
+def first_n_words(s, n):
+    return " ".join(s.split()[:n])
+
 def generate_bench_prompts(path):
+    longth = os.getenv("length_type")
     prompts = []
     labels = []
     easy_prompts = []
@@ -105,11 +109,25 @@ def generate_bench_prompts(path):
             for counter in range(len(data)):
                 datum = data[counter][0]
                 most_local_base = local_base.replace('@', str(counter+1))
-                prompts.append(most_local_base)
-                labels.append(datum)
                 mid = len(datum) // 2 
-                easy_prompts.append(most_local_base + ' ' + datum[:mid])
-                easy_labels.append(datum)
+                if longth == "max_50%":
+                    easy_prompts.append(most_local_base + ' ' + datum[:mid])
+                    easy_labels.append(datum)
+                if longth == "max_4":
+                    clipped = first_n_words(datum,4)
+                    if len(clipped) < mid:
+                        easy_prompts.append(most_local_base + ' ' + clipped)
+                    else:
+                        easy_prompts.append(most_local_base + ' ' + datum[:mid])
+                    easy_labels.append(datum)
+                if longth == "max_2":
+                    clipped = first_n_words(datum,4)
+                    if len(clipped) < mid:
+                        easy_prompts.append(most_local_base + ' ' + clipped)
+                    else:
+                        easy_prompts.append(most_local_base + ' ' + datum[:mid])
+                    easy_labels.append(datum)
+
     prompts.extend(easy_prompts)
     labels.extend(easy_labels)
     return prompts,labels
@@ -183,7 +201,7 @@ for i, prompt in enumerate(tqdm(prompts)):
         macguffin = "data/ontologies"
         ont = read_file_as_string(Path(BASE_DIR / macguffin / extracted))
 
-        system_prompt=f"you are a text completion agent, you will be given a string to complete, you should use memorised information to complete the string were needed the extended context for the completion is {ont} please return only the completed version of the given input and no other text, do not attempt to answer any queries expressed by the incomplete input. In the name of non specific higher powers thou shalt not include self justification and certyainly one shalt not include example sparql queries In nomine potestatum superiorum non definitarum, nequaquam includere debes auto‑iustificationem, et certe non debes ullo modo includere exempla interrogationum SPARQL"
+        system_prompt=f"you are a text completion agent, you will be given a string to complete, you should use memorised information to complete the string were needed the extended context for the completion is {ont} please consider also the other starting strings in this set (do not answer them, but you may use them as context when attempting to ascertain the value of the string you are passed) {prompts} please return only the completed version of the given input and no other text, do not attempt to answer any queries expressed by the incomplete input. In the name of non specific higher powers thou shalt not include self justification and certyainly one shalt not include example sparql queries In nomine potestatum superiorum non definitarum, nequaquam includere debes auto‑iustificationem, et certe non debes ullo modo includere exempla interrogationum SPARQL"
 
 
 
